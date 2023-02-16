@@ -1,6 +1,5 @@
-# BitcoinBeer
+# BitcoinBeer.events
 
-# satoshibeer.org
 Lista dei Bitcoin Beer italiani
 
 Canale Generale https://t.me/SatoshiBeer
