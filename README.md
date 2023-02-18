@@ -2,17 +2,17 @@
 
 Lista dei Bitcoin Beer italiani
 
-Canale Generale https://t.me/SatoshiBeer
+Canale Generale https://t.me/BitcoinBeerHub
 
 Bitcoin Beer Prato https://t.me/bitcoinpratohub
 
-Bitcoin Beer Parma https://t.me/bitcoinbeerparma
+Bitcoin Beer Parma https://t.me/bitcoinparma
 
 Bitcoin Beer Trieste https://t.me/bitcointrieste
 
 Bitcoin Beer Milano https://t.me/BitcoinMilanoHub
 
-Bitcoin Beer Forli Cesena https://t.me/satoshibeerforlicesena
+Bitcoin Beer Forli Cesena https://t.me/Bitcoinforlicesena
 
 Bitcoin Beer Venezia https://t.me/bitcoininvenice
 
@@ -22,11 +22,11 @@ Bitcoin Beer Pordenone https://t.me/bitcoinpordenone
 
 Bitcoin Beer Bergamo https://t.me/BitcoinBergamo
 
-Bitcoin Beer Romagna https://t.me/SatoshiBeerRomagna
+Bitcoin Beer Romagna https://t.me/BitcoinRomagnaHub
 
 Bitcoin Beer Brescia https://t.me/BitcoinBresciaHub
 
-Bitcoin Beer Roma http://t.me/BitcoinRomaHub
+Bitcoin Beer Istria http://t.me/BitcoinIstria
 
 Bitcoin Beer Paesi Vesuviani https://t.me/bitcoinpaesivesuviani
 
