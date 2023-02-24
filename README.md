@@ -31,4 +31,7 @@ Bitcoin Beer Istria http://t.me/BitcoinIstria
 Bitcoin Beer Paesi Vesuviani https://t.me/bitcoinpaesivesuviani
 
 
+Bitcoin Beer Bosa https://t.me/bitcoinbosa
+
+
 ![alt text](https://github.com/Mendace/satoshibeer.org/blob/main/assets/tappo.png?raw=true) 
