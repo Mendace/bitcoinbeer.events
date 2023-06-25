@@ -30,8 +30,12 @@ Bitcoin Beer Istria http://t.me/BitcoinIstria
 
 Bitcoin Beer Paesi Vesuviani https://t.me/bitcoinpaesivesuviani
 
-
 Bitcoin Beer Bosa https://t.me/bitcoinbosa
 
+Bitcoin Beer Biella https://t.me/bitcoinbiella
+
+Bitcoin Beer Brixton https://twitter.com/brixtonbitcoin
+
+Bitcoin Beer London https://twitter.com/LDNBTCSPACE
 
 ![alt text](https://github.com/Mendace/satoshibeer.org/blob/main/assets/tappo.png?raw=true) 
