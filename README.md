@@ -38,4 +38,6 @@ Bitcoin Beer Brixton https://twitter.com/brixtonbitcoin
 
 Bitcoin Beer London https://twitter.com/LDNBTCSPACE
 
+Bitcoin Beer Malta https://t.me/bitcoinmaltahub
+
 ![alt text](https://github.com/Mendace/satoshibeer.org/blob/main/assets/tappo.png?raw=true) 
