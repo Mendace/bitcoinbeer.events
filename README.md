@@ -40,4 +40,6 @@ Bitcoin Beer London https://twitter.com/LDNBTCSPACE
 
 Bitcoin Beer Malta https://t.me/bitcoinmaltahub
 
+Bitcoin Beer Monfalcone https://t.me/BitcoinMonfalcone
+
 ![alt text](https://github.com/Mendace/satoshibeer.org/blob/main/assets/tappo.png?raw=true) 
