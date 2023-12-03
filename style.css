@@ -863,35 +863,26 @@ iframe {border-radius: 10px;}
 
 
 
+/* Stili per la Sezione Donazione */
+
 .bitcoin-donations {
   text-align: center;
-  padding: 20px;
-  margin-top: 30px;
-}
-
-.qr-codes {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-}
-
-.qr-code img {
-  max-width: 150px; /* Ajusta la dimensione secondo le tue necessità */
-  height: auto;
-}
-
-.qr-code p {
-  margin-top: 10px;
+  margin: 5em 3em 0 3em;
+  padding: 3em 0;
+  width: 92%;
+  margin: 0 auto; /* Centra il contenitore orizzontalmente */
+  padding: 20px; /* Aggiungi del padding per non far aderire il contenuto ai bordi */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Opzionale: aggiungi un'ombra per un effetto rialzato */
+  text-align: center;
+  background-color: var(--bg-box);
+  border-radius: 1.5em;
 }
 
 
-
-/* Stili per la Sezione Donazione */
 .donation-section {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between; /* Questo può aiutare a gestire lo spazio tra le card */
-  /* altri stili */
 }
 
 .donation-card {
@@ -954,23 +945,57 @@ iframe {border-radius: 10px;}
 
 
 #bitcoin-blockchain-visualizer {
-  background-color: #f2f2f2;
-  color: #161616;
-  border-radius: 10px;
-  padding: 20px;
-  margin: 20px 0;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  width: 92%;
+  margin: 2em auto;
+  padding: 3em 0;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
+  text-align: center;
+  background-color: var(--bg-box);
+  border-radius: 1.5em;
 }
 
 #bitcoin-blockchain-visualizer h3 {
-  color: #333;
+  color: #ffffff;
   margin-bottom: 15px;
 }
 
 #block-info p {
-  color: #555;
+  color: #ffffff;
   font-size: 16px;
   margin: 5px 0;
+}
+
+.block-info-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+
+.block-info-card {
+  background-color: #b1b1b113;
+  color: #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  flex-basis: calc(25% - 20px); /* Adatta questo in base al numero di card */
+}
+
+.block-info-card p {
+  margin: 0;
+  color: #ffffff;
+}
+
+/* Stile Responsive per Mobile */
+@media (max-width: 768px) {
+  .block-info-container {
+      flex-direction: column;
+  }
+
+  .block-info-card {
+      flex-basis: 100%;
+  }
 }
 
 
