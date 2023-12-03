@@ -861,6 +861,120 @@ iframe {border-radius: 10px;}
   margin-right: 8px;
 }
 
+
+
+.bitcoin-donations {
+  text-align: center;
+  padding: 20px;
+  margin-top: 30px;
+}
+
+.qr-codes {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.qr-code img {
+  max-width: 150px; /* Ajusta la dimensione secondo le tue necessità */
+  height: auto;
+}
+
+.qr-code p {
+  margin-top: 10px;
+}
+
+
+
+/* Stili per la Sezione Donazione */
+.donation-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; /* Questo può aiutare a gestire lo spazio tra le card */
+  /* altri stili */
+}
+
+.donation-card {
+  flex-basis: calc(33.333% - 20px);
+  box-sizing: border-box; /* Assicurati che padding e border siano inclusi nella larghezza */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  text-align: center;
+  margin: 10px;
+  background: rgba(255, 255, 255, 0.1); /* Sfondo semi-trasparente */
+  border-radius: 10px;
+  backdrop-filter: blur(10px); /* Effetto sfocatura */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.144);
+  overflow: hidden; /* Assicura che tutto rimanga all'interno dei bordi arrotondati */
+  padding-bottom: 20px;
+}
+
+
+.donation-card img {
+  width: 100%;
+  height: auto;
+  display: block; /* Rimuove eventuali spazi extra sotto l'immagine */
+}
+
+.donation-card p {
+  color: #ffffff; /* o un altro colore che si legga bene su sfondo chiaro */
+  padding: 10px; /* Aggiunge spazio intorno al testo */
+  /* Altri stili */
+}
+
+.donate-button {
+  display: inline-block;
+  background-color: #ffaf02;
+  color: rgb(0, 0, 0);
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+
+.button:hover {
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.6); /* Effetto abbaglio */
+  background-color: #ffbc2a;
+}
+
+
+/* Responsive Design per Mobile */
+@media (max-width: 768px) {
+  .donation-section {
+    flex-direction: column;
+  }
+
+  .donation-card {
+    flex-basis: auto;
+  }
+}
+
+
+#bitcoin-blockchain-visualizer {
+  background-color: #f2f2f2;
+  color: #161616;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px 0;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+#bitcoin-blockchain-visualizer h3 {
+  color: #333;
+  margin-bottom: 15px;
+}
+
+#block-info p {
+  color: #555;
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+
+
 /* Icon styles (generic - replace with your own icons) */
 .icon {
   display: inline-block;
