@@ -372,28 +372,37 @@
 
     <script>
       document.addEventListener('DOMContentLoaded', function() {
-          var blockInfoDiv = document.getElementById('block-info');
-  
-          function aggiungiDatiTicker(hash) {
-              fetch(`https://blockstream.info/api/block/${hash}`)
-                  .then(response => response.json())
-                  .then(blockData => {
-                      if (blockInfoDiv) {
-                          var blockElement = document.createElement('span');
-                          blockElement.textContent = 'Hash: ' + blockData.id + ' | Altezza: ' + blockData.height + ' | Dimensione: ' + blockData.size + ' bytes | Orario: ' + new Date(blockData.timestamp * 1000).toLocaleString() + ' | ';
-                          blockInfoDiv.appendChild(blockElement);
-                      }
-                  })
-                  .catch(error => console.error('Errore nel recuperare i dati del blocco:', error));
-          }
-  
-          fetch('https://blockstream.info/api/blocks/tip/hash')
-              .then(response => response.text())
-              .then(hash => {
-                  aggiungiDatiTicker(hash);
-              })
-              .catch(error => console.error('Errore nel recuperare l\'hash del blocco:', error));
-      });
+    var blockInfoDiv = document.getElementById('block-info');
+    var ultimoHash = '';
+
+    function aggiungiDatiTicker(hash) {
+        if (hash !== ultimoHash) {
+            ultimoHash = hash;
+            fetch(`https://blockstream.info/api/block/${hash}`)
+                .then(response => response.json())
+                .then(blockData => {
+                    var blockElement = document.createElement('span');
+                    blockElement.textContent = 'Hash: ' + blockData.id + ' | Altezza: ' + blockData.height + ' | Dimensione: ' + blockData.size + ' bytes | Orario: ' + new Date(blockData.timestamp * 1000).toLocaleString() + ' | ';
+                    blockInfoDiv.innerHTML = ''; // Pulisce i vecchi dati
+                    blockInfoDiv.appendChild(blockElement); // Aggiunge i nuovi dati
+                })
+                .catch(error => console.error('Errore nel recuperare i dati del blocco:', error));
+        }
+    }
+
+    function verificaNuovoBlocco() {
+        fetch('https://blockstream.info/api/blocks/tip/hash')
+            .then(response => response.text())
+            .then(hash => {
+                aggiungiDatiTicker(hash);
+            })
+            .catch(error => console.error('Errore nel recuperare l\'hash del blocco:', error));
+    }
+
+    verificaNuovoBlocco();
+    setInterval(verificaNuovoBlocco, 60000); // Aggiorna ogni 60 secondi
+});
+
   </script>
   
 
