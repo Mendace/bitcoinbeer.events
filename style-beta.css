@@ -957,8 +957,9 @@ iframe {border-radius: 10px;}
 
 .block-info-container {
   display: flex;
-  animation: ticker 60s linear infinite;
+  animation: ticker 30s linear infinite;
 }
+
 
 @keyframes ticker {
   0% { transform: translateX(100%); }
