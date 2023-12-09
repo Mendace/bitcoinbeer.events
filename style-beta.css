@@ -957,13 +957,19 @@ iframe {border-radius: 10px;}
 
 .block-info-container {
   display: flex;
-  animation: ticker 30s linear infinite;
+  animation: ticker 20s linear infinite;
 }
 
 
 @keyframes ticker {
   0% { transform: translateX(100%); }
   100% { transform: translateX(-100%); }
+}
+
+@media (max-width: 768px) {
+  .block-info-container {
+      animation-duration: 20s; /* Rallenta l'animazione per i dispositivi mobili */
+  }
 }
 
 .block-info-container span {
