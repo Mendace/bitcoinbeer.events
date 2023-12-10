@@ -863,6 +863,95 @@ iframe {border-radius: 10px;}
 
 
 
+
+/* Stile per la sezione della Mailing List */
+.section-mailing-list {
+  padding: 40px 0;
+}
+
+.listmonk-form {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: var(--bg-box);
+  border: 1px solid var(--bg-border-box);
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.listmonk-form h4 {
+  color: var(--title-color);
+  font-family: 'Unbounded', sans-serif;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.listmonk-form input[type=email], 
+.listmonk-form input[type=text] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid var(--bg-border-box);
+  border-radius: 4px;
+  background-color: var(--bg-box);
+  color: var(--text-color);
+  font-family: 'Roboto Mono', sans-serif;
+}
+
+.listmonk-form label {
+  display: block; /* Assicura che tutti siano block-level */
+  margin-right: auto;
+  padding-left: 0; /* Rimuove padding aggiuntivo a sinistra */
+  margin-left: 10px;
+  color: var(--text-color);
+  font-size: 14px;
+}
+
+
+
+.listmonk-form input[type=submit] {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  margin-top: 20px;
+  background-color: var(--button);
+  color: var(--title-color);
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  font-family: 'Roboto Mono', sans-serif;
+  box-shadow: 2px 2px 20px 0px rgba(0,0,0, .2);
+  transition: all 0.3s ease;
+}
+
+.listmonk-form input[type=submit]:hover {
+  background-color: darken(var(--button), 10%);
+}
+
+/* Nasconde il checkbox mantenendolo funzionale */
+.listmonk-form input[type=checkbox] {
+  position: absolute;
+  left: -9999px;
+}
+
+
+/* Stili Responsive per schermi più piccoli */
+@media (max-width: 768px) {
+  .section-mailing-list {
+    padding: 20px; /* Aumento del padding per i dispositivi mobili */
+  }
+  .listmonk-form {
+    max-width: 100%; /* La mailing list può espandersi fino al 100% della larghezza */
+    padding: 15px 20px; /* Aggiunta di padding laterale */
+  }
+  .listmonk-form input[type=email], 
+  .listmonk-form input[type=text],
+  .listmonk-form input[type=submit] {
+    padding: 12px;
+  }
+}
+
+
 /* Stili per la Sezione Donazione */
 
 .bitcoin-donations {
