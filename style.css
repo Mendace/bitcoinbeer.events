@@ -863,15 +863,102 @@ iframe {border-radius: 10px;}
 
 
 
+
+/* Stile per la sezione della Mailing List */
+.section-mailing-list {
+  padding: 40px 0;
+}
+
+.listmonk-form {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: var(--bg-box);
+  border: 1px solid var(--bg-border-box);
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.listmonk-form h4 {
+  color: var(--title-color);
+  font-family: 'Unbounded', sans-serif;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.listmonk-form input[type=email], 
+.listmonk-form input[type=text] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid var(--bg-border-box);
+  border-radius: 4px;
+  background-color: var(--bg-box);
+  color: var(--text-color);
+  font-family: 'Roboto Mono', sans-serif;
+}
+
+.listmonk-form label {
+  display: block; /* Assicura che tutti siano block-level */
+  margin-right: auto;
+  padding-left: 0; /* Rimuove padding aggiuntivo a sinistra */
+  margin-left: 10px;
+  color: var(--text-color);
+  font-size: 14px;
+}
+
+
+
+.listmonk-form input[type=submit] {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  margin-top: 20px;
+  background-color: var(--button);
+  color: var(--title-color);
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  font-family: 'Roboto Mono', sans-serif;
+  box-shadow: 2px 2px 20px 0px rgba(0,0,0, .2);
+  transition: all 0.3s ease;
+}
+
+.listmonk-form input[type=submit]:hover {
+  background-color: darken(var(--button), 10%);
+}
+
+/* Nasconde il checkbox mantenendolo funzionale */
+.listmonk-form input[type=checkbox] {
+  position: absolute;
+  left: -9999px;
+}
+
+
+/* Stili Responsive per schermi più piccoli */
+@media (max-width: 768px) {
+  .section-mailing-list {
+    padding: 20px; /* Aumento del padding per i dispositivi mobili */
+  }
+  .listmonk-form {
+    max-width: 100%; /* La mailing list può espandersi fino al 100% della larghezza */
+    padding: 15px 20px; /* Aggiunta di padding laterale */
+  }
+  .listmonk-form input[type=email], 
+  .listmonk-form input[type=text],
+  .listmonk-form input[type=submit] {
+    padding: 12px;
+  }
+}
+
+
 /* Stili per la Sezione Donazione */
 
 .bitcoin-donations {
   text-align: center;
-  margin: 5em 3em 0 3em;
+  margin: 2em auto;
   padding: 3em 0;
   width: 92%;
-  margin: 0 auto; /* Centra il contenitore orizzontalmente */
-  padding: 20px; /* Aggiungi del padding per non far aderire il contenuto ai bordi */
   box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Opzionale: aggiungi un'ombra per un effetto rialzato */
   text-align: center;
   background-color: var(--bg-box);
@@ -943,59 +1030,39 @@ iframe {border-radius: 10px;}
   }
 }
 
-
 #bitcoin-blockchain-visualizer {
-  width: 92%;
-  margin: 2em auto;
-  padding: 3em 0;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
-  text-align: center;
-  background-color: var(--bg-box);
-  border-radius: 1.5em;
-}
-
-#bitcoin-blockchain-visualizer h3 {
-  color: #ffffff;
-  margin-bottom: 15px;
-}
-
-#block-info p {
-  color: #ffffff;
-  font-size: 16px;
-  margin: 5px 0;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  overflow: hidden;
+  white-space: nowrap;
+  height: 30px; /* Altezza del ticker */
+  line-height: 30px; /* Centra il testo verticalmente */
+  z-index: 9999;
 }
 
 .block-info-container {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+  animation: ticker 20s linear infinite;
 }
 
 
-.block-info-card {
-  background-color: #b1b1b113;
-  color: #ddd;
-  border-radius: 10px;
-  padding: 20px;
-  margin: 10px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  flex-basis: calc(25% - 20px); /* Adatta questo in base al numero di card */
+@keyframes ticker {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
 }
 
-.block-info-card p {
-  margin: 0;
-  color: #ffffff;
-}
-
-/* Stile Responsive per Mobile */
 @media (max-width: 768px) {
   .block-info-container {
-      flex-direction: column;
+      animation-duration: 20s; /* Rallenta l'animazione per i dispositivi mobili */
   }
+}
 
-  .block-info-card {
-      flex-basis: 100%;
-  }
+.block-info-container span {
+  padding-right: 50px; /* Spazio tra le informazioni */
 }
 
 
