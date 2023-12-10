@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/8e497044-67f9-4439-8b34-8ee8ec089fdf/deploy-status)](https://app.netlify.com/sites/bitcoinbeerevents/deploys)
+
 # BitcoinBeer.events
 
 Lista dei Bitcoin Beer italiani
