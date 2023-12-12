@@ -866,16 +866,16 @@ iframe {border-radius: 10px;}
 
 /* Stile per la sezione della Mailing List */
 .section-mailing-list {
-  padding: 40px 0;
+  padding: 40px;
+  width: 100%;
 }
 
 .listmonk-form {
-  max-width: 500px;
   margin: 0 auto;
   padding: 20px;
   background-color: var(--bg-box);
   border: 1px solid var(--bg-border-box);
-  border-radius: 8px;
+  border-radius: 20px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
@@ -906,8 +906,6 @@ iframe {border-radius: 10px;}
   color: var(--text-color);
   font-size: 14px;
 }
-
-
 
 .listmonk-form input[type=submit] {
   display: block;
@@ -1030,6 +1028,8 @@ iframe {border-radius: 10px;}
   }
 }
 
+/* Ticker */
+
 #bitcoin-blockchain-visualizer {
   position: fixed;
   bottom: 0;
@@ -1049,6 +1049,14 @@ iframe {border-radius: 10px;}
   animation: ticker 20s linear infinite;
 }
 
+.block-info-container span {
+  padding-right: 50px; /* Spazio tra le informazioni */
+}
+
+#block-info {
+  max-width: 100%;
+}
+
 
 @keyframes ticker {
   0% { transform: translateX(100%); }
@@ -1059,10 +1067,6 @@ iframe {border-radius: 10px;}
   .block-info-container {
       animation-duration: 20s; /* Rallenta l'animazione per i dispositivi mobili */
   }
-}
-
-.block-info-container span {
-  padding-right: 50px; /* Spazio tra le informazioni */
 }
 
 
@@ -1117,4 +1121,267 @@ iframe {border-radius: 10px;}
       border-radius: 50%;
   }
 
+}
+
+
+
+/* Stile Shop */
+
+.intestazione-shop h1 {
+  font-size: 2.5em;
+  color: var(--title-color);
+  text-align: center;
+}
+
+.intestazione-shop p {
+  font-size: 1.2em;
+  text-align: center;
+  color: var(--text-color);
+}
+
+
+/* Stile Container Prodotti */
+
+.container-prodotti {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.container-prodotto {
+  background-size: cover;
+  background-position: center;
+  width: 95%; /* Larghezza come le altre sezioni del sito */
+  height: 300px; /* Altezza del container */
+  margin: 20px 0;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px; /* Arrotonda gli angoli del container */
+  overflow: hidden; /* Assicurati che l'overflow sia nascosto per rispettare il border-radius */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Aggiunge una leggera ombra */
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.container-prodotto h4 {
+  font-weight: bold; /* Testo in grassetto per il titolo del prodotto */
+}
+
+.container-prodotto p {
+  font-style: italic; /* Corsivo per la descrizione */
+}
+
+
+.container-prodotto:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Ombra più marcata al passaggio del mouse */
+}
+
+
+.overlay {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6); /* Overlay semi-trasparente */
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  opacity: 0;
+  padding: 20px;
+  transition: opacity 0.3s ease;
+  border-radius: 20px; /* Arrotonda anche gli angoli dell'overlay */
+}
+
+.container-prodotto:hover .overlay {
+  opacity: 1;
+}
+
+.overlay h4 {
+  margin-top: 20px;
+}
+
+
+/* Stili per l'hover dei container */
+.container-prodotto:hover {
+  transform: scale(1.03);
+}
+
+
+.container-prodotto .overlay a i {
+  color: white; /* o un altro colore a tua scelta */
+  margin: 0 10px;
+  /* Altri stili per le icone */
+}
+
+
+.container-prodotto:hover {
+  transform: scale(1.03);
+}
+
+
+.dettaglio-prodotto {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Due colonne di uguali dimensioni */
+  gap: 20px; /* Spazio tra le colonne */
+  padding: 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.immagine-prodotto img {
+  width: 100%; /* L'immagine si adatta alla colonna */
+  height: auto;
+  object-fit: cover;
+}
+
+.informazioni-prodotto {
+  flex-grow: 1;
+}
+
+.informazioni-prodotto h1 {
+  color: var(--title-color);
+}
+
+.informazioni-prodotto p {
+  text-align: justify;
+}
+
+/* Stili per i pulsanti */
+.btn-dettagli, .btn-acquista {
+  background-color: #F7931A; /* Colore di sfondo del pulsante */
+  color: white; /* Colore del testo */
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px; /* Arrotonda gli angoli dei pulsanti */
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.btn-dettagli:hover, .btn-acquista:hover {
+  background-color: #1d1d1d; /* Scurisce il colore dello sfondo al hover */
+  transform: scale(1.05); /* Effetto di ingrandimento leggero al hover */
+}
+
+
+.btn-dettagli, .btn-acquista {
+  margin-bottom: 10px; /* Spazio tra i pulsanti */
+}
+
+
+.pulsanti {
+  display: flex;
+  justify-content: center;
+  gap: 10px; /* Spazio tra i pulsanti */
+}
+
+.btn-dettagli, .btn-acquista {
+  margin-left: 10px;
+}
+
+.btn-dettagli a{
+  color: #f0f0f0;
+  text-decoration: none;
+}
+
+/* Stili responsivi per dispositivi mobili */
+@media (max-width: 768px) {
+  .container-prodotto {
+      width: 100%;
+  }
+}
+
+/* Stili responsivi per dispositivi mobili */
+@media (max-width: 768px) {
+  .dettaglio-prodotto {
+      grid-template-columns: 1fr; /* Su dispositivi mobili, usa una sola colonna */
+  }
+}
+
+
+
+.popup-container {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Assicurati che sia sopra gli altri elementi */
+}
+
+.popup-content {
+  background: #131313;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 80%;
+  max-width: 500px;
+}
+
+.close-btn {
+  color: #f0f0f0;
+  float: right;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+
+.banner-annuncio {
+  background-color: #fa8500; /* Usa un colore del tuo tema */
+  color: var(--text-color); /* Colore del testo coerente con il tuo tema */
+  text-align: center;
+  padding: 15px;
+  width: 94%; /* Larghezza del banner */
+  margin: 20px auto; /* Centra il banner e aggiunge spazio sopra e sotto */
+  border-radius: 20px; /* Angoli arrotondati */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombra leggera */
+}
+
+.banner-annuncio p {
+  margin: 0;
+  font-size: 1.2em; /* Dimensione del testo */
+}
+
+.banner-annuncio a {
+  color: var(--secondary-color); /* Colore per i link */
+  text-decoration: none; /* Personalizza come preferisci */
+}
+
+
+.banner-annuncio-head {
+  background-color: #ff9800; /* Scegli un colore che risalti */
+  color: white;
+  text-align: center;
+  padding: 10px 20px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1001; /* Assicurati che sia sopra gli altri elementi */
+}
+
+.banner-annuncio-head p {
+  margin: 0;
+  font-size: 1.2em;
+}
+
+.banner-annuncio-head a {
+  color: white;
+  text-decoration: underline;
+}
+
+.close-banner {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 1.5em;
 }
