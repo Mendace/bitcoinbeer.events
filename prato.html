@@ -38,6 +38,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" integrity="sha512-NmLkDIU1C/C88wi324HBc+S2kLhi08PN5GDeUVVVC/BVt/9Izdsc9SVeVfA1UZbY3sHUlDSyRXhCzHfr6hmPPw==" crossorigin="anonymous" />
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style-community.css">
     <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
     
@@ -47,10 +48,17 @@
     <script defer src="js/fontawesome/all.min.js "></script>    
     <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
     <script src="https://cdn.counter.dev/script.js" data-id="586b1ec9-8faa-4f5b-a67b-6e104fc85c1c" data-utcoffset="1"></script>
+    <script src="https://cryptpad.fr/common/media-tag-nacl.min.js"></script>
+
+    <script src='https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.css' rel='stylesheet' />
+
     
   
   </head>
   <body>
+
+
     <div class="header">
       <div class="header_nav">
         <div class="logo">
@@ -63,7 +71,7 @@
           <li class="menu__link">
             <p class="icon-bar"><a href="https://t.me/BitcoinBeerHub" target="_blank"> <i class="fab fa-telegram-plane"></i></a> <a href="https://www.instagram.com/Bitcoinbeeritalia/"target="_blank"><i class="fab fa-instagram"></i></a>         
               <a href="https://twitter.com/BitcoinBeerIT"target="_blank"><i class="fab fa-twitter"></i></a>
- <a href="https://github.com/Mendace/Bitcoinbeer.events"target="_blank"> <i class="fab fa-github"></i></a></a></p>
+              <a href="https://github.com/Mendace/Bitcoinbeer.events"target="_blank"> <i class="fab fa-github"></i></a></a></p>
           </li>
         </ul>
         <div class="hamburger">
@@ -74,91 +82,142 @@
       </div>
     </div>
 
-    <!-- Chapter content -->
-<div class="chapter">
-  <div class="header-title">
-    <h1>Bitcoin Beer Prato e Firenze</h1>
-    <p>Scopri le ultime novità e gli eventi</p>
-</div>
-
-<div class="content-box">
-        <!-- Carousel Gallery -->
-        <!-- Swiper -->
-          <div class="swiper mySwiper">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide"><img src="assets/PXL_20230714_181201741.jpg" alt="Image 1"></div>
-                <div class="swiper-slide"><img src="assets/firme.jpg" alt="Image 2"></div>
-                <div class="swiper-slide"><img src="assets/gadgets.jpeg" alt="Image 3"></div>
-                <!-- Add more slides as needed -->
+<div class="custom-profile-section">
+  <div class="custom-profile-background" style="background-image: url('assets/duomo_di_prato.jpg');">
+  </div>
+  <div class="custom-profile-content">
+    <div class="custom-profile-avatar">
+      <img src="assets/spartan.png" alt="Profile Avatar" />
+    </div>
+    <div class="custom-profile-user-info">
+      <div class="custom-user-name">Mendace</div>
+      <div class="custom-user-badge">Host</div>
+    </div>
+  </div>
+  <div class="custom-lower-section">
+    <div class="custom-profile-stats">
+        <div class="weather-container">
+            <div class="current-weather">
+                <img src="" alt="Weather Icon" class="weather-icon">
+                <span class="weather-temp"></span>
+                <div class="weather-description"></div>
             </div>
-
-            <div class="swiper-scrollbar"></div>
-          </div>
-</div>
-      
-<div class="content-box">
-            <h2>Informazioni sulla Community</h2>
-            <ul class="info-list">
-                <li><i class="fab fa-telegram-plane"></i><a href="link_to_telegram_group" target="_blank"> Gruppo Telegram</a></li>
-                <li><i class="fa-solid fa-user"></i> Admin del gruppo: <a href="https://t.me/mendace">Mendace</a></li>
-                <li><i class="fa-solid fa-location-dot"></i> Posizione: <a href="https://www.google.com/maps/dir//43.8926686,11.1049362">Prato, Firenze</a></li>
-            </ul>
         </div>
-</div>
-
-<div class="content-box">
-        <!-- Google Calendar Integration -->
-        <div class="calendar">
-          <div data-tockify-component="calendar" data-tockify-calendar="bitcoinbeer"></div>
-          <script data-cfasync="false" data-tockify-script="embed" src="https://public.tockify.com/browser/embed.js"></script>
-
-        <!-- Information Section -->
-        <div class="info">
-            <!-- Information about Telegram group, admins, etc. -->
-        </div>
-        </div>
-</div>
-
-<!-- Lightbox Container, nascosto inizialmente -->
-<div id="lightbox-modal" class="lightbox">
-  <span id="close-lightbox" class="close">&times;</span>
-  <img id="lightbox-img" class="modal-content">
-</div>
-  
-<div class="content-box-accordion">
-<div class="accordion">
-  <div class="accordion-item">
-    <button class="accordion-button">Bitcoin Gadgets <span class="arrow">&#x25BA;</span></button>
-    <div class="accordion-content">
-      <div class="tech-card">
-        <div class="tech-row">
-          <div class="tech-field"><span class="tech-field-name">Oggetto:</span><span class="tech-field-value">Ticker Price Bitcoin</span></div>
-          <div class="tech-field"><span class="tech-field-name">Dove:</span><span class="tech-field-value">Bitcoin Beer Prato</span></div>
-        </div>
-        <div class="tech-row">
-          <div class="tech-field"><span class="tech-field-name">Data:</span><span class="tech-field-value">11 marzo 2023</span></div>
-          <div class="tech-field"><span class="tech-field-name">Link:</span><span class="tech-field-value">Valore</span></div>
-        </div>
-      </div>
-      <img src="assets/gadgets.jpeg" alt="Descrizione" class="accordion-img">
-      <div class="accordion-text">
-      <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-      </div>
     </div>
-  </div>
-  <div class="accordion-item">
-    <button class="accordion-button">Titolo 1 <span class="arrow">&#x25BA;</span></button>
-    <div class="accordion-content">
-      <!-- Contenuto per Titolo 1 -->
+    <div class="custom-social-icons">
+      <a href="https://btcmap.org/map#14/43.88150/11.09877">PRATO</a>
     </div>
-  </div>
-  <!-- Ripeti per altri titoli e contenuti -->
-</div>
-
-</div>
-
-  
     
+  </div>
+</div>
+
+
+<div class="icon-menu-container">
+  <nav class="icon-menu">
+    <a href="#" class="menu-item" data-target="content1">
+      <img src="assets/community/community.png" alt="Icon 1">
+    </a>
+    <a href="#" class="menu-item" data-target="content2">
+      <img src="assets/community/feed.png" alt="Icon 2">
+    </a>
+    <a href="#" class="menu-item" data-target="content3">
+      <img src="assets/community/bitcoin.png" alt="Icon 3">
+    </a>
+    <a href="#" class="menu-item" data-target="content4">
+      <img src="assets/community/calendar.png" alt="Icon 4">
+    </a>
+    <a href="#" class="menu-item" data-target="content5">
+      <img src="assets/community/maps.png" alt="Icon 5">
+    </a>
+  </nav>
+</div>
+
+<div id="content1" class="content">
+  <h4>Dati Community</h4>
+  <div class="columns-container">
+    <div class="column">
+      <div id="card" class="card">
+        <h4>Città</h4>
+      <p>Prato/Firenze</p>
+      </div>
+      <div id="card" class="card">
+        <h4>Social</h4>
+        <div class="custom-social-icons">
+          <a href="https://t.me/BitcoinPratoHub" class="social-icon telegram"></a>
+          <a href="link_to_twitter" class="social-icon twitter"></a>
+          <a href="link_to_instagram" class="social-icon nostr"></a>
+          <a href="link_to_instagram" class="social-icon instagram"></a>
+          <a href="link_to_instagram" class="social-icon facebook"></a>
+        </div>
+      </div>
+    </div>
+    <div class="column">
+      <div id="card" class="card">
+        <h4>Host</h4>
+      <p><a href="https://t.me/mendace">Mendace</a></p>
+      </div>
+      <div id="card" class="card">
+        <h4>Contatta</h4>
+      <p><a href="mailto:prato@bitcoinbeer.events">Email</a></p>
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+<div id="content2" class="content">
+  <h4>Raccolte</h4>
+  <media-tag src="https://files.cryptpad.fr/blob/83/836658af3e93fcc917fc3101f18cc9d87dab1473ed1e6522" data-crypto-key="cryptpad:FC/aTwDRxnfuEjSljACxLTuNUflEWpPrMYlGRIlJasw="></media-tag>
+</div>
+
+<div id="content3" class="content">
+  <h4>Dati Ultimo Blocco</h4>
+  <div id="loading-container">
+    <div id="loading-bar"></div>
+</div>
+
+  <div class="columns-container">
+    <div class="column">
+      <div id="card1" class="card">
+        
+      </div>
+      <div id="card2" class="card">
+        
+      </div>
+      <div id="card3" class="card">
+        
+      </div>
+      <div id="card4" class="card">
+        
+      </div>
+      <div id="card5" class="card">
+        
+      </div>
+    </div>
+  </div>
+  
+</div>
+<div id="content4" class="content">
+  <h4>Date incontri</h4>
+  <div data-tockify-component="calendar" data-tockify-calendar="bitcoinbeer"></div>
+</div>
+
+<div id="content5" class="content">
+  <h4>Btc Map</h4>
+<iframe id="btcmap"
+  id="btcmap"
+  title="BTC Map"
+  width="600"
+  height="1000"
+  allowfullscreen="true"
+  allow="geolocation"
+  src="https://btcmap.org/map#12/43.88428/11.11816">
+</iframe>
+</div>
+
+<!-- Altri div di contenuto correlati alle altre icone -->
+
+
     <footer class="footer mt-3">
       <img src="assets/bitcoin_beer_logo_v.svg" alt="Bitcoin Beer Logo">
       <p class="tw">Gli eventi informali per avvicinarsi a Bitcoin</p>
@@ -167,6 +226,7 @@
         <a href="https://www.instagram.com/Bitcoinbeeritalia/"target="_blank"><i class="fab fa-instagram"></i></a>
         <a href="https://twitter.com/BitcoinBeerIT"target="_blank"><i class="fab fa-twitter"></i></a>
         <a href="https://github.com/Mendace/Bitcoinbeer.events"target="_blank"> <i class="fab fa-github"></i></a>
+        <a href="https://www.youtube.com/channel/UCmRZMKwLvcSj32EoZgp-V8w" target="_blank"> <i class="fab fa-youtube"></i></a>
       </p>
     </footer>
         
@@ -230,29 +290,6 @@
 </script>
 
 <script>
-document.querySelectorAll('.accordion-button').forEach(button => {
-  button.addEventListener('click', () => {
-    const accordionContent = button.nextElementSibling;
-    const isOpen = button.classList.contains('active');
-
-    // Chiudi tutti gli accordion
-    document.querySelectorAll('.accordion-button').forEach(otherButton => {
-      otherButton.classList.remove('active');
-      otherButton.nextElementSibling.style.maxHeight = null;
-    });
-
-    // Apri l'accordion cliccato se era precedentemente chiuso
-    if (!isOpen) {
-      button.classList.add('active');
-      accordionContent.style.maxHeight = accordionContent.scrollHeight + 'px';
-    }
-  });
-});
-
-
-</script>
-
-<script>
 
 document.querySelectorAll('.accordion-img').forEach(img => {
   img.addEventListener('click', () => {
@@ -268,6 +305,159 @@ document.getElementById('close-lightbox').addEventListener('click', () => {
 </script>
 
     <script type="text/javascript" src="https://nibirumail.com/docs/scripts/nibirumail.cookie.min.js"></script>
+
+<script>
+const apiKey = '35516b06e61aa4f909d76110185d3c70';
+const cityId = '3169921';
+const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?id=${cityId}&appid=${apiKey}&units=metric`;
+
+fetch(weatherUrl)
+  .then(response => response.json())
+  .then(data => {
+    const iconCode = data.weather[0].icon;
+    const iconUrl = `http://openweathermap.org/img/wn/${iconCode}.png`;
+    const weatherDescription = data.weather[0].description;
+    const temperature = data.main.temp;
+
+    // Aggiorna il DOM con l'icona e la temperatura
+    document.querySelector('.weather-icon').src = iconUrl;
+    document.querySelector('.weather-temp').textContent = `${temperature.toFixed(1)}°C `; // Arrotonda la temperatura a una cifra decimale e aggiunge °C
+
+    // Aggiungi uno spazio prima della descrizione del tempo
+    document.querySelector('.weather-description').textContent = ` ${weatherDescription}`;
+  })
+  .catch(error => console.error('Error fetching weather data:', error));
+
+</script>
+  <script>
+
+document.addEventListener('DOMContentLoaded', function () {
+  const menuItems = document.querySelectorAll('.menu-item');
+  const contentDivs = document.querySelectorAll('.content');
+  const btcMapIframe = document.getElementById('btcmap'); // Ottieni l'iframe dalla tua pagina
+
+  menuItems.forEach(function (item) {
+    item.addEventListener('click', function (e) {
+      e.preventDefault();
+
+      contentDivs.forEach(function (div) {
+        div.classList.remove('active');
+      });
+
+      const targetId = item.getAttribute('data-target');
+      const targetContent = document.getElementById(targetId);
+      targetContent.classList.add('active');
+
+      // Ricarica l'iframe solo se il div contenente l'iframe diventa visibile
+      if (targetId === 'btcmap') { // Sostituisci con l'ID effettivo del div
+        btcMapIframe.src = btcMapIframe.src; // Ricarica l'iframe reimpostando l'attributo src
+      }
+    });
+  });
+});
+
+
+  </script>
+<script data-cfasync="false" data-tockify-script="embed" src="https://public.tockify.com/browser/embed.js"></script>
+  <script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoibWVuZGFjZSIsImEiOiJjbGRxYm1yZnIxYTVnM29xZzN6eTl6bW04In0.I7CE7Iu7PQHsis_4dvqucw';
+    
+    // Inizializza la mappa
+    const map = new mapboxgl.Map({
+      container: 'map', // container ID
+      style: 'mapbox://styles/mapbox/streets-v12', // style URL
+      center: [-74.5, 40], // starting position [lng, lat]
+      zoom: 9 // starting zoom
+    });
   
+    // Ascoltatore per il ridimensionamento della finestra
+    window.addEventListener('resize', function() {
+      map.resize();
+    });
+  </script>
+
+  <script>
+
+document.addEventListener('DOMContentLoaded', function() {
+    var ultimoHash = '';
+
+    function aggiornaDatiBlocco(hash) {
+        if (hash !== ultimoHash) {
+            ultimoHash = hash;
+            fetch(`https://blockstream.info/api/block/${hash}`)
+                .then(response => response.json())
+                .then(blockData => {
+                    aggiornaCard('card1', `Hash: ${blockData.id}`);
+                    aggiornaCard('card2', `Altezza: ${blockData.height}`);
+                    aggiornaCard('card3', `Transazioni: ${blockData.tx_count}`);
+                    aggiornaCard('card4', `Dimensione: ${blockData.size} bytes`);
+                    aggiornaCard('card5', `Timestamp: ${new Date(blockData.timestamp * 1000).toLocaleString()}`);
+                })
+                .catch(error => console.error('Errore nel recuperare i dati del blocco:', error));
+        }
+    }
+
+
+    function aggiornaCard(cardId, testo) {
+        var cardDiv = document.getElementById(cardId);
+        if (cardDiv) {
+            cardDiv.textContent = testo;
+        }
+    }
+
+    function verificaNuovoBlocco() {
+        fetch('https://blockstream.info/api/blocks/tip/hash')
+            .then(response => response.text())
+            .then(hash => {
+                aggiornaDatiBlocco(hash);
+            })
+            .catch(error => console.error('Errore nel recuperare l\'hash del blocco:', error));
+    }
+
+    verificaNuovoBlocco();
+    setInterval(verificaNuovoBlocco, 60000); // Aggiorna ogni 60 secondi
+});
+
+
+
+  </script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    var ultimoHash = '';
+    var intervalloAggiornamento = 60000; // Tempo di aggiornamento in millisecondi
+
+    function mostraDivConLoadingBar() {
+        var divContainer = document.getElementById('loading-container');
+        divContainer.style.display = 'block'; // Mostra il div
+        resetLoadingBar(); // Resetta la barra di loading dopo che il div è visibile
+    }
+
+    function resetLoadingBar() {
+        var loadingBar = document.getElementById('loading-bar');
+        loadingBar.style.width = '100%'; // Resetta la barra al 100%
+        setTimeout(() => {
+            loadingBar.style.width = '0%';
+        }, 10);
+    }
+
+    function verificaNuovoBlocco() {
+        fetch('https://blockstream.info/api/blocks/tip/hash')
+            .then(response => response.text())
+            .then(hash => {
+                if (hash !== ultimoHash) {
+                    ultimoHash = hash;
+                    // Aggiorna i dati qui (come aggiornare le tue card)
+                    mostraDivConLoadingBar(); // Mostra il div e resetta la barra di loading
+                }
+            })
+            .catch(error => console.error('Errore nel recuperare l\'hash del blocco:', error));
+    }
+
+    verificaNuovoBlocco();
+    setInterval(verificaNuovoBlocco, intervalloAggiornamento);
+});
+
+</script>
+
   </body>
 </html>
