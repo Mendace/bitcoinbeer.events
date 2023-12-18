@@ -2,11 +2,14 @@
   --bg-color-dark: #161616;
   --text-color-dark: #D7D7D7;
   --bg-color-light: #FFF;
+  --text-color-dark: #ffffff;
   --text-color-light: #000000;
   --bg-box: #1f1e1e;
   --bg-box-light: #e0e0e0;
   --bg-border-box:#D7D7D7;
   --bg-border-box-light:#202020;
+  --title-color: #ffffff;
+  --title-color-light: #000000;
   --orange: #F7931A;
   --button: #F7931A;
 }
@@ -164,6 +167,16 @@ b {
   justify-content: center;
 }
 
+body.light-theme .header{
+    width: 100%;
+    position: fixed;
+    top:30px;
+    left:0;
+    background-color: var(--bg-color-light);
+    z-index: 9;
+    display: flex;
+    justify-content: center;
+}
 
 .header_nav{
   width: 100%;
@@ -172,6 +185,54 @@ b {
   max-width: 1340px;
   align-items: center;
   z-index: 10;
+}
+
+/* Ticker */
+
+#bitcoin-blockchain-visualizer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(to right, orange, rgb(216, 177, 2)); 
+  color: white;
+  overflow: hidden;
+  white-space: nowrap;
+  height: 30px; /* Altezza del ticker */
+  line-height: 30px; /* Centra il testo verticalmente */
+  z-index: 9;
+}
+
+.block-info-container {
+  white-space: nowrap;
+  display: flex;
+  min-width: 150%; /* Aumenta la lunghezza minima se necessario */
+  animation: ticker 30s linear infinite;
+}
+
+
+.block-info-container span {
+  padding-right: 50px; /* Spazio tra le informazioni */
+}
+
+#block-info {
+  max-width: 100%;
+  overflow: hidden;
+}
+
+
+@keyframes ticker {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+@media (max-width: 768px) {
+  .block-info-container {
+    white-space: nowrap;
+    display: flex;
+    min-width: 380%; /* Aumenta la lunghezza minima se necessario */
+    animation: ticker 40s linear infinite;
+  }
 }
 
 .logo{z-index: 999}
@@ -200,6 +261,20 @@ b {
   transition: .4s;
 }
 
+body.light-theme .menu li{display: inline-block; }
+body.light-theme .menu li a{color: var(--title-color-light); margin: 20px;display: block; position: relative;}
+body.light-theme .menu li a::after {
+  content: " ";
+  width: 0px;
+  height: 3px;
+  position: absolute;
+  background-color: var(--orange);
+  bottom:-5px;
+  left:0;
+  border-radius: 5px;
+  transition: .4s;
+}
+
 .menu li:hover a::after{width: 100%;}
 .menu li:active a::after{width: 100%;}
 .hamburger{display: none;}
@@ -214,8 +289,10 @@ b {
   height: 30px; /* Altezza del switch */
   border-radius: 30px;
   background: #f0f0f0;
+  position: relative;
   transition: all 0.3s ease;
   padding: 5px;
+  margin-top: 1.5%;
 }
 
 .theme-switch .switch-slider {
@@ -259,6 +336,32 @@ body.dark-theme .theme-switch .moon {
   color: yellow;
 }
 
+@media (max-width: 920px) {
+  .theme-switch{
+  margin-left: 44%;
+  }
+}
+
+@media (max-width: 768px) {
+  .theme-switch{
+  margin-left: 44%;
+  }
+}
+
+@media (max-width: 768px) {
+  .theme-switch {
+    display: block;
+    margin: 0 auto;
+    /* Altre proprietà rimangono invariate */
+  }
+
+  .menu {
+    /* Assicurati che il menu sia a colonna e il theme-switch sia l'ultimo elemento */
+    flex-direction: column;
+    align-items: center;
+  }
+  
+}
 
 /* ! Hero */
 .hero{
@@ -270,11 +373,7 @@ body.dark-theme .theme-switch .moon {
 }
 
 body.light-theme .hero{
-  margin: 5em 3em 0 3em;
-  padding: 3em 0;
-  overflow: hidden;
   background-color: var(--bg-box-light);
-  border-radius: 1.5em;
 }
 
 .hero .grid{
@@ -354,11 +453,7 @@ body.light-theme .hero{
 }
 
 body.light-theme .bb-how__cards__item{
-  margin: .5em;
-  padding: 3em 4em;
   background-color: var(--bg-box-light);
-  border-radius: 1.5em;
-  text-align: left;
 }
 
 .bb-how__cards__item h4 {font-size: 1.45em;}
@@ -373,11 +468,7 @@ body.light-theme .bb-how__cards__item{
   position: relative;
 }
 body.light-theme .bb-orangepill{
-  max-width: 1270px;
-  padding: 2em 3em 2em 0; 
   background-color: var(--bg-box-light); 
-  border-radius: 1.5em; 
-  position: relative;
 }
 .bb-orangepill__img{position: relative; width:45% !important; margin-top: -3em;text-align: center;}
 .bb-orangepill__img img{width: 80%;}
@@ -403,13 +494,8 @@ body.light-theme .bb-orangepill{
 }
 
 body.light-theme.carousel-cell{
-    height: 250px;
-    width: 30%;
-    margin-right: 1em;
     background-color: var(--bg-color-light);
     border: 1px solid var(--bg-box-light);
-    border-radius: 1.5em;
-    padding: 2em;
   }
 
 .carousel-cell:hover{
@@ -419,7 +505,6 @@ body.light-theme.carousel-cell{
 
 body.light-theme .carousel-cell:hover{
     background-color: var(--bg-box-light);
-    transition: ease-in .3s;
   }
 
 
@@ -442,10 +527,7 @@ iframe {border-radius: 10px;}
   padding-bottom: 15px;
 }
 body.light-theme .bb-chapters__item h4{
-  text-transform: uppercase;
-  font-size: .8em;
   color: var(--text-color-light);
-  padding-bottom: 15px;
 }
 .bb-chapters__item span{
   display: block;
@@ -454,9 +536,6 @@ body.light-theme .bb-chapters__item h4{
   color: var(--title-color);
 }
 body.light-theme .bb-chapters__item span{
-  display: block;
-  font-size: 32px;
-  text-transform: initial;
   color: var(--title-color-light);
 }
 
@@ -665,12 +744,24 @@ body.light-theme .bb-chapters__item span{
     padding-top: 100px; 
     padding-left: 0;
   }
+
+  /* Stile del menu quando il tema chiaro è attivo */
+  body.light-theme .menu {
+  background: rgb(255, 255, 255); /* Sfondo per il tema chiaro */
+  }
+
   .menu li{display: block;}
+  body.light-theme .menu li{display: block;}
+  
   .menu li a{
     padding: 15px 30px;
     font-size: 20px;
     color: #fff;
     text-align: center;
+  }
+  /* Stile dei link del menu nel tema chiaro */
+  body.light-theme .menu li a {
+  color: #000000; /* Colore del testo per il tema chiaro */
   }
   .menu li .icon-bar{display: flex; justify-content: center;}
   .menu li .icon-bar a{
@@ -718,6 +809,10 @@ body.light-theme .bb-chapters__item span{
     -moz-transition: .25s ease-in-out;
     -o-transition: .25s ease-in-out;
     transition: .25s ease-in-out;
+  }
+
+  body.light-theme .hamburger span{
+    background: var(--orange);
   }
 
   .hamburger span:nth-child(1) {top: 2px;}
@@ -1225,53 +1320,6 @@ body.light-theme .donation-card p {
     flex-basis: auto;
   }
 }
-
-/* Ticker */
-
-#bitcoin-blockchain-visualizer {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background: linear-gradient(to right, orange, rgb(216, 177, 2)); 
-  color: white;
-  overflow: hidden;
-  white-space: nowrap;
-  height: 30px; /* Altezza del ticker */
-  line-height: 30px; /* Centra il testo verticalmente */
-}
-
-.block-info-container {
-  white-space: nowrap;
-  display: flex;
-  min-width: 150%; /* Aumenta la lunghezza minima se necessario */
-  animation: ticker 30s linear infinite;
-}
-
-
-.block-info-container span {
-  padding-right: 50px; /* Spazio tra le informazioni */
-}
-
-#block-info {
-  max-width: 100%;
-  overflow: hidden;
-}
-
-
-@keyframes ticker {
-  0% { transform: translateX(100%); }
-  100% { transform: translateX(-100%); }
-}
-
-@media (max-width: 768px) {
-  .block-info-container {
-    white-space: nowrap;
-    display: flex;
-    animation: ticker 40s linear infinite;
-  }
-}
-
 
 
 /* Icon styles (generic - replace with your own icons) */

@@ -4,19 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Bitcoin Beer">
-    <meta property="og:description" content="Eventi Bitcoin in tutta italia con una buona birra">
-    <meta property="og:image">
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content="https://github.com/Mendace/Bitcoinbeer.org/blob/main/assets/Bitcoinbeer.jpg?raw=true">
-    <meta property="twitter:title" content="Bitcoin Beer Italia" />
+    <title>Bitcoin Beer Italia | Eventi e workshop Bitcoin con una buona Birra</title>
+    <meta name="description" content="Partecipa agli eventi Bitcoin Beer in Italia. Scopri la tecnologia di Bitcoin nella tua città e incontra nuove amicizie davanti ad una birra.">
 
+      <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.bitcoinbeer.events/">
+    <meta property="og:title" content="Bitcoin Beer Italia | Eventi e workshop Bitcoin con una buona Birra">
+    <meta property="og:description" content="Partecipa agli eventi Bitcoin Beer in Italia. Scopri la tecnologia di Bitcoin nella tua città e incontra nuove amicizie davanti ad una birra.">
+    <meta property="og:image" content="https://github.com/Mendace/Bitcoinbeer.org/blob/main/assets/Bitcoinbeer.jpg?raw=true">
+
+      <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="bitcoinbeer.events">
+    <meta property="twitter:url" content="https://www.bitcoinbeer.events/">
+    <meta name="twitter:title" content="Bitcoin Beer Italia | Eventi e workshop Bitcoin con una buona Birra">
+    <meta name="twitter:description" content="Partecipa agli eventi Bitcoin Beer in Italia. Scopri la tecnologia di Bitcoin nella tua città e incontra nuove amicizie davanti ad una birra.">
+    <meta name="twitter:image" content="https://github.com/Mendace/Bitcoinbeer.org/blob/main/assets/Bitcoinbeer.jpg?raw=true">
+ 
+    <!-- Google Site Verification -->
     <meta name="google-site-verification" content="fk2xCBavMGOR3d14fSv6MmYoKraB6U3Z6LphCxcKeK8" />
 
-    
-    <title>Bitcoin Beer | Eventi Bitcoin</title>
-    <meta name="description" content="Bitcoin Beer. Incontra, educa, bevi.">
+    <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
 
     <link rel="apple-touch-icon" sizes="57x57" href="assets/favicon/apple-icon-57x57.png">
@@ -46,10 +55,11 @@
     <script defer src="js/fontawesome/all.min.js "></script>    
     <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
     <script src="https://cdn.counter.dev/script.js" data-id="586b1ec9-8faa-4f5b-a67b-6e104fc85c1c" data-utcoffset="1"></script>
+    <script src="js/lazysizes.min.js" async=""></script>
   </head>
   <body>
-
-     <section id="bitcoin-blockchain-visualizer">
+     
+    <section id="bitcoin-blockchain-visualizer">
       <div class="block-info-container" id="block-info">
             <div class="block-info-card">
                 <p>Hash del Blocco: <span id="block-hash"></span></p>
@@ -64,31 +74,33 @@
                 <p>Orario del Blocco: <span id="block-time"></span></p>
             </div>
             <!-- Altre card se necessario -->
-        </div>  
+        </div>
+      
     </section> 
-     
+  
+
     <div class="header">
       <div class="header_nav">
         <div class="logo">
-          <a href="#"><img src="assets/bitcoin_beer_logo.svg" alt="Bitcoin Beer Bitcoin Logo"></a>
+          <a href="https://bitcoinbeer.events"><img src="assets/bitcoin_beer_logo.svg" alt="Bitcoin Beer Bitcoin Logo"></a>
+        </div>
         <ul class="menu">
+          <div id="theme-switch" class="theme-switch">
+            <div class="switch-slider"></div>
+            <span class="sun">&#9728;</span> <!-- Icona sole -->
+            <span class="moon">&#9790;</span> <!-- Icona luna -->
+        </div>   
           <li class="menu__link"><a href="#cosa">Cosa</a></li>
           <li class="menu__link"><a href="#dona">Dona</a></li>
           <li class="menu__link"><a href="#dove">Dove</a></li>
           <li class="menu__link"><a href="#come">Come</a></li>
           <li class="menu__link"><a href="https://bitcoinbeer.events/shop">Shop</a></li>
-            <li class="menu__link">
+          <li class="menu__link">
             <p class="icon-bar"><a href="https://t.me/BitcoinBeerHub" target="_blank"> <i class="fab fa-telegram-plane"></i></a> <a href="https://www.instagram.com/Bitcoinbeeritalia/"target="_blank"><i class="fab fa-instagram"></i></a>         
               <a href="https://twitter.com/BitcoinBeerIT"target="_blank"><i class="fab fa-twitter"></i></a>
               <a href="https://github.com/Mendace/Bitcoinbeer.events"target="_blank"> <i class="fab fa-github"></i></a></a></p>
-          </li>
-          <li class="menu__link"> <div id="theme-switch" class="theme-switch">
-                <div class="switch-slider"></div>
-                <span class="sun">&#9728;</span> <!-- Icona sole -->
-                <span class="moon">&#9790;</span> <!-- Icona luna -->
-            </div>            
-        </div></li>
-        </ul>
+          </li>       
+        </ul>  
         <div class="hamburger">
           <span></span>
           <span></span>
@@ -174,7 +186,7 @@
 
 <section id="dove" class="grid bb-chapters mt-3">
   <div class="col">
-    <h3>Trova il chapter più vicino a te</h3>
+    <h3>Trova la community più vicina a te</h3>
     <p>Swipe <i class="fa-solid fa-arrow-right-long fa-shake fa-xl"></i></p>
     <div class="main-carousel" data-flickity='{ "freeScroll": true , "wrapAround": false , "contain": true }'>
       <div class="carousel-cell">
@@ -205,11 +217,25 @@
           <p><i class="fa-brands fa-telegram-plane"></i> <a href="https://t.me/fts789" target="_blank">Contatta l'Host</a></p>
         </div>
       </div>
+      <div class="carousel-cell">
+        <div class="bb-chapters__item">
+          <h4>Bitcoin Beer <span>Bologna</span></h4>
+          <p><i class="fa-duotone fa-comments"></i> <a href="https://t.me/bitcoinbeerbologna" target="_blank">Unisciti alla community</a></p>
+          <p><i class="fa-brands fa-telegram-plane"></i> <a href="https://t.me/hostfat" target="_blank">Contatta l'Host</a></p>
+        </div>
+      </div>
         <div class="carousel-cell">
           <div class="bb-chapters__item">
             <h4>Bitcoin Beer <span>Bosa</span></h4>
             <p><i class="fa-duotone fa-comments"></i> <a href="https://t.me/bitcoinbosa" target="_blank">Unisciti alla community</a></p>
             <p><i class="fa-brands fa-telegram-plane"></i> <a href="https://t.me/carlfitz" target="_blank">Contatta l'Host</a></p>
+          </div>
+        </div>
+        <div class="carousel-cell">
+          <div class="bb-chapters__item">
+            <h4>Bitcoin Beer <span>Faenza</span></h4>
+            <p><i class="fa-duotone fa-comments"></i> <a href="https://t.me/bitcoinbeerfaenza" target="_blank">Unisciti alla community</a></p>
+            <p><i class="fa-brands fa-telegram-plane"></i> <a href="https://t.me/Irebus" target="_blank">Contatta l'Host</a></p>
           </div>
         </div>
       <div class="carousel-cell">
@@ -263,8 +289,8 @@
       </div>
       <div class="carousel-cell">
         <div class="bb-chapters__item">
-          <h4>Bitcoin Beer <span>Paesi Vesuviani</span></h4>
-          <p><i class="fa-duotone fa-comments"></i> <a href="https://t.me/bitcoinpaesivesuviani" target="_blank">Unisciti alla community</a></p>
+          <h4>Bitcoin Beer <span>Napoli</span></h4>
+          <p><i class="fa-duotone fa-comments"></i> <a href="https://t.me/bitcoinapoli" target="_blank">Unisciti alla community</a></p>
           <p><i class="fa-brands fa-telegram-plane"></i> <a href="https://t.me/Libertadomuerte1" target="_blank">Contatta l'Host</a></p>
         </div>
       </div>
@@ -282,7 +308,7 @@
           <p><i class="fa-brands fa-telegram-plane"></i> <a href="https://t.me/clarovio" target="_blank">Contatta l'Host</a></p>
         </div>
       </div>
-      <div class="carousel-cell" style="background-image: url(assets/Prato-Duomo-Santo-Stefano.jpg); background-size: cover; background-position: cover;">
+      <div class="carousel-cell">
         <div class="bb-chapters__item">
           <h4>Bitcoin Beer <span>Prato</span></h4>
           <p><i class="fa-duotone fa-comments"></i> <a href="https://t.me/bitcoinpratohub" target="_blank">Unisciti alla community</a></p>
@@ -538,6 +564,24 @@
 
     </script>
 
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+    var themeSwitch = document.getElementById('theme-switch');
+    var body = document.body;
+
+    // Carica il tema salvato
+    var savedTheme = localStorage.getItem('theme') || 'dark-theme';
+    body.classList.add(savedTheme);
+
+    themeSwitch.addEventListener('click', function() {
+        var newTheme = body.classList.contains('dark-theme') ? 'light-theme' : 'dark-theme';
+        body.classList.replace(body.classList.item(0), newTheme);
+        localStorage.setItem('theme', newTheme);
+    });
+});
+
+    </script>
+
     <script type="text/javascript" src="https://nibirumail.com/docs/scripts/nibirumail.cookie.min.js"></script>
 
     <script>
@@ -545,24 +589,6 @@
           document.querySelector('.banner-annuncio-head').style.display = 'none';
       }
   </script>
-
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-    var themeSwitch = document.getElementById('theme-switch');
-    var body = document.body;
-
-    // Carica il tema salvato
-    var savedTheme = localStorage.getItem('theme') || 'dark-theme';
-    body.classList.add(savedTheme);
-
-    themeSwitch.addEventListener('click', function() {
-        var newTheme = body.classList.contains('dark-theme') ? 'light-theme' : 'dark-theme';
-        body.classList.replace(body.classList.item(0), newTheme);
-        localStorage.setItem('theme', newTheme);
-    });
-});
-
-    </script>
   
   </body>
 </html>

@@ -18,6 +18,10 @@
   border-radius: 20px 20px 0 0;
 }
 
+body.light-theme .custom-profile-background {
+  border-radius: 20px 20px 0 0;
+}
+
 .custom-profile-background::after {
   content: ''; /* Necessario per creare un pseudo-elemento */
   display: block;
@@ -173,6 +177,7 @@
   justify-content: center; /* Centra gli elementi nel contenitore */
   align-items: center; /* Allinea gli elementi verticalmente */
   color: rgb(255, 255, 255);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Aggiunge un'ombra leggera per profondità */
 }
 
 .current-weather {
@@ -414,14 +419,17 @@
     width: 95%; /* Imposta la larghezza al 95% dello schermo */
     margin: 20px auto; /* Centra il contenuto orizzontalmente e aggiunge margine sopra e sotto */
     padding: 20px; /* Aggiunge spaziatura interna */
-    background-color: #222222; /* Colore di sfondo, adattalo secondo il tuo schema di colori */
+    background-color: var(--bg-box); /* Colore di sfondo, adattalo secondo il tuo schema di colori */
     border-radius: 20px; /* Angoli arrotondati per un look più morbido */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Ombra leggera per un effetto di profondità */
     /* Altre regole stilistiche come necessario */
   }
-  
-  .content h4{
 
+  body.light-theme .content {
+    background-color: var(--bg-box-light);
+  }
+
+  .content h4{
   text-align: center;
   }
 
@@ -475,7 +483,10 @@
   transition: transform 0.3s ease; /* Animazione fluida per la trasformazione */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Ombra leggera per profondità */
 }
-
+body.light-theme .card{
+  background-color: #FFF;
+  color: black;
+}
 .card:hover {
   transform: scale(1.05); /* Aumenta leggermente la dimensione della card all'hover */
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Ombra più grande per enfatizzare l'effetto */
