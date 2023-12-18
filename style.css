@@ -155,7 +155,7 @@ b {
 /* ! Header */
 .header{
   width: 100%;
-  position: relative;
+  position: fixed;
   top:0;
   left:0;
   background-color: var(--bg-color);
