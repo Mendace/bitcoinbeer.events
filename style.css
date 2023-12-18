@@ -1229,7 +1229,7 @@ body.light-theme .donation-card p {
 /* Ticker */
 
 #bitcoin-blockchain-visualizer {
-  position: relative;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
