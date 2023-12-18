@@ -155,7 +155,7 @@ b {
 /* ! Header */
 .header{
   width: 100%;
-  position: relative;
+  position: fixed;
   top:0;
   left:0;
   background-color: var(--bg-color);
@@ -1230,7 +1230,7 @@ body.light-theme .donation-card p {
 /* Ticker */
 
 #bitcoin-blockchain-visualizer {
-  position: relative;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
