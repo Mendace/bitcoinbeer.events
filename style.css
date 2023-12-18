@@ -156,7 +156,7 @@ b {
 .header{
   width: 100%;
   position: fixed;
-  top:0;
+  top:30px;
   left:0;
   background-color: var(--bg-color);
   z-index: 9;
