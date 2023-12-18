@@ -1240,7 +1240,6 @@ body.light-theme .donation-card p {
   white-space: nowrap;
   height: 30px; /* Altezza del ticker */
   line-height: 30px; /* Centra il testo verticalmente */
-  z-index: 9999;
 }
 
 .block-info-container {
