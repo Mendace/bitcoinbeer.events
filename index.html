@@ -540,24 +540,6 @@
 
     </script>
 
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-    var themeSwitch = document.getElementById('theme-switch');
-    var body = document.body;
-
-    // Carica il tema salvato
-    var savedTheme = localStorage.getItem('theme') || 'dark-theme';
-    body.classList.add(savedTheme);
-
-    themeSwitch.addEventListener('click', function() {
-        var newTheme = body.classList.contains('dark-theme') ? 'light-theme' : 'dark-theme';
-        body.classList.replace(body.classList.item(0), newTheme);
-        localStorage.setItem('theme', newTheme);
-    });
-});
-
-    </script>
-
     <script type="text/javascript" src="https://nibirumail.com/docs/scripts/nibirumail.cookie.min.js"></script>
 
     <script>
