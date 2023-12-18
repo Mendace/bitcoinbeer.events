@@ -49,7 +49,8 @@
   </head>
   <body>
      
-    <section id="bitcoin-blockchain-visualizer">
+    <div class="header">
+       <section id="bitcoin-blockchain-visualizer">
       <div class="block-info-container" id="block-info">
             <div class="block-info-card">
                 <p>Hash del Blocco: <span id="block-hash"></span></p>
@@ -64,21 +65,11 @@
                 <p>Orario del Blocco: <span id="block-time"></span></p>
             </div>
             <!-- Altre card se necessario -->
-        </div>
-      
+        </div>  
     </section> 
-  
-
-    <div class="header">
       <div class="header_nav">
         <div class="logo">
           <a href="#"><img src="assets/bitcoin_beer_logo.svg" alt="Bitcoin Beer Bitcoin Logo"></a>
-            <div id="theme-switch" class="theme-switch">
-                <div class="switch-slider"></div>
-                <span class="sun">&#9728;</span> <!-- Icona sole -->
-                <span class="moon">&#9790;</span> <!-- Icona luna -->
-            </div>            
-        </div>
         <ul class="menu">
           <li class="menu__link"><a href="#cosa">Cosa</a></li>
           <li class="menu__link"><a href="#dona">Dona</a></li>
@@ -90,6 +81,12 @@
               <a href="https://twitter.com/BitcoinBeerIT"target="_blank"><i class="fab fa-twitter"></i></a>
               <a href="https://github.com/Mendace/Bitcoinbeer.events"target="_blank"> <i class="fab fa-github"></i></a></a></p>
           </li>
+          <li class="menu__link"> <div id="theme-switch" class="theme-switch">
+                <div class="switch-slider"></div>
+                <span class="sun">&#9728;</span> <!-- Icona sole -->
+                <span class="moon">&#9790;</span> <!-- Icona luna -->
+            </div>            
+        </div></li>
         </ul>
         <div class="hamburger">
           <span></span>
