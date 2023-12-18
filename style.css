@@ -1288,7 +1288,6 @@ body.light-theme .donation-card p {
   .block-info-container {
     white-space: nowrap;
     display: flex;
-    min-width: 380%; /* Aumenta la lunghezza minima se necessario */
     animation: ticker 40s linear infinite;
   }
 }
