@@ -46,8 +46,12 @@
     <meta name="msapplication-TileImage" content="assets/favicon/ms-icon-144x144.png">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" integrity="sha512-NmLkDIU1C/C88wi324HBc+S2kLhi08PN5GDeUVVVC/BVt/9Izdsc9SVeVfA1UZbY3sHUlDSyRXhCzHfr6hmPPw==" crossorigin="anonymous" />
-    <link rel="stylesheet" href="min.style.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+    <script src='https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.css' rel='stylesheet' />
+
+
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -113,7 +117,7 @@
       <div class="grid">
         <div class="hero__content col reveal">
           <h1 class="intro-text">Bitcoin Beer</h1>
-          <h2>Gli eventi informali in Italia per avvicinarsi a Bitcoin</h2>
+          <h2>Gli eventi informali in Italia per <span id="type-effect" class="typewriter-text"></span></h2>
           <p>
             Scopri gli eventi informali, i workshop e le tavole rotonde in tutta Italia in cui potrai incontrare appassionati ed esperti del settore, condividere conoscenze inerenti a Bitcoin e sorseggiare una buona birra in compagnia.
           </p>
@@ -127,7 +131,7 @@
 
   <!-- Sezione Donazioni Bitcoin -->
 <section class="bitcoin-donations" id="dona">
-      <h2>Sostieni il Bitcoin Beer</h2>
+      <h2 class="gradient-text">Sostieni il Bitcoin Beer</h2>
       <p>Se vuoi aiutare i Bitcoin Beer a divulgare il verbo di Bitcoin puoi sostenerci con qualche piccola donazione che ci permetterà di acquistare materiale utile per i nostri incontri.</p>
       
     <!-- Sezione Donazione -->
@@ -186,153 +190,153 @@
 
 <section id="dove" class="grid bb-chapters mt-3">
   <div class="col">
-    <h3>Trova la community più vicina a te</h3>
+    <h3 class="gradient-text">Trova la community più vicina a te</h3>
     <p>Swipe <i class="fa-solid fa-arrow-right-long fa-shake fa-xl"></i></p>
     <div class="main-carousel" data-flickity='{ "freeScroll": true , "wrapAround": false , "contain": true }'>
       <div class="carousel-cell">
         <div class="bb-chapters__item">
           <h4>Bitcoin Beer <span>Bergamo</span></h4>
-          <p><i class="fa-duotone fa-comments"></i> <a href="https://t.me/BitcoinBergamo" target="_blank">Unisciti alla community</a></p>
+          <p>Est. block 775810 ⚡</p>
           <p><i class="fa-brands fa-telegram-plane"></i> <a href="https://t.me/Overnight_gio" target="_blank">Contatta l'Host</a></p>
         </div>
       </div>
       <div class="carousel-cell">
         <div class="bb-chapters__item">
           <h4>Bitcoin Beer <span>Biella</span></h4>
-          <p><i class="fa-duotone fa-comments"></i> <a href="https://t.me/bitcoinbiella" target="_blank">Unisciti alla community</a></p>
+          <p>Est. block 787319 ⚡</p>
           <p><i class="fa-brands fa-telegram-plane"></i> <a href="https://t.me/Borgodoro" target="_blank">Contatta l'Host</a></p>
         </div>
       </div>
       <div class="carousel-cell">
         <div class="bb-chapters__item">
           <h4>Bitcoin Beer <span>Brixton</span></h4>
-          <p><i class="fa-duotone fa-comments"></i> <a href="https://twitter.com/brixtonbitcoin" target="_blank">Segui la community</a></p>
+          <p>Est. block 775881 ⚡</p>
           <p><i class="fa-brands fa-telegram-plane"></i> <a href="https://t.me/fumblebtc" target="_blank">Contatta l'Host</a></p>
         </div>
       </div>
        <div class="carousel-cell">
         <div class="bb-chapters__item">
           <h4>Bitcoin Beer <span>Brescia</span></h4>
-          <p><i class="fa-duotone fa-comments"></i> <a href="https://t.me/BitcoinBresciaHub" target="_blank">Unisciti alla community</a></p>
+          <p>Est. block 776060 ⚡</p>
           <p><i class="fa-brands fa-telegram-plane"></i> <a href="https://t.me/fts789" target="_blank">Contatta l'Host</a></p>
         </div>
       </div>
       <div class="carousel-cell">
         <div class="bb-chapters__item">
           <h4>Bitcoin Beer <span>Bologna</span></h4>
-          <p><i class="fa-duotone fa-comments"></i> <a href="https://t.me/bitcoinbeerbologna" target="_blank">Unisciti alla community</a></p>
+          <p>Est. block 821335 ⚡</p>
           <p><i class="fa-brands fa-telegram-plane"></i> <a href="https://t.me/hostfat" target="_blank">Contatta l'Host</a></p>
         </div>
       </div>
         <div class="carousel-cell">
           <div class="bb-chapters__item">
             <h4>Bitcoin Beer <span>Bosa</span></h4>
-            <p><i class="fa-duotone fa-comments"></i> <a href="https://t.me/bitcoinbosa" target="_blank">Unisciti alla community</a></p>
+            <p>Est. block 777290 ⚡</p>
             <p><i class="fa-brands fa-telegram-plane"></i> <a href="https://t.me/carlfitz" target="_blank">Contatta l'Host</a></p>
           </div>
         </div>
         <div class="carousel-cell">
           <div class="bb-chapters__item">
             <h4>Bitcoin Beer <span>Faenza</span></h4>
-            <p><i class="fa-duotone fa-comments"></i> <a href="https://t.me/bitcoinbeerfaenza" target="_blank">Unisciti alla community</a></p>
+            <p>Est. block 816818 ⚡</p>
             <p><i class="fa-brands fa-telegram-plane"></i> <a href="https://t.me/Irebus" target="_blank">Contatta l'Host</a></p>
           </div>
         </div>
       <div class="carousel-cell">
         <div class="bb-chapters__item">
           <h4>Bitcoin Beer <span>Forlì Cesena</span></h4>
-          <p><i class="fa-duotone fa-comments"></i> <a href="https://t.me/bitcoinforlicesena" target="_blank">Unisciti alla community</a></p>
+          <p>Est. block 775128 ⚡</p>
           <p><i class="fa-brands fa-telegram-plane"></i> <a href="https://t.me/Valgetto" target="_blank">Contatta l'Host</a></p>
         </div>
       </div>
       <div class="carousel-cell">
         <div class="bb-chapters__item">
           <h4>Bitcoin Beer <span>Genova</span></h4>
-          <p><i class="fa-duotone fa-comments"></i> <a href="https://t.me/BitcoinGenova" target="_blank">Unisciti alla community</a></p>
+          <p>Est. block 775652 ⚡</p>
           <p><i class="fa-brands fa-telegram-plane"></i> <a href="https://t.me/mendace" target="_blank">Contatta l'Host</a></p>
         </div>
       </div>
       <div class="carousel-cell">
         <div class="bb-chapters__item">
           <h4>Bitcoin Beer <span>Istria</span></h4>
-          <p><i class="fa-duotone fa-comments"></i> <a href="http://t.me/BitcoinIstria" target="_blank">Unisciti alla community</a></p>
+          <p>Est. block 774993 ⚡</p>
           <p><i class="fa-brands fa-telegram-plane"></i> <a href="https://t.me/anarchy4wd" target="_blank">Contatta l'Host</a></p>
         </div>
       </div>
       <div class="carousel-cell">
         <div class="bb-chapters__item">
           <h4>Bitcoin Beer <span>London</span></h4>
-          <p><i class="fa-duotone fa-comments"></i> <a href="https://twitter.com/LDNBTCSPACE" target="_blank">Segui la community</a></p>
+          <p>Est. block 775881 ⚡</p>
           <p><i class="fa-brands fa-telegram-plane"></i> <a href="https://t.me/fumblebtc" target="_blank">Contatta l'Host</a></p>
         </div>
       </div>
       <div class="carousel-cell">
         <div class="bb-chapters__item">
           <h4>Bitcoin Beer <span>Malta</span></h4>
-          <p><i class="fa-duotone fa-comments"></i> <a href="https://t.me/bitcoinmaltahub" target="_blank">Unisciti alla community</a></p>
+          <p>Est. block 799628 ⚡</p>
           <p><i class="fa-brands fa-telegram-plane"></i> <a href="https://t.me/anonrunner" target="_blank">Contatta l'Host</a></p>
          </div>
       </div>
       <div class="carousel-cell">
         <div class="bb-chapters__item">
           <h4>Bitcoin Beer <span>Milano</span></h4>
-          <p><i class="fa-duotone fa-comments"></i> <a href="https://t.me/BitcoinMilanoHub" target="_blank">Unisciti alla community</a></p>
-          <p><i class="fa-brands fa-telegram-plane"></i> <a href="https://t.me/loziodm" target="_blank">Contatta l'Host</a></p>
+          <p>Est. block 775155 ⚡</p>
+          <p><i class="fa-brands fa-telegram-plane"></i> <a href="https://t.me/neo1777" target="_blank">Contatta l'Host</a></p>
         </div>
       </div>
       <div class="carousel-cell">
         <div class="bb-chapters__item">
           <h4>Bitcoin Beer <span>Monfalcone</span></h4>
-          <p><i class="fa-duotone fa-comments"></i> <a href="https://t.me/BitcoinMonfalcone" target="_blank">Unisciti alla community</a></p>
+          <p>Est. block 806500 ⚡</p>
           <p><i class="fa-brands fa-telegram-plane"></i> <a href="https://t.me/neo1777" target="_blank">Contatta l'Host</a></p>
         </div>
       </div>
       <div class="carousel-cell">
         <div class="bb-chapters__item">
           <h4>Bitcoin Beer <span>Napoli</span></h4>
-          <p><i class="fa-duotone fa-comments"></i> <a href="https://t.me/bitcoinapoli" target="_blank">Unisciti alla community</a></p>
+          <p>Est. block 776392 ⚡</p>
           <p><i class="fa-brands fa-telegram-plane"></i> <a href="https://t.me/Libertadomuerte1" target="_blank">Contatta l'Host</a></p>
         </div>
       </div>
       <div class="carousel-cell">
         <div class="bb-chapters__item">
           <h4>Bitcoin Beer <span>Parma</span></h4>
-          <p><i class="fa-duotone fa-comments"></i> <a href="https://t.me/bitcoinparma" target="_blank">Unisciti alla community</a></p>
+          <p>Est. block 775050 ⚡</p>
           <p><i class="fa-brands fa-telegram-plane"></i> <a href="https://t.me/mirko_icp" target="_blank">Contatta l'Host</a></p>
         </div>
       </div>
       <div class="carousel-cell">
         <div class="bb-chapters__item">
           <h4>Bitcoin Beer <span>Pordenone</span></h4>
-          <p><i class="fa-duotone fa-comments"></i> <a href="https://t.me/bitcoinpordenone" target="_blank">Unisciti alla community</a></p>
+          <p>Est. block 775941 ⚡</p>
           <p><i class="fa-brands fa-telegram-plane"></i> <a href="https://t.me/clarovio" target="_blank">Contatta l'Host</a></p>
         </div>
       </div>
       <div class="carousel-cell">
         <div class="bb-chapters__item">
           <h4>Bitcoin Beer <span>Prato</span></h4>
-          <p><i class="fa-duotone fa-comments"></i> <a href="https://t.me/bitcoinpratohub" target="_blank">Unisciti alla community</a></p>
+          <p>Est. block 774582 ⚡</p>
           <p><i class="fa-brands fa-telegram-plane"></i> <a href="https://t.me/mendace" target="_blank">Contatta l'Host</a></p>
         </div>
       </div>
       <div class="carousel-cell">
         <div class="bb-chapters__item">
           <h4>Bitcoin Beer <span>Romagna</span></h4>
-          <p><i class="fa-duotone fa-comments"></i> <a href="https://t.me/bitcoinomagnahub" target="_blank">Unisciti alla community</a></p>
+          <p>Est. block 775907 ⚡</p>
           <p><i class="fa-brands fa-telegram-plane"></i> <a href="https://t.me/INNOVABILITA" target="_blank">Contatta l'Host</a></p>
         </div>
       </div>
       <div class="carousel-cell">
         <div class="bb-chapters__item">
           <h4>Bitcoin Beer <span>Trieste</span></h4>
-          <p><i class="fa-duotone fa-comments"></i> <a href="https://t.me/bitcointrieste" target="_blank">Unisciti alla community</a></p>
+          <p>Est. block 776902 ⚡</p>
           <p><i class="fa-brands fa-telegram-plane"></i> <a href="https://t.me/cocioale" target="_blank">Contatta l'Host</a></p>
          </div>
       </div>
       <div class="carousel-cell">
         <div class="bb-chapters__item">
           <h4>Bitcoin Beer <span>Venezia</span></h4>
-          <p><i class="fa-duotone fa-comments"></i> <a href="https://t.me/bitcoininvenice" target="_blank">Unisciti alla community</a></p>
+          <p>Est. block 776200 ⚡</p>
           <p><i class="fa-brands fa-telegram-plane"></i> <a href="https://t.me/ivoryz" target="_blank">Contatta l'Host</a></p>
         </div>
       </div>
@@ -388,7 +392,7 @@
           </div>
           <div class="col bb-what__cards__item reveal">
             <i class="fa-solid fa-capsules"></i>
-            <h4>OrangePill</h4>
+#2a43ff            <h4>OrangePill</h4>
             <p>Diffondi la conoscenza di Bitcoin nella tua comunità e aiuta i locali della tua zona a conoscerne i vantaggi</p>
           </div>
         </div>
@@ -408,7 +412,7 @@
           <p>
             Per aprire un BitcoinBeer serve solo buona volontà e competenze minime nell'organizzazione di un evento. <br> Per prima cosa presentati nel gruppo coordinamento, crea quindi una community affiliata ed organizza un evento nella tua città.
           </p>
-          <a href="https://t.me/+9Rx9LnZhBb5lZWNk" target="_blank" class="button-border">Avvia un Chapter</a>
+          <a         href="https://t.me/+9Rx9LnZhBb5lZWNk" target="_blank" class="button-border">Avvia un Chapter</a>
         </div>
         <div class="col bb-how__cards__item reveal">
           <h4>Unisciti al Chapter più vicino</h4>
@@ -456,9 +460,160 @@
 </div>
 
 
-    <div class="grid">
-      <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1J2HKghNi69ow0y0bcv_vPfCfm_NLoVg&ehbc=2E312F" width="100%" height="530" frameborder="0.1" scrolling="no"> Stai usando un browser non supportato.</iframe>
+
+<div class="grid-maps"><div id='map' style='width: 100%; height: 500px;'></div></div>
+        <script>
+    
+            mapboxgl.accessToken = 'pk.eyJ1IjoibWVuZGFjZSIsImEiOiJjbGRxYm1yZnIxYTVnM29xZzN6eTl6bW04In0.I7CE7Iu7PQHsis_4dvqucw';
+            
+            const map = new mapboxgl.Map({
+              container: 'map',
+              style: 'mapbox://styles/mapbox/dark-v10',
+              center: [9.11, 45.28],
+              zoom: 4
+            });
+            
+            // code from the next step will go here!
+            const geojson = {
+      type: 'FeatureCollection',
+      features: [
+        {
+          type: 'Feature',
+          geometry: {
+            type: 'Point',
+            coordinates: [11.09703315, 43.88062274]
+          },
+          properties: {
+            title: 'Prato',
+            description: '<b>Bitcoin Beer Prato</b><br/><a target="_blank" href="https://t.me/bitcoinprathub">t.me/bitcoinratohub</a>'
+          }
+        },
+        {
+          type: 'Feature',
+          geometry: {
+            type: 'Point',
+            coordinates: [12.661452, 45.956368]
+          },
+          properties: {
+            title: 'Pordenone',
+            description: '<b>Bitcoin Beer Pordenone</b><br/><a target="_blank" href="https://t.me/SatoshiBeerPordenone">t.me/SatoshiBeerPordenone</a>'
+          }
+        },
+        {
+          type: 'Feature',
+          geometry: {
+            type: 'Point',
+            coordinates: [10.211802, 45.541553]
+          },
+          properties: {
+            title: 'Brescia',
+            description: '<b>Bitcoin Beer Brescia</b><br/><a target="_blank" href="https://t.me/SatoshiBeerBrescia">t.me/SatoshiBeerBrescia</a>'
+          }
+        },
+        {
+          type: 'Feature',
+          geometry: {
+            type: 'Point',
+            coordinates: [9.677270, 45.698264]
+          },
+          properties: {
+            title: 'Bergamo',
+            description: '<b>Bitcoin Beer Bergamo</b><br/><a target="_blank" href="https://t.me/SatoshiBeerBergamo">t.me/SatoshiBeerBergamo</a>'
+          }
+        },
+        {
+          type: 'Feature',
+          geometry: {
+            type: 'Point',
+            coordinates: [12.203529, 44.418360]
+          },
+          properties: {
+            title: 'Romagna',
+            description: '<b>Bitcoin Beer Romagna</b><br/><a target="_blank" href="https://t.me/SatoshiBeerRomagna">t.me/SatoshiBeerRomagna</a>'
+          }
+        },
+        {
+          type: 'Feature',
+          geometry: {
+            type: 'Point',
+            coordinates: [12.3155151, 45.4408474]
+          },
+          properties: {
+            title: 'Venezia',
+            description: '<b>Bitcoin Beer Venezia</b><br/><a target="_blank" href="https://t.me/bitcoininvenice">t.me/SatoshiBeerVenezia</a>'
+          }
+        },
+        {
+          type: 'Feature',
+          geometry: {
+            type: 'Point',
+            coordinates: [9.1903474, 45.46679408]
+          },
+          properties: {
+            title: 'Milano',
+            description: '<b>Bitcoin Beer Milano</b><br/><a target="_blank" href="https://t.me/SatoshiBeerMilano">t.me/SatoshiBeerMilano</a>'
+          }
+        },
+        {
+          type: 'Feature',
+          geometry: {
+            type: 'Point',
+            coordinates: [12.0537, 44.2228]
+          },
+          properties: {
+            title: 'Forli Cesena',
+            description: '<b>Bitcoin Beer Forli Cesena</b><br/><a target="_blank" href="https://t.me/satoshibeerforlicesena">t.me/SatoshiBeerforlicesena</a>'
+          }
+        },
+        {
+          type: 'Feature',
+          geometry: {
+            type: 'Point',
+            coordinates: [13.800000, 45.633331]
+          },
+          properties: {
+            title: 'Trieste',
+            description: '<b>Bitcoin Beer Trieste</b><br/><a target="_blank" href="https://t.me/SatoshiBeerTrieste">t.me/SatoshiBeerTrieste</a>'
+          }
+        },
+        {
+          type: 'Feature',
+          geometry: {
+            type: 'Point',
+            coordinates: [10.327835, 44.801327]
+          },
+          properties: {
+            title: 'Parma',
+            description: '<b>Bitcoin Beer Parma</b><br/><a target="_blank" href="https://t.me/BitcoinParma/1">https://t.me/BitcoinParma/</a>'
+          }
+        },
+      ]
+    };
+           
+    // add markers to map
+    for (const feature of geojson.features) {
+      // create a HTML element for each feature
+      const el = document.createElement('div');
+      el.className = 'marker';
+    
+      // make a marker for each feature and add to the map
+      new mapboxgl.Marker(el)
+      .setLngLat(feature.geometry.coordinates)
+      .setPopup(
+        new mapboxgl.Popup({ offset: 25 }) // add popups
+          .setHTML(
+            `<h3>${feature.properties.title}</h3><p>${feature.properties.description}</p>`
+          )
+      )
+      .addTo(map);
+    }
+    
+            // Add zoom and rotation controls to the map.
+            map.addControl(new mapboxgl.NavigationControl());
+            </script>
+    
     </div>
+
     
     <footer class="footer mt-3">
       <img src="assets/bitcoin_beer_logo_v.svg" alt="Bitcoin Beer Logo">
@@ -478,117 +633,8 @@
 
     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-    var blockInfoDiv = document.getElementById('block-info');
-    var ultimoHash = '';
     
-    function aggiungiDatiTicker(hash) {
-        if (hash !== ultimoHash) {
-            ultimoHash = hash;
-            fetch(`https://blockstream.info/api/block/${hash}`)
-                .then(response => response.json())
-                .then(blockData => {
-                    var blockElement = document.createElement('span');
-                    blockElement.textContent = 'Last Block - Hash: ' + blockData.id + ' | Altezza: ' + blockData.height + ' | Dimensione: ' + blockData.size + ' bytes | Orario: ' + new Date(blockData.timestamp * 1000).toLocaleString() + ' | ';
-                    blockInfoDiv.innerHTML = ''; // Pulisce i vecchi dati
-                    blockInfoDiv.appendChild(blockElement); // Aggiunge i nuovi dati
-                })
-                .catch(error => console.error('Errore nel recuperare i dati del blocco:', error));
-        }
-    }
-
-    function verificaNuovoBlocco() {
-        fetch('https://blockstream.info/api/blocks/tip/hash')
-            .then(response => response.text())
-            .then(hash => {
-                aggiungiDatiTicker(hash);
-            })
-            .catch(error => console.error('Errore nel recuperare l\'hash del blocco:', error));
-    }
-
-    verificaNuovoBlocco();
-    setInterval(verificaNuovoBlocco, 60000); // Aggiorna ogni 60 secondi
-});
-
-  </script>
-  
-
-    <script>
-      $( document ).ready(function() {
-
-        /* Open Panel */
-        $( ".hamburger" ).on('click', function() {
-          $(".menu").toggleClass("menu--open") && $(".hamburger").toggleClass("menu--open") ;
-        });
-
-        /* closePanel */
-        $( ".menu__link" ).on('click', function() {
-          $(".menu").toggleClass("menu--open") && $(".hamburger").toggleClass("menu--open") ;
-        });
-
-      });
-
-      ScrollReveal().reveal('.reveal', { distance: '80px', duration: 600, easing: 'cubic-bezier(.215, .61, .355, 1)', interval: 500 });
-      ScrollReveal().reveal('.zoom', { duration: 1500, easing: 'cubic-bezier(.215, .61, .355, 1)', interval: 200, scale: 0.65, mobile:false });
-    </script>
-
-    <script> 
-    document.addEventListener('DOMContentLoaded', function() {
-    var banner = document.getElementById('tuo-banner');
-    var bannerChiuso = false; // Indica se il banner è stato chiuso
-    var elementoTarget = document.getElementById('cosa'); // Sostituisci con il tuo ID specifico
-
-    // Funzione per mostrare il banner
-    function mostraBanner() {
-        var posizioneTarget = elementoTarget.getBoundingClientRect().top;
-        var altezzaFinestra = window.innerHeight;
-
-        if (posizioneTarget <= altezzaFinestra && !bannerChiuso) {
-            banner.style.display = 'block'; // Mostra il banner
-        }
-    }
-
-    // Gestore eventi per il pulsante di chiusura del banner
-    document.getElementById('chiudi-banner').addEventListener('click', function() {
-        banner.style.display = 'none'; // Nasconde il banner
-        bannerChiuso = true; // Imposta il banner come chiuso
-    });
-
-    // Gestore eventi per lo scroll della pagina
-    window.addEventListener('scroll', mostraBanner);
-
-    // Inizializza la visualizzazione del banner
-    mostraBanner();
-});
-
-    </script>
-
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-    var themeSwitch = document.getElementById('theme-switch');
-    var body = document.body;
-
-    // Carica il tema salvato
-    var savedTheme = localStorage.getItem('theme') || 'dark-theme';
-    body.classList.add(savedTheme);
-
-    themeSwitch.addEventListener('click', function() {
-        var newTheme = body.classList.contains('dark-theme') ? 'light-theme' : 'dark-theme';
-        body.classList.replace(body.classList.item(0), newTheme);
-        localStorage.setItem('theme', newTheme);
-    });
-});
-
-    </script>
-
     <script type="text/javascript" src="https://nibirumail.com/docs/scripts/nibirumail.cookie.min.js"></script>
-
-    <script>
-      function chiudiBanner() {
-          document.querySelector('.banner-annuncio-head').style.display = 'none';
-      }
-  </script>
-  
+    <script src="main.js"></script>
   </body>
 </html>

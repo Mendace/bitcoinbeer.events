@@ -12,11 +12,18 @@
   --title-color-light: #000000;
   --orange: #F7931A;
   --button: #F7931A;
+  /* Variabili di colore */
+  --bg-color: #333; /* Colore di sfondo delle celle non selezionate */
+  --border-color: #444; /* Colore del bordo */
+  --selected-bg-color: #fa6400; /* Colore di sfondo iniziale per la cella selezionata */
+  --selected-end-color: #9000ff; /* Colore di sfondo finale per la cella selezionata */
+
 }
 
 html {
   scroll-behavior: smooth;
 }
+
 
 body {
   overflow-x: hidden;
@@ -89,6 +96,14 @@ b {
   font-weight: 600;
 }
 
+.gradient-text {
+    background-image: linear-gradient(to right, #FFB6C1, #FF69B4); /* Esempio di gradiente */
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent; /* Rende il testo trasparente per mostrare solo il gradiente */
+    display: inline; /* Importante per applicare il gradiente correttamente ai tag inline come <span> */
+}
+
 /* ! Grid */
 .grid{
   display: flex;
@@ -96,8 +111,40 @@ b {
   padding: 0 30px;
   margin: 0 auto;
 }
+.grid-maps{
+  display: flex;
+  max-width: 1340px;
+  padding: 0 30px;
+  margin: 0 auto;
+  border-radius: 2opx;
+}
 .grid .col{width: 100%;}
 
+#map { position: relative; top: 0; bottom: 0; width: 100%; }
+
+.marker {
+    background-image: url('assets/marker.png');
+    background-size: cover;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border-color:rgb(43, 43, 43);
+    border-style: solid;
+    background-size: 1 px;
+    cursor: pointer;
+  }
+  
+    .mapboxgl-popup {
+        max-width: 200px;
+        color: #000000;
+      }
+      
+      .mapboxgl-popup-content {
+        text-align: center;
+        font-family: 'Open Sans', sans-serif;
+        color: #000000;
+      }
+  
 /* ! Helpers */
 .mt-1{margin-top: 3em}
 .mt-2{margin-top: 8em;}
@@ -362,8 +409,9 @@ body.dark-theme .theme-switch .moon {
   }
   
 }
-
-/* ! Hero */
+ 
+  
+  /* ! Hero */
 .hero{
   margin: 5em 3em 0 3em;
   padding: 3em 0;
@@ -388,6 +436,34 @@ body.light-theme .hero{
 .hero__image img {
   width: 80%;
 }
+
+ .typewriter-text {
+    background-image: linear-gradient(to right, orange , yellow);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    display: inline;
+    position: relative;
+  }
+
+  .typewriter-text::after {
+    content: '|';
+    position: absolute;
+    right: -1px;
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes colorShift {
+    0% { background-image: linear-gradient(to right, orange, yellow); }
+    50% { background-image: linear-gradient(to right, yellow, orange); }
+    100% { background-image: linear-gradient(to right, orange, yellow); }
+  }
 
 /* ! Satoshi Beer What */
 
@@ -488,9 +564,60 @@ body.light-theme .bb-orangepill{
   width: 30%;
   margin-right: 1em;
   background-color: var(--bg-color);
-  border: 1px solid var(--bg-box);
   border-radius: 1.5em;
   padding: 2em;
+}
+
+.carousel-cell__content{
+  border-radius: 10px;
+  line-height: 350px;
+  text-align: center;
+  height: 100%;
+  width: 100%;
+}
+
+
+/* Stili per le celle del carosello */
+.carousel-cell {
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Per la cella in focus */
+.carousel-cell.focus-gradient {
+  background: repeating-linear-gradient(rgb(45, 51, 72), rgb(45, 51, 72) 0.175425%, rgb(147, 57, 244) 0.175425%, rgb(16, 95, 176) 100%); /* Gradiente dall'alto verso il basso */
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2); /* Effetto sollevato più pronunciato */
+}
+
+.carousel-cell.right-gradient {
+  background: repeating-linear-gradient(rgb(45, 51, 72), rgb(45, 51, 72) 0.175425%, rgb(147, 57, 244) 0.175425%, rgb(16, 95, 176) 100%); /* Gradiente dall'alto verso il basso */
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2); /* Effetto sollevato più pronunciato */
+}
+
+/* Per le celle a sinistra */
+@keyframes fadeGradient {
+  0%, 100% {
+    opacity: 1.3; /* Leggermente più luminoso del normale */
+  }
+  50% {
+    opacity: 0.7; /* Riduce l'opacità più di prima */
+  }
+}
+
+.carousel-cell.left-gradient {
+  background: repeating-linear-gradient(to right, rgb(85, 75, 69), rgb(85, 75, 69) 0.20145%, rgb(189, 97, 37) 0.20145%, rgb(189, 97, 37) 17.1672%, rgb(189, 97, 37) 16.8345%, rgb(189, 97, 37) 33.135%, rgb(189, 97, 37) 33.4676%, rgb(189, 97, 37) 50.1007%, rgb(189, 97, 37) 50.1007%, rgb(189, 92, 40) 67.0665%, rgb(189, 92, 40) 66.7338%, rgb(189, 92, 40) 83.0343%, rgb(189, 92, 40) 83.3669%, rgb(189, 92, 40) 100%);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  animation: fadeGradient 2.5s infinite;
+}
+
+
+
+
+/* Stili per dispositivi mobili */
+@media (max-width: 768px) {
+  .carousel-prev, .carousel-next {
+    padding: 5px 10px;
+    font-size: 12px;
+  }
 }
 
 body.light-theme.carousel-cell{
@@ -516,6 +643,10 @@ body.light-theme .carousel-cell:hover{
   width: 100%;
 }
 
+.zoom {
+    transform: scale(1.1); /* Effetto zoom */
+}
+
 iframe {border-radius: 10px;}
 
 .bb-chapters h3{padding-bottom: 10px; text-align: center;}
@@ -523,7 +654,7 @@ iframe {border-radius: 10px;}
 .bb-chapters__item h4{
   text-transform: uppercase;
   font-size: .8em;
-  color: var(--text-color);
+  color: var(--text-color-dark);
   padding-bottom: 15px;
 }
 body.light-theme .bb-chapters__item h4{
@@ -542,7 +673,7 @@ body.light-theme .bb-chapters__item span{
 .bb-chapters__item p {
   padding-bottom: 15px;
   text-align: left;
-  color: var(--orange);
+  color: var(--text-color-dark);
 }
 
 /*contenuto */
