@@ -111,13 +111,7 @@ b {
   padding: 0 30px;
   margin: 0 auto;
 }
-.grid-maps{
-  display: flex;
-  max-width: 1340px;
-  padding: 0 30px;
-  margin: 0 auto;
-  border-radius: 2opx;
-}
+
 .grid .col{width: 100%;}
 
 #map { position: relative; top: 0; bottom: 0; width: 100%; }
@@ -1813,4 +1807,120 @@ body.light-theme .donation-card p {
   font-size: 20px; /* Dimensione del carattere per la X */
 }
 
+/* Mappa */
+#mapid{
+  display: flex;
+  width: 100%;
+  height: 500px;
+  padding: 0 30px;
+  margin-top: 150px;
+  border-radius: 2opx;
+  z-index: 3;
+}
+.custom-popup .leaflet-popup-content {
+  margin: 0;
+  padding: 0;
+  width: auto;
+  background-color: rgba(0, 0, 0, 0.8);
+  border: 2px solid #000000; /* Aggiungi un bordo personalizzato */
+  border-radius: 10px; /* Aggiungi angoli arrotondati */
+}
 
+.leaflet-popup-content {
+  margin: 0;
+}
+
+.popup-content-container {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 15px;
+  border-radius: 8px;
+  font-family: Arial, sans-serif;
+}
+.popup-content-container p {
+  margin-bottom: 10px; /* Aggiungi margine inferiore al paragrafo */
+}
+.popup-content-container .popup-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background-color: rgba(0, 0, 0, 0); /* o un altro colore se desiderato */
+  border: 2px solid white;
+  border-radius: 10px;
+  margin-right: 8px;
+  color: white;
+  font-size: 16px;
+}
+
+.popup-content-container .popup-button:last-child {
+  margin-right: 0;
+}
+
+.popup-content-container .popup-button:hover {
+  background-color: #555;
+}
+
+/* Se i pulsanti sono raggruppati in un contenitore, aggiungi stili al contenitore */
+.popup-button-container {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid white;
+  padding-top: 10px;
+}
+
+
+/* Stile del container del pop-up */
+/* Stile di base per il detail-popup che apparirà al click del terzo pulsante */
+.detail-popup {
+  background-color: #000000; /* Sfondo scuro */
+  color: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Ombra per il popup */
+  width: auto; /* Larghezza automatica in base al contenuto */
+  max-width: 400px; /* Larghezza massima per mantenere il contenuto leggibile */
+  font-family: Arial, sans-serif; /* Font del popup */
+  box-sizing: border-box; /* Assicura che padding e border siano inclusi nella larghezza */
+  position: fixed; /* Posizione fissa sopra il contenuto della pagina */
+  top: 50%; /* Centrato verticalmente */
+  left: 50%; /* Centrato orizzontalmente */
+  transform: translate(-50%, -50%); /* Ajusta la posizione per centrare esattamente */
+  z-index: 1000; /* Assicura che il popup sia sopra gli altri elementi */
+  display: flex; /* Usa flexbox per organizzare il contenuto */
+  flex-direction: column; /* Organizza i figli in colonna */
+  text-align: center; /* Centra il testo */
+}
+
+/* Stile per l'intestazione del detail-popup */
+.detail-popup .custom-popup-header {
+  font-size: 18px; /* Dimensione del testo dell'intestazione */
+  margin-bottom: 15px; /* Spazio sotto l'intestazione */
+  display: flex; /* Usa flexbox per organizzare il titolo e il bottone di chiusura */
+  justify-content: space-between; /* Separa il titolo e il bottone */
+  align-items: center; /* Allinea verticalmente il titolo e il bottone */
+}
+
+/* Stile per il corpo del detail-popup */
+.detail-popup .custom-popup-body {
+  flex-grow: 1; /* Permette al corpo di crescere e riempire lo spazio disponibile */
+}
+
+/* Stile per le opzioni di abbonamento all'interno del detail-popup */
+.detail-popup .price-option {
+  /* Stili per le singole opzioni, simili a quelli che hai già fornito */
+}
+
+/* Stile per il footer del detail-popup */
+.detail-popup .custom-popup-footer {
+  /* Stili per il footer, se necessario */
+}
+
+/* Stile per il pulsante di chiusura nel detail-popup */
+.detail-popup .close-popup {
+  cursor: pointer; /* Mostra il puntatore come una mano per indicare che è cliccabile */
+  /* Altri stili per il pulsante di chiusura, se necessario */
+}
+
+/* Assicurati di aggiungere ulteriori stili specifici per il layout e il design che desideri */
