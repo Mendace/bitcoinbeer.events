@@ -1446,6 +1446,100 @@ body.light-theme .donation-card p {
   }
 }
 
+/* Responsive Design per Mobile */
+@media (max-width: 768px) {
+  .donation-section {
+    /* Non è necessario impostare flex-direction: column; poiché Flickity si occuperà del layout del carosello */
+  }
+
+  .donation-card {
+    /* Non è necessario impostare flex-basis: auto; su dispositivi mobili per lo stesso motivo */
+    /* Qualsiasi stile specifico per mobile qui */
+  }
+}
+
+
+ /* SPONSOR */
+
+.sponsor-section {
+  text-align: center;
+  padding: 50px 0;
+}
+
+.sponsor-section h2 {
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.sponsors-container {
+  display: flex;
+  flex-wrap: nowrap; /* Impedisce agli elementi di avvolgersi su più righe */
+  justify-content: center; /* Centra gli elementi */
+  gap: 20px; /* Distanza tra i loghi */
+  overflow-x: auto; /* Aggiunge la scrollbar orizzontale se i loghi superano la larghezza del contenitore */
+}
+
+.sponsor {
+  flex: 0 1 auto; /* Gli elementi possono crescere e restringersi ma non sono forzati a una dimensione specifica */
+  margin: 10px; /* Aggiusta questo valore come necessario */
+  justify-content: center;
+  align-items: center;
+}
+
+/* Assicurati che le immagini non siano troppo grandi */
+.sponsor img {
+  max-height: 100px; /* o qualsiasi altro valore che funzioni meglio per il tuo design */
+  width: auto; /* Mantiene le proporzioni dell'immagine */
+  padding: 10px; /* Distanza dall'orlo del contenitore sponsor */
+}
+
+/* Nascondi tutte le immagini per default */
+.sponsor-img {
+  display: none;
+}
+
+/* Mostra l'immagine bianco e nero corrispondente al tema attuale */
+body.light-theme .light-theme-bw,
+body.dark-theme .dark-theme-bw {
+  display: block;
+}
+
+/* Cambia all'immagine a colori all'hover */
+body.light-theme .sponsor:hover .light-theme-bw {
+  display: none;
+}
+
+body.light-theme .sponsor:hover .light-theme-color {
+  display: block;
+}
+
+body.dark-theme .sponsor:hover .dark-theme-bw {
+  display: none;
+}
+
+body.dark-theme .sponsor:hover .dark-theme-color {
+  display: block;
+}
+
+
+@media (max-width: 768px) {
+  .sponsors-container {
+      /* Cambia il layout in colonna per dispositivi mobili */
+      flex-direction: column;
+      align-items: center; /* Centra gli elementi */
+  }
+  
+  .sponsor-img {
+      /* Stili aggiuntivi o sovrascritture per le immagini su mobile */
+      /* Ad esempio, potresti voler modificare la dimensione dell'immagine qui */
+  }
+
+  /* Assicurati che le immagini siano visibili basate sul tema corrente o sulla preferenza di sistema */
+  /* Adatta questo in base alla tua implementazione del cambio di tema */
+}
+
+
+
 
 /* Icon styles (generic - replace with your own icons) */
 .icon {
@@ -1701,6 +1795,10 @@ body.light-theme .donation-card p {
   max-width: 500px;
 }
 
+body.light-theme .popup-content {
+  background: #ffffff;
+}
+
 .close-btn {
   color: #f0f0f0;
   float: right;
@@ -1708,9 +1806,8 @@ body.light-theme .donation-card p {
   cursor: pointer;
 }
 
-
 .banner-annuncio {
-  background-color: #fa8500; /* Usa un colore del tuo tema */
+  background: linear-gradient(to right, orange, darkorange); /* Gradiente di sfondo */
   color: var(--text-color); /* Colore del testo coerente con il tuo tema */
   text-align: center;
   padding: 15px;
@@ -1732,7 +1829,7 @@ body.light-theme .donation-card p {
 
 
 .banner-annuncio-head {
-  background-color: #ff9800; /* Scegli un colore che risalti */
+  background: linear-gradient(to right, orange, darkorange); /* Gradiente di sfondo */
   color: white;
   text-align: center;
   padding: 10px 20px;
@@ -1763,55 +1860,95 @@ body.light-theme .donation-card p {
 }
 
 
-
-#tuo-banner {
-  display: none; /* Inizialmente nascosto */
-  position: fixed; /* Fissa la card in basso */
-  bottom: 10px; /* Distanza dal fondo della pagina */
-  left: 50%; /* Centra la card orizzontalmente */
-  transform: translateX(-50%); /* Ajustamento per centrare perfettamente */
-  width: 80%; /* Larghezza della card */
-  max-width: 400px; /* Larghezza massima per grandi schermi */
-  padding: 20px; /* Spaziatura interna */
-  background: linear-gradient(to right, orange, darkorange); /* Gradiente di sfondo */
-  border-radius: 15px; /* Angoli arrotondati */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Ombra leggera per profondità */
-  color: white; /* Colore del testo */
-  text-align: center; /* Allinea il testo al centro */
-  z-index: 1000; /* Assicura che la card sia sopra gli altri elementi */
-}
-
-#tuo-banner h2 {
-  margin-top: 0; /* Rimuove il margine superiore */
-  font-size: 1.5em; /* Dimensione del font per il titolo */
-}
-
-#tuo-banner input, #tuo-banner button {
-  padding: 10px; /* Spaziatura interna per input e pulsante */
-  margin: 5px 0; /* Margine esterno */
-  border-radius: 5px; /* Angoli arrotondati per input e pulsante */
-  border: 1px solid darkorange; /* Bordo per input e pulsante */
-}
-
-#tuo-banner button {
-  background-color: darkorange; /* Sfondo del pulsante */
-  color: white; /* Colore del testo del pulsante */
-  cursor: pointer; /* Cambia il cursore al passaggio del mouse */
-}
-
-#chiudi-banner {
-  border: none;
-  background: none;
-  color: white;
+/* BUTTON MAILING LIST */
+/* Stile per il contenitore flottante */
+#floating-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px; /* Dimensioni iniziali del pulsante */
+  height: 50px;
+  border-radius: 50%; /* Rendilo rotondo */
+  transition: all 0.5s; /* Transizione fluida per tutte le proprietà */
+  overflow: hidden; /* Nascondi i contenuti fuoriusciti */
   cursor: pointer;
-  font-size: 20px; /* Dimensione del carattere per la X */
+  z-index: 1000; /* Assicurati che sia sopra altri elementi */
+}
+
+#floating-container.closed #subscription-modal {
+  display: none;
+}
+
+#floating-container.open {
+  width: 500px; /* Larghezza finale */
+  height: 200px; /* Altezza finale */
+  border-radius: 10px; /* Bordo meno rotondo */
+  bottom: 10%; /* Adegua la posizione per centrale */
+  right: 10%;
+  color: var(--text-color-light);
+}
+
+/* Stile per il pulsante flottante */
+#floating-button {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, orange, yellow); /* Gradiente di colore */
+  color: white;
+  text-align: center;
+  line-height: 50px; /* Centra il testo verticalmente */
+}
+
+/* Modal base styles */
+.modal {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* Modal Content */
+.modal-content {
+  position: absolute;
+  bottom: 0;
+  background: linear-gradient(to bottom, orange, yellow); /* Gradiente di colore */
+  width: 100%;
+  height: 100%;
+  border-radius: inherit; /* Eredita il bordo arrotondato dal genitore */
+  padding: 20px;
+  box-sizing: border-box; /* Include padding nel calcolo della larghezza/altezza */
+  transition: transform 0.5s; /* Animazione di trasformazione */
+}
+
+/* The Close Button */
+.close-button {
+  color: #aaaaaa;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+  color: black;
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+#floating-container.open {
+  width: 300px; /* Larghezza finale */
+  height: 300px; /* Altezza finale */
+}
 }
 
 /* Mappa */
 #mapid{
   display: flex;
-  width: 100%;
-  height: 500px;
+  width: 150%;
+  height: 400px;
   padding: 0 30px;
   margin-top: 150px;
   border-radius: 2opx;

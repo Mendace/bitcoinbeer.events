@@ -185,26 +185,31 @@
 
 </section>
 
-
-
-<div id="tuo-banner" style="display: none;">
-  <h4 style="font-size: 16px;">Iscriviti alla Nostra Mailing List!</h4>
-  <p style="font-size: 14px;">Non condivideremo nessun dato grazie a Listmonk. Promesso.</p>
-  <form method="post" action="https://listmonk.bitcoinbeer.events/subscription/form">
-    <i class="fa-solid fa-envelope fa-beat" style="padding-right: 5px;"></i><input type="email" name="email" placeholder="Il tuo indirizzo email">
-    <input id="9952b" style="position: absolute;
-    left: -9999px;" type="checkbox" name="l" checked value="9952b665-b3c8-4249-86b9-348db062759b" />
-    <input type="submit" value="Iscriviti" style="
-    background-color: rgb(29, 29, 29);
-    color: var(--title-color);
-    border: none;
-    border-radius: 100px;
-    cursor: pointer;
-    font-family: 'Roboto Mono', sans-serif;
-    box-shadow: 2px 2px 20px 0px rgba(0,0,0, .2);
-    transition: all 0.3s ease;"/>
-  </form>
-  <button id="chiudi-banner" style="position: absolute; top: 10px; right: 10px;">&times;</button>
+<div id="floating-container" class="closed">
+  <div id="floating-button">
+    <i class="fa-solid fa-envelope fa-beat"></i> Subscribe
+  </div>
+  <div id="subscription-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h4 style="font-size: 16px;">Iscriviti alla Nostra Mailing List!</h4>
+        <p style="font-size: 14px;">Non condivideremo nessun dato grazie a Listmonk. Promesso.</p>
+        <form method="post" action="https://listmonk.bitcoinbeer.events/subscription/form">
+          <i class="fa-solid fa-envelope fa-beat" style="padding-right: 5px;"></i><input type="email" name="email" placeholder="Il tuo indirizzo email">
+          <input id="9952b" style="position: absolute;
+          left: -9999px;" type="checkbox" name="l" checked value="9952b665-b3c8-4249-86b9-348db062759b" />
+          <input type="submit" value="Iscriviti" style="
+          background-color: rgb(29, 29, 29);
+          color: var(--title-color);
+          border: none;
+          border-radius: 100px;
+          cursor: pointer;
+          font-family: 'Roboto Mono', sans-serif;
+          box-shadow: 2px 2px 20px 0px rgba(0,0,0, .2);
+          transition: all 0.3s ease;"/>
+        </form>
+    </div>
+  </div>
 </div>
 
 
