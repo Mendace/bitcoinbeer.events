@@ -1,5 +1,10 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/8e497044-67f9-4439-8b34-8ee8ec089fdf/deploy-status)](https://app.netlify.com/sites/bitcoinbeerevents/deploys)
 
+<p align="center">
+<a href="https://bitcoinbeer.events">
+    <img src="https://readme-typing-svg.demolab.com?font=Georgia&size=18&duration=2000&pause=100&multiline=true&width=500&height=80&lines=Gli eventi+informali in Italia;per+%7C+orangepillare+innovare+%7C+condividere+insieme;AI+%7C+e avvicinarsi+a+%7C+Bitcoin" alt="Typing SVG" />
+</a>
+<br/>
 # BitcoinBeer.events
 
 Lista dei Bitcoin Beer italiani
