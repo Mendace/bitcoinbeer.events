@@ -2,7 +2,7 @@
 
 <p align="center">
 <a href="https://bitcoinbeer.events">
-    <img src="https://readme-typing-svg.demolab.com?font=Georgia&size=18&duration=2000&pause=100&multiline=true&width=500&height=80&lines=Gli eventi+informali in Italia;per+orangepillare+innovare+condividere+insieme;+%7C+e avvicinarsi+a+%7C+Bitcoin" alt="Typing SVG" />
+    <img src="https://readme-typing-svg.demolab.com?font=Georgia&size=18&duration=2000&pause=100&multiline=true&width=500&height=80&lines=Gli eventi+informali in Italia;per+orangepillare+innovare+condividere+insieme;+e avvicinarsi+a+Bitcoin" alt="Typing SVG" />
 </a>
 <br/>
 # BitcoinBeer.events
