@@ -37,7 +37,7 @@
     <meta name="msapplication-TileImage" content="assets/favicon/ms-icon-144x144.png">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" integrity="sha512-NmLkDIU1C/C88wi324HBc+S2kLhi08PN5GDeUVVVC/BVt/9Izdsc9SVeVfA1UZbY3sHUlDSyRXhCzHfr6hmPPw==" crossorigin="anonymous" />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="min.style.css">
     <link rel="stylesheet" href="style-community.css">
     <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
@@ -234,32 +234,16 @@
       </p>
     </footer>
         
-
-   <!-- Jquery -->
-    
+    <!-- Jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 
-    <script>
-      $( document ).ready(function() {
+    
+    <script type="text/javascript" src="https://nibirumail.com/docs/scripts/nibirumail.cookie.min.js"></script>
+    <script src="min.main.js"></script> 
 
-        /* Open Panel */
-        $( ".hamburger" ).on('click', function() {
-          $(".menu").toggleClass("menu--open") && $(".hamburger").toggleClass("menu--open") ;
-        });
-
-        /* closePanel */
-        $( ".menu__link" ).on('click', function() {
-          $(".menu").toggleClass("menu--open") && $(".hamburger").toggleClass("menu--open") ;
-        });
-
-      });
-
-      ScrollReveal().reveal('.reveal', { distance: '80px', duration: 600, easing: 'cubic-bezier(.215, .61, .355, 1)', interval: 500 });
-      ScrollReveal().reveal('.zoom', { duration: 1500, easing: 'cubic-bezier(.215, .61, .355, 1)', interval: 200, scale: 0.65, mobile:false });
-    </script>
-
+    
 <script>
   var mySwiper = new Swiper('.mySwiper', {
       // Swiper settings
@@ -360,7 +344,6 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
-
   </script>
 <script data-cfasync="false" data-tockify-script="embed" src="https://public.tockify.com/browser/embed.js"></script>
   <script>
@@ -422,63 +405,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setInterval(verificaNuovoBlocco, 60000); // Aggiorna ogni 60 secondi
 });
 
-
-
   </script>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    var ultimoHash = '';
-    var intervalloAggiornamento = 60000; // Tempo di aggiornamento in millisecondi
-
-    function mostraDivConLoadingBar() {
-        var divContainer = document.getElementById('loading-container');
-        divContainer.style.display = 'block'; // Mostra il div
-        resetLoadingBar(); // Resetta la barra di loading dopo che il div è visibile
-    }
-
-    function resetLoadingBar() {
-        var loadingBar = document.getElementById('loading-bar');
-        loadingBar.style.width = '100%'; // Resetta la barra al 100%
-        setTimeout(() => {
-            loadingBar.style.width = '0%';
-        }, 10);
-    }
-
-    function verificaNuovoBlocco() {
-        fetch('https://blockstream.info/api/blocks/tip/hash')
-            .then(response => response.text())
-            .then(hash => {
-                if (hash !== ultimoHash) {
-                    ultimoHash = hash;
-                    // Aggiorna i dati qui (come aggiornare le tue card)
-                    mostraDivConLoadingBar(); // Mostra il div e resetta la barra di loading
-                }
-            })
-            .catch(error => console.error('Errore nel recuperare l\'hash del blocco:', error));
-    }
-
-    verificaNuovoBlocco();
-    setInterval(verificaNuovoBlocco, intervalloAggiornamento);
-});
-
-</script>
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-var themeSwitch = document.getElementById('theme-switch');
-var body = document.body;
-
-// Carica il tema salvato
-var savedTheme = localStorage.getItem('theme') || 'dark-theme';
-body.classList.add(savedTheme);
-
-themeSwitch.addEventListener('click', function() {
-    var newTheme = body.classList.contains('dark-theme') ? 'light-theme' : 'dark-theme';
-    body.classList.replace(body.classList.item(0), newTheme);
-    localStorage.setItem('theme', newTheme);
-});
-});
-
-</script>
 
   </body>
 </html>
