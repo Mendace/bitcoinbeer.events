@@ -2085,6 +2085,10 @@ body.light-theme .popup-content {
   z-index: -1; /* Sfondo dietro al contenuto */
 }
 
+body.light-theme .parallax-background{
+  background-image: url('assets/wall-white.png');
+}
+
 .content {
   position: relative;
   z-index: 2; /* Assicurati che il contenuto sia sopra lo sfondo e l'effetto specchio */
