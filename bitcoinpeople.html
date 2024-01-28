@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Bitcoin Beer Italia | Mappa dei Bitcoin Beer Italia</title>
+    <title>Bitcoin Beer Italia | Eventi e workshop Bitcoin con una buona Birra</title>
     <meta name="description" content="Partecipa agli eventi Bitcoin Beer in Italia. Scopri la tecnologia di Bitcoin nella tua città e incontra nuove amicizie davanti ad una birra.">
 
       <!-- Open Graph / Facebook -->
@@ -48,6 +48,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" integrity="sha512-NmLkDIU1C/C88wi324HBc+S2kLhi08PN5GDeUVVVC/BVt/9Izdsc9SVeVfA1UZbY3sHUlDSyRXhCzHfr6hmPPw==" crossorigin="anonymous" />
     <link rel="stylesheet" href="style.min.css">
     <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -56,11 +57,88 @@
     <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
     <script src="https://cdn.counter.dev/script.js" data-id="586b1ec9-8faa-4f5b-a67b-6e104fc85c1c" data-utcoffset="1"></script>
     <script src="js/lazysizes.min.js" async=""></script>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+    <style>
+      header {
+    margin-top: 150px;
+    padding: 20px 0;
+    text-align: center;
+}
 
-    
-    
-    
+.titolo-principale {
+    color: white;
+    font-size: 2.5em; /* Dimensione del font */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Ombra del testo */
+    animation: fadeIn 2s ease-in;
+}
+
+.immagine-principale {
+    max-width: 200px; /* Larghezza massima dell'immagine */
+    height: auto; /* Mantiene le proporzioni */
+    display: block;
+    margin: 20px auto; /* Centra l'immagine e aggiunge un margine in alto e in basso */
+}
+
+.app-presentation-box {
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.068); /* Semi-transparent white */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    max-width: 94%;
+    margin: 40px auto;
+}
+
+.app-presentation-box h2 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.app-presentation-box p {
+    color: #666;
+    font-size: 1em;
+}
+
+.download-buttons {
+    margin-top: 20px;
+}
+
+.appstore-button,
+.playstore-button {
+    border: none;
+    background: none;
+    padding: 0;
+    margin: 5px;
+}
+
+.appstore-button img,
+.playstore-button img {
+    max-width: 150px; /* Imposta la dimensione massima dell'immagine */
+    height: auto;
+    transition: opacity 0.3s ease;
+}
+
+.appstore-button img:hover,
+.playstore-button img:hover {
+    opacity: 0.8;
+}
+
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+    </style>
   </head>
   <body>
      
@@ -109,20 +187,38 @@
       </div>
     </div>
 
-    
+    <header>
+      <h1 class="titolo-principale">Bitcoin People</h1>
+  </header>
+  <section class="imgbtcp">
+    <a href="https://www.bitcoinpeople.it/"><img src="assets/BP2-PNG WEB.png" alt="Descrizione dell'immagine" class="immagine-principale"></a>
+</section>
+      
+    <section class="grid bb-orangepill mt-2 reveal">
+      <div class="col bb-orangepill__img reveal">
+        <img src="assets/pagamenti-bitcoin.webp" alt="Obiettivo OrangePillare">
+      </div>
+      <div class="col bb-orangepill__text">
+        <h3>Accetta pagamenti
+           <br><span>Bitcoin in azienda</span></h3>
+        <p>₿Pay è il gestionale con cui puoi iniziare ad accettare bitcoin nella tua azienda o per la tua professione. Con ₿Pay puoi processare pagamenti bitcoin nella tua attività rispettando la legge e traendo tutti i vantaggi di Bitcoin</p>
+        <p>Come gestire i bitcoin incassati è sicuramente uno delle maggiori preoccupazioni. ₿pay fornisce una contabilizzazione puntuale degli incassi e il tasso di cambio applicato nel giorno. Ti basterà fornire i report da ₿pay al commercialista.</p>
+      </div>
+    </section>
 
+    <section class="app-presentation-box">
+      <h2>Scarica la Nostra App Ora!</h2>
+      <p>Scopri tutte le funzionalità dell'app e incomicia a ricevere Bitcoin.</p>
+      <div class="download-buttons">
+        <a href="https://apps.apple.com/app/bitcoin-people-bpay/id6464040494" class="appstore-button">
+            <img src="assets/app-store-badge.png" alt="App Store">
+        </a>
+        <a href="https://play.google.com/store/apps/details?id=it.bitcoinpeople.pay" class="playstore-button">
+            <img src="assets/google-play-badge.png" alt="Google Play">
+        </a>
+    </div>
+  </section>
 
-  <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js'></script>
-  <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css' rel='stylesheet' />
-
-  <div class="close-popup" id="mapid"></div>
-
-
-
-
-
-
-         
     
     <footer class="footer mt-3">
       <img src="assets/bitcoin_beer_logo_v.svg" alt="Bitcoin Beer Logo">
@@ -138,7 +234,6 @@
         
 
    <!-- Jquery -->
-    <!-- Jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
@@ -146,7 +241,5 @@
     
     <script type="text/javascript" src="https://nibirumail.com/docs/scripts/nibirumail.cookie.min.js"></script>
     <script src="min.main.js"></script> 
-    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
-    <script src="map.js"></script>
   </body>
 </html>
