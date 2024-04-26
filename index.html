@@ -69,6 +69,7 @@
   <script src="https://cdn.counter.dev/script.js" data-id="586b1ec9-8faa-4f5b-a67b-6e104fc85c1c"
     data-utcoffset="1"></script>
   <script src="js/lazysizes.min.js" async=""></script>
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
 </head>
 
 <body>
@@ -142,8 +143,10 @@
     </div>
   </section>
 
-  <section class="swiper-container sponsor-section">
-    <h5>PARTNERS</h5>
+  <section class="swiper-container-main sponsor-section">
+    <h2 style="margin-bottom: 2rem; font-size: 1.875rem; font-weight: 800; letter-spacing: -0.05em; line-height: 1.25; text-align: center;">
+      You’ll be in good company
+  </h2>
     <div class="swiper-wrapper">
 
       <!-- Sponsor -->
@@ -167,9 +170,9 @@
       <div class="swiper-slide sponsor"><a href="https://bitbox.swiss/bitcoinbeer"><img
             src="assets/03a db-BitBox inverted.svg" alt="Sponsor 2" class="sponsor-img dark-theme-bw">
           <img src="assets/03a db-BitBox inverted.svg" alt="Sponsor 2" class="sponsor-img dark-theme-color"></a></div>
-
-
     </div>
+    <!-- Effetto Fade sui lati -->
+    <div class="fade-effect"></div>
   </section>
 
   <!-- Sezione Donazioni Bitcoin -->
@@ -760,6 +763,15 @@
         </div>
         <div class="carousel-cell">
           <div class="bb-chapters__item">
+            <h4>Bitcoin Beer <span>Roma-Genzano</span></h4>
+            <p>Est. block 838450 ⚡</p>
+            <p><i class="fa-brands fa-telegram-plane"></i> <a href="https://t.me/Rantolux" target="_blank">Contatta
+                l'Host</a></p>
+                <p><i class="fa-solid fa-user-group"></i> <a href="https://t.me/bitcoinbeergenzanodiroma" target="_blank">Entra nel gruppo</a></p>
+          </div>
+        </div>
+        <div class="carousel-cell">
+          <div class="bb-chapters__item">
             <h4>Bitcoin Beer <span>Romagna</span></h4>
             <p>Est. block 775907 ⚡</p>
             <p><i class="fa-brands fa-telegram-plane"></i> <a href="https://t.me/INVESTJAMdao" target="_blank">Contatta
@@ -912,6 +924,7 @@
 
   <script type="text/javascript" src="https://nibirumail.com/docs/scripts/nibirumail.cookie.min.js"></script>
   <script src="min.main.js"></script>
+
 </body>
 
 </html>
