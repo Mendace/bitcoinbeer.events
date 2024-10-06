@@ -57,6 +57,13 @@
   <link rel="stylesheet" href="style.min.css">
   <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  <!-- CSS per Leaflet e Fullscreen -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-fullscreen/1.6.0/leaflet.fullscreen.css" />
+
+  <!-- Script per Leaflet e Fullscreen -->
+  <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-fullscreen/1.6.0/Leaflet.fullscreen.min.js"></script>
 
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -573,8 +580,7 @@
   <section id="dove" class="grid bb-chapters mt-3">
     <div class="col">
       <h3 class="gradient-text">Trova la community più vicina a te</h3>
-      <p>Swipe <i class="fa-solid fa-arrow-right-long fa-shake fa-xl"></i> </br> oppure cerca nella mappa <a
-          href="https://bitcoinbeer.events/maps.html"><i class="fa-solid fa-expand"></i></a></p>
+      
       <div class="main-carousel" data-flickity='{ "freeScroll": true , "wrapAround": false , "contain": true }'>
         <div class="carousel-cell">
           <div class="bb-chapters__item">
@@ -637,6 +643,15 @@
                 <p><i class="fa-solid fa-user-group"></i> <a href="https://t.me/bitcoinbosa" target="_blank">Entra nel gruppo</a></p>
           </div>
         </div>
+        <div class="carousel-cell">
+          <div class="bb-chapters__item">
+            <h4>Bitcoin Beer <span>Catanzaro</span></h4>
+            <p>Est. block 817856 ⚡</p>
+            <p><i class="fa-brands fa-telegram-plane"></i> <a href="https://t.me/GalleriaBitcoin" target="_blank">Contatta
+              l'Host</a></p>
+              <p><i class="fa-solid fa-user-group"></i> <a href="https://t.me/bitcoinbeercatanzaro" target="_blank">Entra nel gruppo</a></p>
+        </div>
+          </div>
         <div class="carousel-cell">
           <div class="bb-chapters__item">
             <h4>Bitcoin Beer <span>Faenza</span></h4>
@@ -820,6 +835,19 @@
     </div>
   </section>
 
+  <section class="map-section grid mt-3">
+    <div class="col map-container">
+        <div id="map"></div>
+    </div>
+    <div class="col description-container">
+        <h1>Scopri Bitcoin Beer</h1>
+        <p>
+            Naviga la mappa per trovare eventi Bitcoin Beer vicino a te. Scopri le community locali, partecipa agli incontri e incontra altri appassionati di Bitcoin. Unisciti a noi per un evento vicino alla tua città e condividi la tua passione con altri Bitcoiners.
+        </p>
+    </div>
+</section>
+
+
 
   <section id="come" class="grid bb-how mt-3">
     <img src="assets/laser-eyes-bitcoin.webp">
@@ -925,6 +953,7 @@
 
   <script type="text/javascript" src="https://nibirumail.com/docs/scripts/nibirumail.cookie.min.js"></script>
   <script src="min.main.js"></script>
+ 
 
 </body>
 
