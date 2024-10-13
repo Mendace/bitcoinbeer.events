@@ -1,6 +1,6 @@
 // script.js
 document.addEventListener('DOMContentLoaded', () => {
-    fetch('/api/eventi')
+    fetch('https://backend.bitcoinbeer.events/api/eventi')
         .then(response => response.json())
         .then(data => {
             const eventiContainer = document.getElementById('eventi-container');
