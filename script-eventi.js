@@ -16,6 +16,19 @@ document.addEventListener('DOMContentLoaded', () => {
           return;
         }
   
+        // Funzione per formattare la data in formato 'YYYY-MM-DD'
+        function formatDate(dateString) {
+          const d = new Date(dateString);
+          let month = '' + (d.getMonth() + 1);
+          let day = '' + d.getDate();
+          const year = d.getFullYear();
+
+          if (month.length < 2) month = '0' + month;
+          if (day.length < 2) day = '0' + day;
+
+          return [year, month, day].join('-');
+        }
+  
         if (Array.isArray(data)) {
           if (data.length === 0) {
             eventiContainer.innerHTML = '<p>Nessun evento disponibile al momento.</p>';
@@ -23,12 +36,15 @@ document.addEventListener('DOMContentLoaded', () => {
             data.forEach(evento => {
               const eventoDiv = document.createElement('div');
               eventoDiv.classList.add('evento');
-  
+              
+              // Formatta la data dell'evento prima di mostrarla
+              const dataFormattata = formatDate(evento.data);
+
               eventoDiv.innerHTML = `
                 <h2>${evento.titolo}</h2>
                 <p><strong>Descrizione:</strong> ${evento.descrizione}</p>
                 <p><strong>📍 Luogo:</strong> ${evento.luogo}</p>
-                <p><strong>📅 Data:</strong> ${evento.data}</p>
+                <p><strong>📅 Data:</strong> ${dataFormattata}</p>
                 <p><strong>🕒 Ora:</strong> ${evento.ora}</p>
                 ${evento.link ? `<p><strong>🔗 Link:</strong> <a href="${evento.link}" target="_blank">${evento.link}</a></p>` : ''}
               `;
@@ -42,5 +58,4 @@ document.addEventListener('DOMContentLoaded', () => {
       .catch(error => {
         console.error('Errore nel caricamento degli eventi:', error);
       });
-  });
-  
+});
