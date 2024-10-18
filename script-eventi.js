@@ -1,61 +1,45 @@
-// script.js
-
 document.addEventListener('DOMContentLoaded', () => {
-    fetch('https://backend.bitcoinbeer.events/api/eventi')
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(`Network response was not ok: ${response.status} ${response.statusText}`);
-        }
-        return response.json();
-      })
-      .then(data => {
-        const eventiContainer = document.getElementById('eventi-container');
-  
-        if (!eventiContainer) {
-          console.error('Elemento con ID "eventi-container" non trovato nel DOM.');
-          return;
-        }
-  
-        // Funzione per formattare la data in formato 'YYYY-MM-DD'
-        function formatDate(dateString) {
-          const d = new Date(dateString);
-          let month = '' + (d.getMonth() + 1);
-          let day = '' + d.getDate();
-          const year = d.getFullYear();
+  fetch('https://backend.bitcoinbeer.events/api/eventi')
+    .then(response => response.json())
+    .then(data => {
+      const eventiContainer = document.getElementById('eventi-container');
 
-          if (month.length < 2) month = '0' + month;
-          if (day.length < 2) day = '0' + day;
+      if (!eventiContainer) {
+        console.error('Elemento con ID "eventi-container" non trovato nel DOM.');
+        return;
+      }
 
-          return [year, month, day].join('-');
-        }
-  
-        if (Array.isArray(data)) {
-          if (data.length === 0) {
-            eventiContainer.innerHTML = '<p>Nessun evento disponibile al momento.</p>';
-          } else {
-            data.forEach(evento => {
-              const eventoDiv = document.createElement('div');
-              eventoDiv.classList.add('evento');
-              
-              // Formatta la data dell'evento prima di mostrarla
-              const dataFormattata = formatDate(evento.data);
-
-              eventoDiv.innerHTML = `
-                <h2>${evento.titolo}</h2>
-                <p><strong>Descrizione:</strong> ${evento.descrizione}</p>
-                <p><strong>📍 Luogo:</strong> ${evento.luogo}</p>
-                <p><strong>📅 Data:</strong> ${dataFormattata}</p>
-                <p><strong>🕒 Ora:</strong> ${evento.ora}</p>
-                ${evento.link ? `<p><strong>🔗 Link:</strong> <a href="${evento.link}" target="_blank">${evento.link}</a></p>` : ''}
-              `;
-              eventiContainer.appendChild(eventoDiv);
-            });
-          }
+      if (Array.isArray(data)) {
+        if (data.length === 0) {
+          eventiContainer.innerHTML = '<p>Nessun evento disponibile al momento.</p>';
         } else {
-          console.error('I dati ricevuti non sono un array di eventi:', data);
+          data.forEach(evento => {
+            // Imposta il colore del bordo e del badge in base alla categoria
+            const borderColor = evento.categoria === 'EDU' ? 'green' : 'bordeaux';
+            const badgeColor = evento.categoria === 'EDU' ? 'green' : 'bordeaux';
+            
+            // Crea il box dell'evento
+            const eventoDiv = document.createElement('div');
+            eventoDiv.classList.add('evento');
+            eventoDiv.style.border = `3px solid ${borderColor}`; // Cornice colorata
+
+            eventoDiv.innerHTML = `
+              <span class="badge" style="background-color: ${badgeColor};">${evento.categoria}</span>
+              <h2>${evento.titolo}</h2>
+              <p><strong>Descrizione:</strong> ${evento.descrizione}</p>
+              <p><strong>📍 Luogo:</strong> ${evento.luogo}</p>
+              <p><strong>📅 Data:</strong> ${evento.data}</p>
+              <p><strong>🕒 Ora:</strong> ${evento.ora}</p>
+              ${evento.link ? `<p><strong>🔗 Link:</strong> <a href="${evento.link}" target="_blank">${evento.link}</a></p>` : ''}
+            `;
+            eventiContainer.appendChild(eventoDiv);
+          });
         }
-      })
-      .catch(error => {
-        console.error('Errore nel caricamento degli eventi:', error);
-      });
+      } else {
+        console.error('I dati ricevuti non sono un array di eventi:', data);
+      }
+    })
+    .catch(error => {
+      console.error('Errore nel caricamento degli eventi:', error);
+    });
 });
