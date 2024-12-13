@@ -45,11 +45,10 @@ document.addEventListener('DOMContentLoaded', () => {
             eventoDiv.innerHTML = `
               <img src="${evento.locandina}" alt="${evento.title}" class="locandina-evento" />
               <h2>${evento.title}</h2>
-              <p><strong>Descrizione:</strong> ${evento.description}</p>
               <p><strong>📍 Luogo:</strong> ${evento.venue}</p>
               <p><strong>📅 Data:</strong> ${dataFormattata}</p>
               <p><strong>🕒 Ora:</strong> ${orario}</p>
-              ${evento.ticket_purchase_url ? `<p><strong>🔗 Acquista Biglietti:</strong> <a href="${evento.ticket_purchase_url}" target="_blank">Compra qui</a></p>` : ''}
+              ${evento.ticket_purchase_url ? `<p><strong>🔗 Acquista Biglietti:</strong> <a href="${evento.ticket_purchase_url}" target="_blank">Acquista</a></p>` : ''}
               <p><strong>📍 Indirizzo:</strong> ${evento.address}</p>
             `;
             eventiContainer.appendChild(eventoDiv);
