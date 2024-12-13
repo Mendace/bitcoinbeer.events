@@ -27,33 +27,44 @@ document.addEventListener('DOMContentLoaded', () => {
         return [year, month, day].join('-');
       }
 
-      if (Array.isArray(data)) {
-        if (data.length === 0) {
+      // Verifica che la risposta sia di successo e che contenga un array di eventi
+      if (data.success && Array.isArray(data.events)) {
+        const events = data.events;
+
+        if (events.length === 0) {
           eventiContainer.innerHTML = '<p>Nessun evento disponibile al momento.</p>';
         } else {
-          data.forEach(evento => {
+          events.forEach(evento => {
             const eventoDiv = document.createElement('div');
             eventoDiv.classList.add('evento');
             
             // Formatta la data dell'evento prima di mostrarla
-            const dataFormattata = formatDate(evento.data);
+            const dataFormattata = formatDate(evento.event_date);
+            const orario = new Date(evento.event_date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
             eventoDiv.innerHTML = `
-              <h2>${evento.titolo}</h2>
-              <p><strong>Descrizione:</strong> ${evento.descrizione}</p>
-              <p><strong>📍 Luogo:</strong> ${evento.luogo}</p>
+              <img src="${evento.locandina}" alt="${evento.title}" class="locandina-evento" />
+              <h2>${evento.title}</h2>
+              <p><strong>Descrizione:</strong> ${evento.description}</p>
+              <p><strong>📍 Luogo:</strong> ${evento.venue}</p>
               <p><strong>📅 Data:</strong> ${dataFormattata}</p>
-              <p><strong>🕒 Ora:</strong> ${evento.ora}</p>
-              ${evento.link ? `<p><strong>🔗 Link:</strong> <a href="${evento.link}" target="_blank">${evento.link}</a></p>` : ''}
+              <p><strong>🕒 Ora:</strong> ${orario}</p>
+              ${evento.ticket_purchase_url ? `<p><strong>🔗 Acquista Biglietti:</strong> <a href="${evento.ticket_purchase_url}" target="_blank">Compra qui</a></p>` : ''}
+              <p><strong>📍 Indirizzo:</strong> ${evento.address}</p>
             `;
             eventiContainer.appendChild(eventoDiv);
           });
         }
       } else {
-        console.error('I dati ricevuti non sono un array di eventi:', data);
+        console.error('I dati ricevuti non sono validi o non contengono eventi:', data);
+        eventiContainer.innerHTML = '<p>Errore nel caricamento degli eventi. Riprova più tardi.</p>';
       }
     })
     .catch(error => {
       console.error('Errore nel caricamento degli eventi:', error);
+      const eventiContainer = document.getElementById('eventi-container');
+      if (eventiContainer) {
+        eventiContainer.innerHTML = '<p>Errore nel caricamento degli eventi. Riprova più tardi.</p>';
+      }
     });
 });
