@@ -2,28 +2,14 @@
 <html lang="it">
 
 <head>
-
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Eventi Bitcoin Italia | Workshop Bitcoin | Bitcoin Beer Italia | </title>
   <meta name="robots" content="index,follow">
   <meta name="description" content="Partecipa agli eventi Bitcoin Beer in Italia. Scopri la tecnologia di Bitcoin nella tua città e incontra nuove amicizie davanti ad una birra.">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-TH3SGQJVFQ"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-TH3SGQJVFQ');
-</script>
-
-  <!-- Umami -->
-  <script defer src="https://analysis.bitcoinbeer.events/script.js" data-website-id="b8527d1e-98be-41da-8b15-812630268018"></script>
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.bitcoinbeer.events/">
@@ -43,7 +29,8 @@
   <meta name="twitter:image"
     content="https://github.com/Mendace/Bitcoinbeer.org/blob/main/assets/Bitcoinbeer.jpg?raw=true">
 
-
+  <!-- Google Site Verification -->
+  <meta name="google-site-verification" content="fk2xCBavMGOR3d14fSv6MmYoKraB6U3Z6LphCxcKeK8" />
 
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
@@ -58,7 +45,7 @@
   <link rel="apple-touch-icon" sizes="152x152" href="assets/favicon/apple-icon-152x152.png">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-icon-180x180.png">
   <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon/android-icon-192x192.png">
-  <link rel="icon" tyPodcast,pe="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="96x96" href="assets/favicon/favicon-96x96.png">
   <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
   <link rel="manifest" href="assets/favicon/manifest.json">
@@ -68,12 +55,16 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"
     integrity="sha512-NmLkDIU1C/C88wi324HBc+S2kLhi08PN5GDeUVVVC/BVt/9Izdsc9SVeVfA1UZbY3sHUlDSyRXhCzHfr6hmPPw=="
     crossorigin="anonymous" />
-  <link rel="stylesheet" href="style.min.css">
+  <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-  <!-- CSS per Leaflet e Fullscreen -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-fullscreen/1.6.0/leaflet.fullscreen.css" />
+  
+<!-- CSS per Leaflet -->
+ <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css" />
+
+<!-- Script per Leaflet -->
+ <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"></script>
+
 
   <!-- Script per Leaflet e Fullscreen -->
   <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"></script>
@@ -87,18 +78,10 @@
     rel="stylesheet">
   <script defer src="js/fontawesome/all.min.js "></script>
   <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
-  <script src="https://cdn.counter.dev/script.js" data-id="586b1ec9-8faa-4f5b-a67b-6e104fc85c1c"
-    data-utcoffset="1"></script>
   <script src="js/lazysizes.min.js" async=""></script>
-  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
 </head>
 
 <body>
-
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P24PQRHL"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
 
   <section id="bitcoin-blockchain-visualizer">
     <div class="block-info-container" id="block-info">
@@ -123,7 +106,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="header">
     <div class="header_nav">
       <div class="logo">
-        <a href="https://bitcoinbeer.events"><img src="assets/bitcoin_beer_logo.webp"
+        <a href="https://bitcoinbeer.events"><img src="assets/img/bitcoin_beer_logo.webp"
             alt="Bitcoin Beer Bitcoin Logo"></a>
       </div>
       <ul class="menu">
@@ -137,8 +120,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 class="fab fa-telegram-plane"></i></a> <a href="https://www.instagram.com/Bitcoinbeeritalia/"
               target="_blank"><i class="fab fa-instagram"></i></a>
             <a href="https://twitter.com/BitcoinBeerIT" target="_blank"><i class="fab fa-twitter"></i></a>
-            <a href="https://github.com/Mendace/Bitcoinbeer.events" target="_blank"> <i
-                class="fab fa-github"></i></a></a>
+            <a href="https://github.com/Mendace/Bitcoinbeer.events" target="_blank"> <i class="fab fa-github"></i></a></a>
           </p>
         </li>
       </ul>
@@ -154,7 +136,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="grid">
       <div class="hero__content col reveal" style="flex-wrap: nowrap;">
         <h1 class="intro-text">Bitcoin Beer</h1>
-        <h2>Gli eventi informali in Italia per <span id="type-effect" class="typewriter-text"></span></h2>
+        <h2>Gli eventi in Italia per <span id="type-effect" class="typewriter-text"></span></h2>
         <p>
           Scopri gli eventi informali, i workshop e le tavole rotonde in tutta Italia in cui potrai incontrare
           appassionati ed esperti del settore, condividere conoscenze inerenti a Bitcoin e sorseggiare una buona birra
@@ -164,7 +146,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             class="fa-brands fa-bitcoin"></i></a>
       </div>
       <div class="hero__image col reveal">
-        <img src="assets/bitcoin-beer-bitcoin-italia.webp">
+        <img src="assets/img/bitcoin-beer-bitcoin-italia.webp">
       </div>
     </div>
   </section>
@@ -178,25 +160,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <!-- Sponsor -->
       <div class="swiper-slide sponsor"><a href="https://dtvelectronics.com/"><img
-            src="assets/dtv-logo-invert-optimized.webp" alt="Sponsor 2" class="sponsor-img dark-theme-bw">
-          <img src="assets/dtv-logo-white-optimized.webp" alt="Sponsor 2" class="sponsor-img dark-theme-color"></a>
+            src="assets/img/dtv-logo-invert-optimized.webp" alt="Sponsor 2" class="sponsor-img dark-theme-bw">
+          <img src="assets/img/dtv-logo-white-optimized.webp" alt="Sponsor 2" class="sponsor-img dark-theme-color"></a>
       </div>
 
       <div class="swiper-slide sponsor"><a href="https://bitcoinbeer.events/bitcoinpeople"><img
-            src="assets/btcpeoplebn.png" alt="Sponsor 2" class="sponsor-img dark-theme-bw">
-          <img src="assets/BP1-PNG WEB.png" alt="Sponsor 2" class="sponsor-img dark-theme-color"></a></div>
+            src="assets/img/btcpeoplebn.png" alt="Sponsor 2" class="sponsor-img dark-theme-bw">
+          <img src="assets/img/BP1-PNG WEB.png" alt="Sponsor 2" class="sponsor-img dark-theme-color"></a></div>
 
-      <div class="swiper-slide sponsor"><a href="https://lanarchico.com"><img src="assets/lanarchicobn.png"
+      <div class="swiper-slide sponsor"><a href="https://lanarchico.com"><img src="assets/img/lanarchicobn.png"
             alt="Sponsor 2" class="sponsor-img dark-theme-bw">
-          <img src="assets/lanarchico.png" alt="Sponsor 2" class="sponsor-img dark-theme-color"></a></div>
+          <img src="assets/img/lanarchico.png" alt="Sponsor 2" class="sponsor-img dark-theme-color"></a></div>
 
       <div class="swiper-slide sponsor"><a href="https://theorangepillapp.com"><img
-            src="assets/logo_OrangePillApp_grey.png" alt="Sponsor 2" class="sponsor-img dark-theme-bw">
-          <img src="assets/logo_OrangePillApp_dark.png" alt="Sponsor 2" class="sponsor-img dark-theme-color"></a></div>
+            src="assets/img/logo_OrangePillApp_grey.png" alt="Sponsor 2" class="sponsor-img dark-theme-bw">
+          <img src="assets/img/logo_OrangePillApp_dark.png" alt="Sponsor 2" class="sponsor-img dark-theme-color"></a></div>
 
       <div class="swiper-slide sponsor"><a href="https://bitbox.swiss/bitcoinbeer"><img
-            src="assets/03a db-BitBox inverted.svg" alt="Sponsor 2" class="sponsor-img dark-theme-bw">
-          <img src="assets/03a db-BitBox inverted.svg" alt="Sponsor 2" class="sponsor-img dark-theme-color"></a></div>
+            src="assets/img/03a db-BitBox inverted.svg" alt="Sponsor 2" class="sponsor-img dark-theme-bw">
+          <img src="assets/img/03a db-BitBox inverted.svg" alt="Sponsor 2" class="sponsor-img dark-theme-color"></a></div>
     </div>
  
   </div>
@@ -221,7 +203,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- Sezione Donazione -->
     <div class="donation-section">
       <div class="donation-card">
-        <img src="assets/boys.webp" alt="Immagine Donazione 1">
+        <img src="assets/img/boys.webp" alt="Immagine Donazione 1">
         <p>Early Bird</p>
         <p>Dona 2 euro</p>
         <style>
@@ -326,7 +308,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </form>
       </div>
       <div class="donation-card">
-        <img src="assets/spartan.webp" alt="Immagine Donazione 2">
+        <img src="assets/img/spartan.webp" alt="Immagine Donazione 2">
         <p>Sei un guerriero</p>
         <p>Dona 5 euro</p>
         <style>
@@ -426,12 +408,47 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <input type="hidden" name="notifyEmail" value="prato@bitcoinbeer.events" />
           <input type="hidden" name="price" value="5" />
           <input type="hidden" name="currency" value="EUR" />
-          <input type="image" class="submit" name="submit" src="https://pos.btcpayserver.it/img/paybutton/pay.svg"
+          <input type="image" class="submLa risorsa da “https://cdnjs.cloudflare.com/ajax/libs/leaflet-fullscreen/1.6.0/leaflet.fullscreen.css” è stata bloccata a causa della mancata corrispondenza (“text/html”) del tipo MIME (X-Content-Type-Options: nosniff).
+          index.html
+          La risorsa da “https://cdnjs.cloudflare.com/ajax/libs/leaflet-fullscreen/1.6.0/Leaflet.fullscreen.min.js” è stata bloccata a causa della mancata corrispondenza (“text/html”) del tipo MIME (X-Content-Type-Options: nosniff).
+          2 index.html
+          Caricamento non riuscito per lo <script> con sorgente “https://cdnjs.cloudflare.com/ajax/libs/leaflet-fullscreen/1.6.0/Leaflet.fullscreen.min.js”. index.html:67:107
+          Caricamento non riuscito per lo <script> con sorgente “https://cdn.counter.dev/script.js”. index.html:78:24
+          Feature policy: ignorato nome caratteristica non supportato “accelerometer”. index.html
+          Feature policy: ignorato nome caratteristica non supportato “autoplay”. index.html
+          Feature policy: ignorato nome caratteristica non supportato “clipboard-write”. index.html
+          Feature policy: ignorato nome caratteristica non supportato “encrypted-media”. index.html
+          Feature policy: ignorato nome caratteristica non supportato “gyroscope”. index.html
+          Feature policy: ignorato nome caratteristica non supportato “picture-in-picture”. index.html
+          Feature policy: ignorato nome caratteristica non supportato “accelerometer”. index.html
+          Feature policy: ignorato nome caratteristica non supportato “autoplay”. index.html
+          Feature policy: ignorato nome caratteristica non supportato “clipboard-write”. index.html
+          Feature policy: ignorato nome caratteristica non supportato “encrypted-media”. index.html
+          Feature policy: ignorato nome caratteristica non supportato “gyroscope”. index.html
+          Feature policy: ignorato nome caratteristica non supportato “picture-in-picture”. index.html
+          Uncaught TypeError: document.getElementById(...) is null
+              <anonymous> file:///home/andrea/Documenti/bitcoinbeer-new/main.js:78
+          main.js:78:14
+          Uncaught TypeError: e is null
+              <anonymous> file:///home/andrea/Documenti/bitcoinbeer-new/main.js:93
+          main.js:93:5
+          Uncaught TypeError: document.querySelector(...) is null
+              <anonymous> file:///home/andrea/Documenti/bitcoinbeer-new/main.js:165
+          main.js:165:18
+          Bloccata richiesta multiorigine (cross-origin): il criterio di corrispondenza dell’origine non consente la lettura della risorsa remota da https://backend.bitcoinbeer.events/api/eventi. Motivo: header CORS “Access-Control-Allow-Origin” non corrisponde a “https://bitcoinbeer.events”.
+          
+          Errore nel caricamento degli eventi: TypeError: NetworkError when attempting to fetch resource. script-eventi.js:57:15
+          Content-Security-Policy: Impossibile elaborare la direttiva sconosciuta “require-trusted-types-for” 6CXFGrE8wxU
+          È stato fornito a “https://www.youtube-nocookie.com/embed/6CXFGrE8wxU?si=xCfgI6Paw3BHOl4E” un cookie partizionato o accesso alle risorse di archiviazione in quanto è caricato in un contesto di terze parti e il partizionamento di stato dinamico è attivo.
+          
+          Avvisi relativi ai cookie 46
+          Bloccata richiesta multiorigine (cross-origin): il criterio di corrispondenza dell’origine non consente la lettura della risorsa remota da https://play.google.com/log?format=json&hasfast=true&authuser=0. Motivo: richiesta CORS non riuscita. Codice di stato: (null).
+          3" name="submit" src="https://pos.btcpayserver.it/img/paybutton/pay.svg"
             style="width:146px" alt="Pay with BTCPay Server, a Self-Hosted Bitcoin Payment Processor">
         </form>
       </div>
       <div class="donation-card">
-        <img src="assets/capitainbitcoin.webp" alt="Immagine Donazione 3">
+        <img src="assets/img/capitainbitcoin.webp" alt="Immagine Donazione 3">
         <p>Supereroe</p>
         <p>Dona 15 euro</p>
         <style>
@@ -462,9 +479,42 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           }
 
           .btcpay-custom {
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: flex;La risorsa da “https://cdnjs.cloudflare.com/ajax/libs/leaflet-fullscreen/1.6.0/leaflet.fullscreen.css” è stata bloccata a causa della mancata corrispondenza (“text/html”) del tipo MIME (X-Content-Type-Options: nosniff).
+index.html
+La risorsa da “https://cdnjs.cloudflare.com/ajax/libs/leaflet-fullscreen/1.6.0/Leaflet.fullscreen.min.js” è stata bloccata a causa della mancata corrispondenza (“text/html”) del tipo MIME (X-Content-Type-Options: nosniff).
+2 index.html
+Caricamento non riuscito per lo <script> con sorgente “https://cdnjs.cloudflare.com/ajax/libs/leaflet-fullscreen/1.6.0/Leaflet.fullscreen.min.js”. index.html:67:107
+Caricamento non riuscito per lo <script> con sorgente “https://cdn.counter.dev/script.js”. index.html:78:24
+Feature policy: ignorato nome caratteristica non supportato “accelerometer”. index.html
+Feature policy: ignorato nome caratteristica non supportato “autoplay”. index.html
+Feature policy: ignorato nome caratteristica non supportato “clipboard-write”. index.html
+Feature policy: ignorato nome caratteristica non supportato “encrypted-media”. index.html
+Feature policy: ignorato nome caratteristica non supportato “gyroscope”. index.html
+Feature policy: ignorato nome caratteristica non supportato “picture-in-picture”. index.html
+Feature policy: ignorato nome caratteristica non supportato “accelerometer”. index.html
+Feature policy: ignorato nome caratteristica non supportato “autoplay”. index.html
+Feature policy: ignorato nome caratteristica non supportato “clipboard-write”. index.html
+Feature policy: ignorato nome caratteristica non supportato “encrypted-media”. index.html
+Feature policy: ignorato nome caratteristica non supportato “gyroscope”. index.html
+Feature policy: ignorato nome caratteristica non supportato “picture-in-picture”. index.html
+Uncaught TypeError: document.getElementById(...) is null
+    <anonymous> file:///home/andrea/Documenti/bitcoinbeer-new/main.js:78
+main.js:78:14
+Uncaught TypeError: e is null
+    <anonymous> file:///home/andrea/Documenti/bitcoinbeer-new/main.js:93
+main.js:93:5
+Uncaught TypeError: document.querySelector(...) is null
+    <anonymous> file:///home/andrea/Documenti/bitcoinbeer-new/main.js:165
+main.js:165:18
+Bloccata richiesta multiorigine (cross-origin): il criterio di corrispondenza dell’origine non consente la lettura della risorsa remota da https://backend.bitcoinbeer.events/api/eventi. Motivo: header CORS “Access-Control-Allow-Origin” non corrisponde a “https://bitcoinbeer.events”.
+
+Errore nel caricamento degli eventi: TypeError: NetworkError when attempting to fetch resource. script-eventi.js:57:15
+Content-Security-Policy: Impossibile elaborare la direttiva sconosciuta “require-trusted-types-for” 6CXFGrE8wxU
+È stato fornito a “https://www.youtube-nocookie.com/embed/6CXFGrE8wxU?si=xCfgI6Paw3BHOl4E” un cookie partizionato o accesso alle risorse di archiviazione in quanto è caricato in un contesto di terze parti e il partizionamento di stato dinamico è attivo.
+
+Avvisi relativi ai cookie 46
+Bloccata richiesta multiorigine (cross-origin): il criterio di corrispondenza dell’origine non consente la lettura della risorsa remota da https://play.google.com/log?format=json&hasfast=true&authuser=0. Motivo: richiesta CORS non riuscita. Codice di stato: (null).
+3er;
           }
 
           .btcpay-form .plus-minus {
@@ -551,8 +601,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <form method="post" action="https://listmonk.bitcoinbeer.events/subscription/form">
           <i class="fa-solid fa-envelope fa-beat" style="padding-right: 5px;"></i><input type="email" name="email"
             placeholder="Il tuo indirizzo email">
-          <input id="9952b" style="position: absolute;
-          left: -9999px;" type="checkbox" name="l" checked value="9952b665-b3c8-4249-86b9-348db062759b" />
+          <input id="818b4" style="position: absolute;
+          left: -9999px;" type="checkbox" name="l" checked value="818b4ea2-ea1f-48c1-843f-2f40c62604f6" />
           <input type="submit" value="Iscriviti" style="
           background-color: rgb(29, 29, 29);
           color: var(--title-color);
@@ -879,7 +929,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
   <section id="come" class="grid bb-how mt-3">
-    <img src="assets/laser-eyes-bitcoin.webp">
+    <img src="assets/img/laser-eyes-bitcoin.webp">
     <h3>Come partecipare a Bitcoin Beer</h3>
     <p class="how-text">
       Partecipare ad un evento Bitcoin Beer è semplicissimo, puoi organizzare un incontro nella ta città o unirti ad uno
@@ -911,7 +961,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <section class="grid bb-orangepill mt-2 reveal">
     <div class="col bb-orangepill__img reveal">
-      <img src="assets/bitcoin-beer-orange-pill-bitcoin.webp" alt="Obiettivo OrangePillare">
+      <img src="assets/img/bitcoin-beer-orange-pill-bitcoin.webp" alt="Obiettivo OrangePillare">
     </div>
     <div class="col bb-orangepill__text">
       <h3>Voce del verbo <br><span>OrangePillare</span></h3>
@@ -943,11 +993,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p><input type="email" name="email" required placeholder="Email" /></p>
         <p><input type="text" name="name" placeholder="Nome (facoltativo)" /></p>
 
-        <p>
-          <input id="9952b" type="checkbox" name="l" checked value="9952b665-b3c8-4249-86b9-348db062759b">
-          <label for="9952b">La nostra Mailing list è totalmente anonima e le vostre iscrizioni risiedono nei nostri
-            super potenti server :) grazie a Listmonk.</label>
-        </p>
+    <p>
+      <input id="818b4" type="checkbox" name="l" checked value="818b4ea2-ea1f-48c1-843f-2f40c62604f6" />
+      <label for="818b4">La nostra Mailing list è totalmente anonima e le vostre iscrizioni risiedono nei nostri
+        super potenti server :) grazie a Listmonk.</label>
+    </p>
+
 
         <p><input type="submit" value="Iscriviti" /></p>
       </div>
@@ -960,7 +1011,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
   <footer class="footer mt-3">
-    <img src="assets/bitcoin_beer_logo_v.svg" alt="Bitcoin Beer Logo">
+    <img src="assets/img/bitcoin_beer_logo_v.svg" alt="Bitcoin Beer Logo">
     <p class="tw">Gli eventi informali per avvicinarsi a Bitcoin</p>
     <p class="icon-bar">
       <a href="https://t.me/BitcoinBeerHub" target="_blank"> <i class="fab fa-telegram-plane"></i></a>
@@ -974,14 +1025,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
   <!-- Jquery -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
   <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
 
   <script type="text/javascript" src="https://nibirumail.com/docs/scripts/nibirumail.cookie.min.js"></script>
-  <script src="min.main.js"></script>
+  <script src="main.js"></script>
   <script src="script-eventi.js"></script>
 
  
