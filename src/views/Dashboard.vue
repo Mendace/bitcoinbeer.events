@@ -27,7 +27,7 @@
         <!-- Immagine -->
         <div class="image-content md:w-1/2 relative">
           <img
-            src="/src/assets/img/dashboard.png"
+            src="/assets/dashboard.webp"
             alt="{{ $t('dashboardpage.heroImageAlt') }}"
             class="dashboard-image"
           />
@@ -46,9 +46,9 @@
             muted
             playsinline
             class="w-full h-auto rounded-lg shadow-lg"
-            poster="/src/assets/img/tablet.png"
+            poster="/assets/tablet.webp"
           >
-            <source src="/src/assets/img/video/dashboard.mp4" type="video/mp4" />
+            <source src="/video/dashboard.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>

@@ -54,13 +54,13 @@
     data() {
       return {
         mainLogos: [
-          { src: "/src/assets/logos/BitBox.svg", alt: "Partner 1", url: "https://bitbox.swiss/it/bitbox02/?utm_source=bitcoinbeer&utm_medium=webcast&utm_campaign=landingpage&ref=XiwIgfY4X6mvWS" },
-          { src: "/src/assets/logos/btcpeople.png", alt: "Partner 2", url: "https://bitcoinpeople.it/" },
+          { src: "/logos/BitBox.webp", alt: "Logo Bitbox by ShifthCrypto", url: "https://bitbox.swiss/it/bitbox02/?utm_source=bitcoinbeer&utm_medium=webcast&utm_campaign=landingpage&ref=XiwIgfY4X6mvWS" },
+          { src: "/logos/btcpeople.webp", alt: "Logo Bitcoin People", url: "https://bitcoinpeople.it/" },
         ],
         secondaryLogos: [
-          { src: "/src/assets/logos/dtv.webp", alt: "Partner 3", url: "https://dtvelectronics.com" },
-          { src: "/src/assets/logos/lanarchico.png", alt: "Partner 4", url: "https://linktr.ee/lanarchico" },
-          { src: "/src/assets/logos/Awning.png", alt: "Partner 5", url: "https://github.com/giovantenne/awning" },
+          { src: "/logos/dtv.webp", alt: "Logo DTV Electronics", url: "https://dtvelectronics.com" },
+          { src: "/logos/lanarchico.webp", alt: "Logo Lanarchico Prato", url: "https://linktr.ee/lanarchico" },
+          { src: "/logos/Awning.webp", alt: "Logo Awning", url: "https://github.com/giovantenne/awning" },
         ],
       };
     },

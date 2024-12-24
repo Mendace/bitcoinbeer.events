@@ -14,7 +14,6 @@
       <!-- FAQ Section -->
       <div class="faq-section py-16">
         <div class="container mx-auto px-6 max-w-4xl">
-          <h2 class="text-4xl font-bold mb-8 text-center">{{ $t("faq.title") }}</h2>
           <div
             v-for="(faq, index) in faqs"
             :key="index"
@@ -68,7 +67,7 @@
   
   <style scoped>
   .hero {
-    background-image: url("/src/assets/img/faq-background.jpg");
+    background-image: url("/assets/hero.webp");
     background-size: cover;
     background-position: center;
     position: relative;

@@ -15,7 +15,7 @@
       <div class="cards-container flex-1 flex flex-col gap-6">
         <!-- Card 1 -->
         <div class="action-block">
-          <img src="/src/assets/img/community-comments-svgrepo-com.svg" alt="Card Image 1" class="block-image" />
+          <img src="/assets/community-comments-svgrepo-com.webp" alt="Card Image 1" class="block-image" />
           <div class="content">
             <h3 class="block-title">{{ $t("bitcoinBeer.card1Title") }}</h3>
             <p class="block-description">{{ $t("bitcoinBeer.card1Desc") }}</p>
@@ -24,7 +24,7 @@
         </div>
         <!-- Card 2 -->
         <div class="action-block">
-          <img src="/src/assets/img/compass-svgrepo-com.svg" alt="Card Image 2" class="block-image" />
+          <img src="/assets/compass-svgrepo-com.webp" alt="Card Image 2" class="block-image" />
           <div class="content">
             <h3 class="block-title">{{ $t("bitcoinBeer.card2Title") }}</h3>
             <p class="block-description">{{ $t("bitcoinBeer.card2Desc") }}</p>

@@ -30,7 +30,7 @@
               <li>{{ $t('typography.usePresentation') }}</li>
             </ul>
             <a
-              href="/src/assets/Poppins.zip"
+              href="https://fonts.google.com/specimen/Poppins"
               class="inline-block bg-blue-600 text-white font-semibold text-lg px-6 py-3 rounded hover:bg-blue-500"
               download
             >

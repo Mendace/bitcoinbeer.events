@@ -37,7 +37,7 @@
           </div>
           <div class="image-content">
             <img
-              src="/src/assets/img/edu/DSC01642.JPG"
+              src="/assets/edu/DSC01642.webp"
               alt="Community"
               class="rounded-lg shadow-lg w-full h-auto"
             />
@@ -69,7 +69,7 @@
   
   <style scoped>
   .hero {
-    background-image: url("/src/assets/img/edu/DSC01623.JPG");
+    background-image: url("/assets/edu/DSC01623.webp");
     background-size: cover;
     background-position: center;
     position: relative;

@@ -96,7 +96,7 @@ export default {
 /* Hero Section */
 .hero-section {
   position: relative;
-  background-image: url('/src/assets/img/DSC01637.JPG');
+  background-image: url('/assets/DSC01637.webp');
   /* Aggiungi l'immagine di background */
   background-size: cover;
   background-position: center;

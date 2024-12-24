@@ -8,7 +8,7 @@
         <router-link to="/edu" class="button">{{ $t("edumain.learnMore") }}</router-link>
       </div>
       <img
-        src="/src/assets/img/gufo.png"
+        src="/assets/gufo.webp"
         alt="EDU Image"
         class="section-image"
       />
@@ -22,7 +22,7 @@
         <router-link to="/pub" class="button">{{ $t("pubmain.explore") }}</router-link>
       </div>
       <img
-        src="/src/assets/img/bear.png"
+        src="/assets/bear.webp"
         alt="PUB Image"
         class="section-image"
       />

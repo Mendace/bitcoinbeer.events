@@ -21,16 +21,17 @@ export default {
   data() {
     return {
       partners: [
-        { bw: "src/assets/logos/BitBox.svg", color: "src/assets/logos/BitBox.svg" },
-        { bw: "src/assets/logos/btcpeople.png", color: "src/assets/logos/btcpeople.png"},
-        { bw: "src/assets/logos/dtv.webp", color: "src/assets/logos/dtv.webp" },
-        { bw: "src/assets/logos/lanarchico.png", color: "src/assets/logos/lanarchico.png" },
-        { bw: "src/assets/logos/Awning.png", color: "src/assets/logos/Awning.png" },
+        { bw: "/logos/BitBox.webp", color: "/logos/BitBox.webp" },
+        { bw: "/logos/btcpeople.webp", color: "/logos/btcpeople.webp" },
+        { bw: "/logos/dtv.webp", color: "/logos/dtv.webp" },
+        { bw: "/logos/lanarchico.webp", color: "/logos/lanarchico.webp" },
+        { bw: "/logos/Awning.webp", color: "/logos/Awning.webp" },
       ],
       hoveredPartner: null,
     };
   },
 };
+
 </script>
 
 <style scoped>

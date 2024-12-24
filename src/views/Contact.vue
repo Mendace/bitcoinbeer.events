@@ -11,7 +11,7 @@
             {{ $t("contact.subtitle") }}
           </div>
         </div>
-        <img src="/src/assets/img/Contact us.gif" alt="Illustrazione" class="p-6 h-auto max-h-96" />
+        <img src="/animate/Contact us.gif" alt="Illustrazione" class="p-6 h-auto max-h-96" />
       </div>
       <form @submit.prevent="handleSubmit" class="space-y-6">
         <div>

@@ -108,7 +108,7 @@
 
 
 <script>
-import logo from '/src/assets/logos/marker.png';
+import logo from '/logos/marker.webp';
 
 export default {
 	name: "Footer",

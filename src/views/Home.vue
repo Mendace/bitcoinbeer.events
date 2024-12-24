@@ -2,7 +2,7 @@
   <div>
     <!-- Loader -->
     <div v-if="isLoading" class="loading-screen">
-      <img src="/src/assets/logos/marker.png" alt="Logo" class="spinner" />
+      <img src="/logos/marker.webp" alt="Logo" class="spinner" />
     </div>
 
     <!-- Contenuto della Home -->

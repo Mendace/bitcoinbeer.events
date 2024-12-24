@@ -110,7 +110,7 @@
 .parallax-background {
   position: absolute;
   inset: 0;
-  background-image: url("/src/assets/hero.jpg");
+  background-image: url("/assets/hero.webp");
   background-size: cover;
   background-position: center;
   animation: backgroundScroll 20s linear infinite;

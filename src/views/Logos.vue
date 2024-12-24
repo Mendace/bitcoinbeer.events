@@ -13,11 +13,11 @@
           <div class="logo-card bg-white shadow-lg rounded-lg p-6 text-center">
             <div class="logo-preview mb-4">
               <!-- Inserisci immagine logo principale -->
-              <img src="/src/assets/logos/bitcoinbeer.png" alt="Bitcoin Beer Logo" class="h-20 mx-auto">
+              <img src="/logos/bitcoinbeer.webp" alt="Bitcoin Beer Logo" class="h-20 mx-auto">
             </div>
             <h3 class="text-xl font-semibold">Bitcoin Beer Logo</h3>
             <a
-              href="/src/assets/logos/bitcoinbeer-logo.zip"
+              href="/src/assets/logos/bitcoinbeer.zip"
               download
               class="text-orange-500 hover:underline"
             >
@@ -28,11 +28,11 @@
           <div class="logo-card bg-white shadow-lg rounded-lg p-6 text-center">
             <div class="logo-preview mb-4">
               <!-- Inserisci immagine simbolo principale -->
-              <img src="/src/assets/logos/marker.png" alt="Bitcoin Beer Symbol" class="h-20 mx-auto">
+              <img src="/logos/marker.webp" alt="Bitcoin Beer Symbol" class="h-20 mx-auto">
             </div>
             <h3 class="text-xl font-semibold">Bitcoin Beer Symbol</h3>
             <a
-              href="/src/assets/logos/bitcoinbeer-symbol.zip"
+              href="/src/assets/logos/marker.zip"
               download
               class="text-orange-500 hover:underline"
             >
@@ -51,11 +51,11 @@
           <div class="logo-card bg-white shadow-lg rounded-lg p-6 text-center">
             <div class="logo-preview mb-4">
               <!-- Inserisci immagine logo EDU -->
-              <img src="/src/assets/img/gufo.png" alt="Bitcoin Beer EDU Logo" class="h-20 mx-auto">
+              <img src="/assets/gufo.webp" alt="Bitcoin Beer EDU Logo" class="h-20 mx-auto">
             </div>
             <h3 class="text-xl font-semibold">Bitcoin Beer EDU Logo</h3>
             <a
-              href="/src/assets/logos/edu-logo.zip"
+              href="/src/assets/logos/gufo.zip"
               download
               class="text-orange-500 hover:underline"
             >
@@ -74,11 +74,11 @@
           <div class="logo-card bg-white shadow-lg rounded-lg p-6 text-center">
             <div class="logo-preview mb-4">
               <!-- Inserisci immagine logo PUB -->
-              <img src="/src/assets/img/bear.png" alt="Bitcoin Beer PUB Logo" class="h-20 mx-auto">
+              <img src="/assets/bear.webp" alt="Bitcoin Beer PUB Logo" class="h-20 mx-auto">
             </div>
             <h3 class="text-xl font-semibold">Bitcoin Beer PUB Logo</h3>
             <a
-              href="/src/assets/logos/pub-logo.zip"
+              href="/src/assets/logos/bear.zip"
               download
               class="text-orange-500 hover:underline"
             >

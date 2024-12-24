@@ -9,7 +9,7 @@
         <h1 class="hero-title">{{ $t('edu.title') }}</h1>
         <p class="hero-description">{{ $t('edu.description') }}</p>
       </div>
-      <img src="/src/assets/img/gufo.png" alt="EDU Owl" class="hero-image" />
+      <img src="/assets/gufo.webp" alt="EDU Owl" class="hero-image" />
     </div>
 
     <!-- Info Section -->
@@ -48,9 +48,9 @@ export default {
   data() {
     return {
       images: [
-        { src: '/src/assets/img/edu/DSC01623.JPG', alt: 'EDU Image 1' },
-        { src: '/src/assets/img/edu/DSC01642.JPG', alt: 'EDU Image 2' },
-        { src: '/src/assets/img/edu/DSC01684.JPG', alt: 'EDU Image 3' },
+        { src: '/assets/edu/DSC01623.webp', alt: 'meetup edu Prato novembre 2024' },
+        { src: '/assets/edu/DSC01642.webp', alt: 'meetup edu Prato novembre 2024' },
+        { src: '/assets/edu/DSC01684.webp', alt: 'meetup edu Prato novembre 2024' },
       ],
     };
   },
@@ -93,6 +93,7 @@ export default {
 }
 
 .hero-title {
+  margin-top: 5rem;
   font-size: 3.5rem;
   font-weight: bold;
   color: #2b8c69;

@@ -13,7 +13,7 @@
       <!-- Logo -->
       <div class="flex items-center justify-center flex-grow lg:flex-grow-0">
         <router-link to="/" class="flex items-center">
-          <img src="/src/assets/logos/marker.png" alt="Logo" class="h-10 w-auto" />
+          <img src="/logos/marker.webp" alt="Logo" class="h-10 w-auto" />
         </router-link>
       </div>
   

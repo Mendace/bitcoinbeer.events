@@ -25,7 +25,7 @@
 <script>
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import customPin from '/src/assets/logos/marker.png';
+import customPin from '/logos/marker.webp';
 import '@fortawesome/fontawesome-free/css/all.css'; // Importa FontAwesome CSS
 import '@fortawesome/fontawesome-free/js/all.js'; // Importa FontAwesome JS
 
@@ -150,7 +150,7 @@ export default {
         let popupContent = `
           <div class="map-popup">
             <div class="popup-header">
-            <img src="/src/assets/logos/marker.png" alt="Logo" class="popup-logo"/>              <h3 class="popup-title">${community.city}</h3>
+            <img src="/logos/marker.webp" alt="Logo" class="popup-logo"/>              <h3 class="popup-title">${community.city}</h3>
             </div>
             <div class="popup-separator"></div>
             ${community.bio ? `<p class="popup-bio">${community.bio}</p>` : ''}
@@ -250,7 +250,7 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('/src/assets/img/world.jpg'); /* Sostituisci con il percorso corretto */
+  background-image: url('/assets/world.webp'); /* Sostituisci con il percorso corretto */
   background-size: cover;
   background-position: center;
   opacity: 0.3; /* Regola l'opacità secondo necessità */
@@ -303,7 +303,7 @@ export default {
 /* Parallax Section */
 .parallax-section {
   /* Effetto Parallax */
-  background-image: url('/src/assets/img/background-map.png'); /* Sostituisci con il percorso corretto */
+  background-image: url('/assets/background-map.webp'); /* Sostituisci con il percorso corretto */
   height: 100vh;
   background-attachment: fixed;
   background-position: center;

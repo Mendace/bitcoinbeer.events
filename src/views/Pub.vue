@@ -9,7 +9,7 @@
         <h1 class="hero-title">{{ $t('pub.title') }}</h1>
         <p class="hero-description">{{ $t('pub.description') }}</p>
       </div>
-      <img src="/src/assets/img/bear.png" alt="PUB Bear" class="hero-image" />
+      <img src="/assets/bear.webp" alt="PUB Bear" class="hero-image" />
     </div>
 
     <!-- Info Section -->
@@ -43,9 +43,9 @@ export default {
   data() {
     return {
       images: [
-        { src: '/src/assets/img/edu/DSC01623.JPG', alt: 'EDU Image 1' },
-        { src: '/src/assets/img/edu/DSC01642.JPG', alt: 'EDU Image 2' },
-        { src: '/src/assets/img/edu/DSC01684.JPG', alt: 'EDU Image 3' },
+      { src: '/assets/edu/DSC01623.webp', alt: 'meetup edu Prato novembre 2024' },
+        { src: '/assets/edu/DSC01642.webp', alt: 'meetup edu Prato novembre 2024' },
+        { src: '/assets/edu/DSC01684.webp', alt: 'meetup edu Prato novembre 2024' },
       ],
     };
   },
@@ -81,6 +81,7 @@ export default {
 }
 
 .hero-title {
+  margin-top: 8rem;
   font-size: 3.5rem;
   font-weight: bold;
   color: #a63d57;

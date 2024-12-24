@@ -28,7 +28,7 @@
       <div class="group text-center relative p-8 rounded-lg transition-all duration-500 shadow-lg">
         <div class="icon-container mx-auto mb-4">
           <lottie-player
-            src="/src/assets/animate/animation-lock/animations/3fe21902-e139-43e9-b669-7720a660a06e.json"
+            src="/animate/animation-lock/animations/3fe21902-e139-43e9-b669-7720a660a06e.json"
             background="transparent"
             speed="1"
             style="width: 200px; height: 200px;"
@@ -40,7 +40,7 @@
           {{ $t("bitcoin.anonymitySet") }}
         </h3>
         <p class="opacity-80">
-          {{ $t("bitcoin.anonymitySetDesc") }} Espandi i tuoi orizzonti con eventi che garantiscono il massimo rispetto della tua privacy. Scopri come Bitcoin protegge la tua identità in un ambiente informale e sicuro.
+          {{ $t("bitcoin.anonymitySetDesc") }}
         </p>
       </div>
 
@@ -48,7 +48,7 @@
       <div class="group text-center relative p-8 rounded-lg transition-all duration-500 shadow-lg">
         <div class="icon-container mx-auto mb-4">
           <lottie-player
-            src="/src/assets/animate/animation-edu/animations/e239347a-7d3e-4af4-ad54-73261ad8dadd.json"
+            src="/animate/animation-edu/animations/e239347a-7d3e-4af4-ad54-73261ad8dadd.json"
             background="transparent"
             speed="1"
             style="width: 250px; height: 250px;"
@@ -60,7 +60,7 @@
           {{ $t("bitcoin.educateLearn") }}
         </h3>
         <p class="opacity-80">
-          {{ $t("bitcoin.educateLearnDesc") }} Approfondisci temi fondamentali con esperti, esplora casi pratici e porta la tua conoscenza del Bitcoin a un livello successivo. Dai principianti agli esperti, c'è sempre qualcosa da imparare.
+          {{ $t("bitcoin.educateLearnDesc") }}
         </p>
       </div>
 
@@ -68,7 +68,7 @@
       <div class="group text-center relative p-8 rounded-lg transition-all duration-500 shadow-lg">
         <div class="icon-container mx-auto mb-4">
           <lottie-player
-            src="/src/assets/animate/animation-meet/animations/b553c1b7-99cb-44fa-b810-4232dd44bba8.json"
+            src="/animate/animation-meet/animations/b553c1b7-99cb-44fa-b810-4232dd44bba8.json"
             background="transparent"
             speed="1"
             style="width: 250px; height: 250px;"
@@ -80,7 +80,7 @@
           {{ $t("bitcoin.organizeMeet") }}
         </h3>
         <p class="opacity-80">
-          {{ $t("bitcoin.organizeMeetDesc") }} Diventa un leader della tua community. Organizza incontri, crea connessioni e porta l'entusiasmo del Bitcoin nella tua città.
+          {{ $t("bitcoin.organizeMeetDesc") }}
         </p>
       </div>
 
@@ -88,7 +88,7 @@
       <div class="group text-center relative p-8 rounded-lg transition-all duration-500 shadow-lg">
         <div class="icon-container mx-auto mb-4">
           <lottie-player
-            src="/src/assets/animate/animation-bitcoin/animations/47f6b0f8-f5b8-4408-9463-0238c7a6d9c8.json"
+            src="/animate/animation-bitcoin/animations/47f6b0f8-f5b8-4408-9463-0238c7a6d9c8.json"
             background="transparent"
             speed="0.5"
             style="width: 200px; height: 200px;"
@@ -100,12 +100,13 @@
           {{ $t("bitcoin.orangePill") }}
         </h3>
         <p class="opacity-80">
-          {{ $t("bitcoin.orangePillDesc") }} Fai crescere la consapevolezza nella tua zona, coinvolgi commercianti e cittadini per creare una rete Bitcoin forte e collaborativa.
+          {{ $t("bitcoin.orangePillDesc") }}
         </p>
       </div>
     </div>
   </section>
 </template>
+
 
 <script>
 export default {

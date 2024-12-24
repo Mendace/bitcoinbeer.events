@@ -24,7 +24,7 @@
       <!-- Immagine e card a destra -->
       <div class="relative w-full h-full flex items-center justify-center">
         <!-- Immagine del tablet -->
-        <img src="/src/assets/img/tablet.png" alt="Dashboard"
+        <img src="/assets/tablet.webp" alt="Dashboard"
           class="z-10 w-full max-w-[400px] md:max-w-[500px] rounded-lg shadow-lg" />
 
         <!-- Card galleggianti -->
