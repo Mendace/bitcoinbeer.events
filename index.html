@@ -2,14 +2,72 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vite + Vue</title>
-  <!-- Aggiungi i link qui -->
+  <!-- Meta Base -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" id="meta-description" content="Bitcoin Beer Events | Meetup e Workshop Bitcoin in Italia">
+  <meta name="author" content="Bitcoin Beer">
+  <meta name="keywords" content="Bitcoin, Meetup, Workshop, Italia, Bitcoin Beer, Community, Eventi">
+  <title id="page-title">Bitcoin Beer Events | Meetup e Workshop Bitcoin in Italia</title>
+
+  <!-- Open Graph -->
+  <meta property="og:title" id="og-title" content="Bitcoin Beer Events | Meetup e Workshop Bitcoin in Italia">
+  <meta property="og:description" id="og-description" content="Unisciti a Bitcoin Beer per meetup e workshop in Italia. Costruisci connessioni e impara di più sul mondo Bitcoin.">
+  <meta property="og:image" id="og-image" content="/assets/images/og-image.png">
+  <meta property="og:url" id="og-url" content="https://bitcoinbeer.events">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" id="twitter-title" content="Bitcoin Beer Events | Meetup e Workshop Bitcoin in Italia">
+  <meta name="twitter:description" id="twitter-description" content="Unisciti a Bitcoin Beer per meetup e workshop in Italia. Costruisci connessioni e impara di più sul mondo Bitcoin.">
+  <meta name="twitter:image" id="twitter-image" content="/assets/images/twitter-image.png">
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/favicon/ms-icon-144x144.png">
+
+  <!-- Font and Styles -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <script defer src="https://analysis.bitcoinbeer.events/script.js"
-    data-website-id="b8527d1e-98be-41da-8b15-812630268018"></script>
+
+  <!-- Tracking Script -->
+  <script defer src="https://analysis.bitcoinbeer.events/script.js" data-website-id="b8527d1e-98be-41da-8b15-812630268018"></script>
+
+  <!-- Language Switch -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const translations = {
+        en: {
+          title: "Bitcoin Beer Events | Meetup and Workshops Bitcoin in Italy",
+          description: "Join Bitcoin Beer for meetups and workshops in Italy. Build connections and learn more about Bitcoin.",
+          ogTitle: "Bitcoin Beer Events | Meetup and Workshops Bitcoin in Italy",
+          ogDescription: "Join Bitcoin Beer for meetups and workshops in Italy. Build connections and learn more about Bitcoin.",
+        },
+        it: {
+          title: "Bitcoin Beer Events | Meetup e Workshop Bitcoin in Italia",
+          description: "Unisciti a Bitcoin Beer per meetup e workshop in Italia. Costruisci connessioni e impara di più sul mondo Bitcoin.",
+          ogTitle: "Bitcoin Beer Events | Meetup e Workshop Bitcoin in Italia",
+          ogDescription: "Unisciti a Bitcoin Beer per meetup e workshop in Italia. Costruisci connessioni e impara di più sul mondo Bitcoin.",
+        },
+      };
+
+      const userLang = navigator.language.startsWith("it") ? "it" : "en";
+      const metaDescription = document.getElementById("meta-description");
+      const pageTitle = document.getElementById("page-title");
+      const ogTitle = document.getElementById("og-title");
+      const ogDescription = document.getElementById("og-description");
+
+      pageTitle.textContent = translations[userLang].title;
+      metaDescription.setAttribute("content", translations[userLang].description);
+      ogTitle.setAttribute("content", translations[userLang].ogTitle);
+      ogDescription.setAttribute("content", translations[userLang].ogDescription);
+    });
+  </script>
 </head>
 
 <body>

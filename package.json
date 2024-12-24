@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "npm run generate-sitemap && vite build",
     "preview": "vite preview",
     "generate-sitemap": "node generate-sitemap.js"
   },
@@ -19,7 +19,6 @@
     "swiper": "^11.1.15",
     "typed.js": "^2.1.0",
     "vue": "^3.5.13",
-    "vue-burger-menu": "^2.0.5",
     "vue-i18n": "^10.0.5",
     "vue-meta": "^2.4.0",
     "vue-parallax": "^1.1.1",
