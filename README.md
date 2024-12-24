@@ -1,13 +1,5 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/8e497044-67f9-4439-8b34-8ee8ec089fdf/deploy-status)](https://app.netlify.com/sites/bitcoinbeerevents/deploys)
+# Vue 3 + Vite
 
-<p align="center">
-<a href="https://bitcoinbeer.events"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=F79E00&multiline=true&random=false&width=600&height=200&lines=Gli eventi+informali in Italia;per+orangepillare+innovare+condividere+insieme;+e avvicinarsi+a+Bitcoin ⚡️" alt="Typing SVG" /></a>
-</p>
-  
-<br/>
+This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
 
-# BitcoinBeer.events
-
-
-
-![alt text](https://github.com/Mendace/satoshibeer.org/blob/main/assets/tappo.png?raw=true) 
+Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
