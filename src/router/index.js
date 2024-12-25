@@ -16,6 +16,7 @@ import Partners from '../views/Partners.vue';
 import About from '../views/About.vue';
 import Faq from '../views/Faq.vue';
 import ComingSoon from '../views/ComingSoon.vue';
+import Articles from '../views/Articles.vue';
 import NotFound from '../views/NotFound.vue';
 
 const routes = [
@@ -212,6 +213,12 @@ const routes = [
       ogImage: '/src/assets/img/og-comingsoon.png',
     },
   },
+	{
+		path: '/article/:id', // Route dinamica per gli articoli
+		name: 'Articles',
+		component: Articles,
+		props: true // Passa l'ID come prop
+	},
   {
     path: '/:pathMatch(.*)*',
     name: 'NotFound',

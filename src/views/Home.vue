@@ -16,6 +16,7 @@
       <Stats />
       <EduPub />
       <Donation />
+      <Blog />
       <Mailing />
     </div>
   </div>
@@ -32,6 +33,7 @@ import Chapter from "../components/Chapter.vue";
 import Stats from "../components/Stats.vue";
 import EduPub from "../components/EduPub.vue";
 import Donation from "../components/Donation.vue";
+import Blog from "../components/Blog.vue";
 import Mailing from "../components/Mailing.vue";
 
 export default {
@@ -46,6 +48,7 @@ export default {
     Stats,
     EduPub,
     Donation,
+    Blog,
     Mailing,
   },
   setup() {
