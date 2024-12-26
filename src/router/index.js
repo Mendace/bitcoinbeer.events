@@ -213,12 +213,19 @@ const routes = [
       ogImage: '/src/assets/img/og-comingsoon.png',
     },
   },
-	{
-		path: '/article/:id', // Route dinamica per gli articoli
-		name: 'Articles',
-		component: Articles,
-		props: true // Passa l'ID come prop
-	},
+  {
+    path: '/article/:id',
+    name: 'Articles',
+    component: Articles,
+    props: true,
+    meta: {
+      title: 'Bitcoin Beer - Articolo',
+      description: 'Leggi l\'articolo sul blog Bitcoin Beer.',
+      ogTitle: 'Bitcoin Beer - Articolo',
+      ogDescription: 'Leggi l\'articolo sul blog Bitcoin Beer.',
+      ogImage: '/src/assets/img/og-article.png',
+    }
+  },
   {
     path: '/:pathMatch(.*)*',
     name: 'NotFound',
@@ -234,7 +241,7 @@ const routes = [
 ];
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHistory('/'), // Puoi usare '/' direttamente
   routes,
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {

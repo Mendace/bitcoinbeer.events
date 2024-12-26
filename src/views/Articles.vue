@@ -3,10 +3,7 @@
 		<!-- Hero Section -->
 		<div v-if="article">
 			<!-- Copertina -->
-			<div
-				class="h-96 bg-cover bg-center"
-				:style="{ backgroundImage: `url(${article.cover_image})` }"
-			></div>
+			<div class="h-96 bg-cover bg-center" :style="{ backgroundImage: `url(${article.cover_image})` }"></div>
 
 			<!-- Titolo e sottotitolo -->
 			<div class="container mx-auto px-4 py-8 text-center">
@@ -24,18 +21,10 @@
 			<!-- Autore e Data -->
 			<div class="flex items-center space-x-4 mb-8">
 				<a href="https://blockdyor.com" target="_blank">
-					<img
-						src="/public/logos/blockdyor.webp"
-						alt="BlockDyor"
-						class="w-12 h-12 rounded-full"
-					/>
+					<img src="/public/logos/blockdyor.webp" alt="BlockDyor" class="w-12 h-12 rounded-full" />
 				</a>
 				<div>
-					<a
-						href="https://blockdyor.com"
-						target="_blank"
-						class="font-semibold text-lg hover:underline"
-					>
+					<a href="https://blockdyor.com" target="_blank" class="font-semibold text-lg hover:underline">
 						Articolo fornito da BlockDyor
 					</a>
 					<p class="text-gray-400">Pubblicato il {{ formatDate(article.created_at) }}</p>
@@ -44,7 +33,8 @@
 
 			<!-- Banner -->
 			<div class="w-full h-50 mb-8 bg-gray-800 border border-gray-700">
-				<a href="https://bitbox.swiss/it/bitbox02/?utm_source=bitcoinbeer&utm_medium=webcast&utm_campaign=landingpage&ref=XiwIgfY4X6mvWS" target="_blank">
+				<a href="https://bitbox.swiss/it/bitbox02/?utm_source=bitcoinbeer&utm_medium=webcast&utm_campaign=landingpage&ref=XiwIgfY4X6mvWS"
+					target="_blank">
 					<img src="/public/assets/bitbox-banner.png" alt="Banner" class="w-full h-full" />
 				</a>
 			</div>
@@ -54,27 +44,18 @@
 
 			<!-- Pulsanti di condivisione sui social -->
 			<div class="mt-12 flex flex-wrap justify-center space-x-4">
-				<a
-					:href="generateShareUrl('twitter')"
-					target="_blank"
-					class="flex items-center px-4 py-2 text-sm font-semibold text-white bg-blue-500 rounded hover:bg-blue-600"
-				>
+				<a :href="generateShareUrl('twitter')" target="_blank"
+					class="flex items-center px-4 py-2 text-sm font-semibold text-white bg-blue-500 rounded hover:bg-blue-600">
 					<span class="mr-2">Twitter</span>
 					<i class="fab fa-twitter"></i>
 				</a>
-				<a
-					:href="generateShareUrl('facebook')"
-					target="_blank"
-					class="flex items-center px-4 py-2 text-sm font-semibold text-white bg-blue-700 rounded hover:bg-blue-800"
-				>
+				<a :href="generateShareUrl('facebook')" target="_blank"
+					class="flex items-center px-4 py-2 text-sm font-semibold text-white bg-blue-700 rounded hover:bg-blue-800">
 					<span class="mr-2">Facebook</span>
 					<i class="fab fa-facebook"></i>
 				</a>
-				<a
-					:href="generateShareUrl('linkedin')"
-					target="_blank"
-					class="flex items-center px-4 py-2 text-sm font-semibold text-white bg-blue-600 rounded hover:bg-blue-700"
-				>
+				<a :href="generateShareUrl('linkedin')" target="_blank"
+					class="flex items-center px-4 py-2 text-sm font-semibold text-white bg-blue-600 rounded hover:bg-blue-700">
 					<span class="mr-2">LinkedIn</span>
 					<i class="fab fa-linkedin"></i>
 				</a>
@@ -119,22 +100,22 @@ export default {
 				return;
 			}
 
-			fetch(`/api/articles_api.php?id=${this.id}`)
-				.then((response) => {
+			fetch(`https://api.bitcoinbeer.events/api/articles_api.php?id=${this.id}`)
+				.then(response => {
 					if (!response.ok) {
-						throw new Error(`Errore API: ${response.status}`);
+						throw new Error('Errore nella risposta API');
 					}
 					return response.json();
 				})
-				.then((data) => {
+				.then(data => {
 					if (data.success) {
 						this.article = data.data;
 					} else {
-						this.error = data.error || 'Errore sconosciuto.';
+						this.error = 'Articolo non trovato';
 					}
 				})
-				.catch((error) => {
-					this.error = `Errore nella richiesta API: ${error.message}`;
+				.catch(error => {
+					this.error = error.message;
 				});
 		},
 		formatDate(date) {
@@ -163,9 +144,11 @@ export default {
 <style scoped>
 /* Stile per il contenuto */
 .prose a {
-	color: #facc15; /* Giallo per i link */
+	color: #facc15;
+	/* Giallo per i link */
 	text-decoration: none;
 }
+
 .prose a:hover {
 	text-decoration: underline;
 }
