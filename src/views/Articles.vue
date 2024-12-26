@@ -119,7 +119,7 @@ export default {
 				return;
 			}
 
-			fetch(`https://api.bitcoinbeer.events/api/articles_api.php?id=${this.id}`)
+			fetch(`/api/articles_api.php?id=${this.id}`)
 				.then((response) => {
 					if (!response.ok) {
 						throw new Error(`Errore API: ${response.status}`);
