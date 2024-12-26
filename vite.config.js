@@ -2,19 +2,25 @@ import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 
 export default defineConfig({
+  base: '/', // Assicurati che il percorso sia corretto
   plugins: [vue()],
   resolve: {
     alias: {
-      vue: 'vue/dist/vue.esm-bundler.js', // Assicurati di usare questa versione per i custom elements
+      vue: 'vue/dist/vue.esm-bundler.js', // Usa la versione per custom elements
     },
   },
-  assetsInclude: ['**/*.JPG'], // Include i file con estensione .JPG
+  assetsInclude: ['**/*.JPG', '**/*.png', '**/*.webp', '**/*.svg'], // Estendi i tipi di file inclusi
   define: {
-    'process.env': {},
+    'process.env': {}, // Definisci env per compatibilità
   },
   build: {
     rollupOptions: {
-      external: ['lottie-player'], // Escludi il lottie-player dal bundle
+      // Specifica dipendenze da escludere se necessario
+      external: [],
     },
+  },
+  server: {
+    host: true, // Permetti accesso alla rete locale
+    strictPort: true, // Usa sempre la stessa porta
   },
 });
