@@ -1,3 +1,78 @@
+<script setup>
+import { useHead } from '@vueuse/head';
+
+useHead({
+  title: 'Bitcoin Beer - Inizia il Tuo Capitolo Bitcoin nella Tua Città',
+  meta: [
+    { name: 'description', content: 'Vuoi iniziare un capitolo Bitcoin Beer nella tua città? Scopri come controllare la mappa, fare richiesta al coordinamento e creare il tuo gruppo.' },
+    { name: 'keywords', content: 'Bitcoin, Capitolo Bitcoin, Community Bitcoin, BitcoinBeer, Apri Gruppo Bitcoin, Gestione Eventi Bitcoin, Dashboard Bitcoin' },
+    { name: 'author', content: 'BitcoinBeer' },
+    { name: 'viewport', content: 'width=device-width, initial-scale=1.0' },
+    { name: 'robots', content: 'index, follow' },
+    { name: 'language', content: 'Italian' },
+    { name: 'revisit-after', content: '7 days' },
+    { property: 'og:title', content: 'Bitcoin Beer - Inizia il Tuo Capitolo Bitcoin nella Tua Città' },
+    { property: 'og:description', content: 'Scopri come avviare un capitolo Bitcoin Beer nella tua città: controlla la mappa, fai richiesta al coordinamento e gestisci eventi dalla dashboard.' },
+    { property: 'og:image', content: '/assets/inizia.webp' },
+    { property: 'og:url', content: 'https://bitcoinbeer.events/start' },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:locale', content: 'it_IT' },
+    { property: 'og:site_name', content: 'Bitcoin Beer' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: 'Bitcoin Beer - Inizia il Tuo Capitolo Bitcoin nella Tua Città' },
+    { name: 'twitter:description', content: 'Vuoi avviare un capitolo Bitcoin Beer? Segui la guida per creare un gruppo, gestire eventi e far crescere la tua community Bitcoin.' },
+    { name: 'twitter:image', content: '/assets/inizia.webp' },
+    { name: 'twitter:site', content: '@bitcoinbeer' },
+    { name: 'twitter:creator', content: '@bitcoinbeer' },
+  ],
+  link: [
+    { rel: 'canonical', href: 'https://bitcoinbeer.events/start' },
+  ],
+  script: [
+    {
+      type: 'application/ld+json',
+      children: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'WebPage',
+        name: 'Bitcoin Beer - Inizia il Tuo Capitolo',
+        description: 'Scopri come avviare un capitolo Bitcoin Beer nella tua città: controlla la mappa, fai richiesta al coordinamento e gestisci eventi dalla dashboard.',
+        url: 'https://bitcoinbeer.events/start',
+        mainEntity: {
+          '@type': 'HowTo',
+          name: 'Come avviare un capitolo Bitcoin Beer',
+          step: [
+            {
+              '@type': 'HowToStep',
+              name: 'Controlla la mappa',
+              text: 'Prima di creare un nuovo capitolo, verifica se esiste già un gruppo nella tua città sulla mappa.',
+              url: 'https://bitcoinbeer.events/explore'
+            },
+            {
+              '@type': 'HowToStep',
+              name: 'Fai richiesta al coordinamento',
+              text: 'Unisciti al gruppo di coordinamento su Telegram e richiedi l’apertura di un nuovo capitolo.',
+              url: 'https://t.me/+m7F8BCFwODc5ODhk'
+            },
+            {
+              '@type': 'HowToStep',
+              name: 'Apri un gruppo pubblico',
+              text: 'Crea un gruppo Telegram pubblico per la tua città, ad esempio BitcoinBeerFirenze.',
+              url: 'https://t.me/+m7F8BCFwODc5ODhk'
+            },
+            {
+              '@type': 'HowToStep',
+              name: 'Accedi alla dashboard',
+              text: 'Ottieni l’accesso alla dashboard per gestire eventi e community del tuo capitolo.',
+              url: 'https://bitcoinbeer.events/dashboard'
+            }
+          ]
+        }
+      }),
+    },
+  ],
+});
+</script>
+
 <template>
   <transition name="fade">
     <router-view />
@@ -55,7 +130,7 @@ export default {
           icon: 'fab fa-telegram',
           title: 'chapters.step2Title',
           description: 'chapters.step2Description',
-          link: 'https://bitcoinbeer.events',
+          link: 'https://t.me/+m7F8BCFwODc5ODhk',
           linkText: 'chapters.coordinationGroup',
         },
         {

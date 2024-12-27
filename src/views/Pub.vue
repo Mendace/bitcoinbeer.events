@@ -1,3 +1,73 @@
+<script setup>
+import { useHead } from '@vueuse/head';
+
+useHead({
+  title: 'Bitcoin Beer Pub - Eventi Informali per Appassionati di Bitcoin',
+  meta: [
+    { name: 'description', content: 'Bitcoin Beer Pub: eventi informali per discutere di Bitcoin con una birra in mano. Connettiti con altri appassionati in un ambiente rilassato.' },
+    { name: 'keywords', content: 'Bitcoin, Meetup Informali, Bitcoin Pub, Eventi Bitcoin, Networking Bitcoin, Bitcoin Beer Pub, Blockchain' },
+    { name: 'author', content: 'BitcoinBeerPub' },
+    { name: 'viewport', content: 'width=device-width, initial-scale=1.0' },
+    { name: 'robots', content: 'index, follow' },
+    { name: 'language', content: 'Italian' },
+    { name: 'revisit-after', content: '7 days' },
+    { property: 'og:title', content: 'Bitcoin Beer Pub - Eventi Informali per Appassionati di Bitcoin' },
+    { property: 'og:description', content: 'Partecipa a Bitcoin Beer Pub: eventi informali per discutere di Bitcoin e fare networking in un ambiente rilassato e accogliente.' },
+    { property: 'og:image', content: '/assets/pub.webp' },
+    { property: 'og:url', content: 'https://bitcoinbeer.events/pub' },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:locale', content: 'it_IT' },
+    { property: 'og:site_name', content: 'Bitcoin Beer Pub' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: 'Bitcoin Beer Pub - Eventi Informali per Appassionati di Bitcoin' },
+    { name: 'twitter:description', content: 'Unisciti a Bitcoin Beer Pub: eventi informali per discutere di Bitcoin in un ambiente rilassato e accogliente.' },
+    { name: 'twitter:image', content: '/assets/pub.webp' },
+    { name: 'twitter:site', content: '@BitcoinBeerIT' },
+    { name: 'twitter:creator', content: '@BitcoinBeerIT' },
+  ],
+  link: [
+    { rel: 'canonical', href: 'https://bitcoinbeer.events/pub' },
+  ],
+  script: [
+    {
+      type: 'application/ld+json',
+      children: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Event',
+        name: 'Bitcoin Beer Pub',
+        description: 'Bitcoin Beer Pub: eventi informali per discutere di Bitcoin con una birra in mano.',
+        startDate: '{{ event.start_date }}',
+        endDate: '{{ event.end_date }}',
+        location: {
+          '@type': 'Place',
+          name: '{{ event.location_name }}',
+          address: {
+            '@type': 'PostalAddress',
+            addressLocality: '{{ event.city }}',
+            addressCountry: 'IT'
+          }
+        },
+        image: '/assets/pub.webp',
+        organizer: {
+          '@type': 'Organization',
+          name: 'Bitcoin Beer',
+          url: 'https://bitcoinbeer.events'
+        },
+        eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+        eventStatus: 'https://schema.org/EventScheduled',
+        offers: {
+          '@type': 'Offer',
+          price: '{{ event.price }}',
+          priceCurrency: 'EUR',
+          availability: 'https://schema.org/InStock',
+          url: 'https://bitcoinbeer.events/pub/{{ event.id }}'
+        }
+      }),
+    },
+  ],
+});
+</script>
+
 <template>
   <transition name="fade">
     <router-view />

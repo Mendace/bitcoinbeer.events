@@ -1,3 +1,65 @@
+<script setup>
+import { useHead } from '@vueuse/head';
+
+useHead({
+  title: 'Bitcoin Beer - Esplora le Community Bitcoin in Italia',
+  meta: [
+    { name: 'description', content: 'Scopri tutte le community Bitcoin in Italia sulla mappa interattiva di Bitcoin Beer. Connettiti con altri appassionati e unisciti agli eventi locali.' },
+    { name: 'keywords', content: 'Bitcoin, Community Bitcoin, Mappa Bitcoin, Eventi Bitcoin, Bitcoin Beer, Community Locali, Blockchain Italia' },
+    { name: 'author', content: 'BitcoinBeer' },
+    { name: 'viewport', content: 'width=device-width, initial-scale=1.0' },
+    { name: 'robots', content: 'index, follow' },
+    { name: 'language', content: 'Italian' },
+    { name: 'revisit-after', content: '7 days' },
+    { property: 'og:title', content: 'Bitcoin Beer - Esplora le Community Bitcoin in Italia' },
+    { property: 'og:description', content: 'Trova le community Bitcoin locali in Italia sulla mappa interattiva di Bitcoin Beer e partecipa agli eventi nella tua zona.' },
+    { property: 'og:image', content: '/assets/explore.webp' },
+    { property: 'og:url', content: 'https://bitcoinbeer.events/explore' },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:locale', content: 'it_IT' },
+    { property: 'og:site_name', content: 'Bitcoin Beer' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: 'Bitcoin Beer - Esplora le Community Bitcoin in Italia' },
+    { name: 'twitter:description', content: 'Scopri e connettiti con le community Bitcoin in Italia sulla mappa di Bitcoin Beer. Unisciti agli eventi locali.' },
+    { name: 'twitter:image', content: '/assets/explore.webp' },
+    { name: 'twitter:site', content: '@BitcoinBeerIT' },
+    { name: 'twitter:creator', content: '@BitcoinBeerIT' },
+  ],
+  link: [
+    { rel: 'canonical', href: 'https://bitcoinbeer.events/explore' },
+  ],
+  script: [
+    {
+      type: 'application/ld+json',
+      children: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'WebPage',
+        name: 'Bitcoin Beer - Esplora le Community Bitcoin',
+        description: 'Scopri tutte le community Bitcoin in Italia sulla mappa interattiva di Bitcoin Beer.',
+        url: 'https://bitcoinbeer.events/explore',
+        mainEntity: {
+          '@type': 'Map',
+          name: 'Mappa delle Community Bitcoin in Italia',
+          url: 'https://bitcoinbeer.events/explore',
+          additionalProperty: [
+            {
+              '@type': 'PropertyValue',
+              name: 'Numero di Community',
+              value: '{{ totalCommunities }}'
+            },
+            {
+              '@type': 'PropertyValue',
+              name: 'Eventi Attivi',
+              value: '{{ activeEvents }}'
+            }
+          ]
+        }
+      }),
+    },
+  ],
+});
+</script>
+
 <template>
   <div>
     <!-- Hero Section -->

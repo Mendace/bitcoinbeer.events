@@ -1,3 +1,68 @@
+<script setup>
+import { useHead } from '@vueuse/head';
+
+useHead({
+  title: 'Bitcoin Beer Dashboard - Gestisci Eventi e Community con Facilità',
+  meta: [
+    { name: 'description', content: 'Organizza eventi, gestisci biglietti e monitora la tua community locale con la dashboard Bitcoin Beer. Strumenti potenti per far crescere la tua community Bitcoin.' },
+    { name: 'keywords', content: 'Bitcoin, Dashboard, Gestione Eventi, Community Bitcoin, Biglietti Eventi Bitcoin, Analisi Community, Crescita Bitcoin' },
+    { name: 'author', content: 'BitcoinBeer' },
+    { name: 'viewport', content: 'width=device-width, initial-scale=1.0' },
+    { name: 'robots', content: 'index, follow' },
+    { name: 'language', content: 'Italian' },
+    { name: 'revisit-after', content: '7 days' },
+    { property: 'og:title', content: 'Bitcoin Beer Dashboard - Gestisci Eventi e Community con Facilità' },
+    { property: 'og:description', content: 'Utilizza la dashboard Bitcoin Beer per creare eventi, gestire biglietti e far crescere la tua community locale con strumenti di analisi avanzati.' },
+    { property: 'og:image', content: '/assets/dashboard.webp' },
+    { property: 'og:url', content: 'https://bitcoinbeer.events/dashboard' },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:locale', content: 'it_IT' },
+    { property: 'og:site_name', content: 'Bitcoin Beer Dashboard' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: 'Bitcoin Beer Dashboard - Gestisci Eventi e Community con Facilità' },
+    { name: 'twitter:description', content: 'Crea eventi, gestisci biglietti e monitora la tua community Bitcoin con la dashboard Bitcoin Beer.' },
+    { name: 'twitter:image', content: '/assets/dashboard.webp' },
+    { name: 'twitter:site', content: '@BitcoinBeerIT' },
+    { name: 'twitter:creator', content: '@BitcoinBeerIT' },
+  ],
+  link: [
+    { rel: 'canonical', href: 'https://bitcoinbeer.events/dashboard' },
+  ],
+  script: [
+    {
+      type: 'application/ld+json',
+      children: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'WebPage',
+        name: 'Bitcoin Beer Dashboard',
+        description: 'Organizza eventi, gestisci biglietti e monitora la tua community locale con la dashboard Bitcoin Beer.',
+        url: 'https://bitcoinbeer.events/dashboard',
+        mainEntity: {
+          '@type': 'SoftwareApplication',
+          name: 'Bitcoin Beer Dashboard',
+          description: 'Strumenti avanzati per la gestione di eventi e community Bitcoin.',
+          applicationCategory: 'Utility',
+          operatingSystem: 'All',
+          offers: {
+            '@type': 'Offer',
+            price: '0',
+            priceCurrency: 'BTC',
+            url: 'https://bitcoinbeer.events/dashboard'
+          },
+          featureList: [
+            'Analisi in Tempo Reale',
+            'Gestione Eventi',
+            'Aggiornamenti Community',
+            'Pianificazione della Crescita'
+          ],
+          screenshot: '/assets/dashboard.webp'
+        }
+      }),
+    },
+  ],
+});
+</script>
+
 <template>
     <div class="dashboard-page">
     <!-- Hero Section -->

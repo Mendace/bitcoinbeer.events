@@ -2,21 +2,31 @@
 import { useHead } from '@vueuse/head';
 
 useHead({
-  title: 'Bitcoin Beer Blog - Notizie e Guide su Bitcoin e Tecnologia',
+  title: 'Bitcoin Beer Blog - Notizie, Guide e Approfondimenti su Bitcoin e Tecnologia',
   meta: [
-    { name: 'description', content: 'Esplora le ultime notizie, approfondimenti e guide dal mondo Bitcoin e tecnologia. Tieniti aggiornato con BitcoinBeerBlog.' },
-    { name: 'keywords', content: 'Bitcoin, Tecnologia, Blockchain, Notizie Bitcoin, Guide Bitcoin, Sicurezza, Blog Tecnologico' },
+    { name: 'description', content: 'Tieniti aggiornato con Bitcoin Beer Blog: notizie, guide e approfondimenti su Bitcoin, blockchain e tecnologia. Scopri di più.' },
+    { name: 'keywords', content: 'Bitcoin, Tecnologia, Blockchain, Notizie Bitcoin, Guide Bitcoin, Sicurezza, Blog Tecnologico, Meetup Bitcoin, Eventi Bitcoin Italia' },
     { name: 'author', content: 'BitcoinBeerBlog' },
     { name: 'viewport', content: 'width=device-width, initial-scale=1.0' },
-    { property: 'og:title', content: 'BitcoinBeerBlog - Notizie e Guide su Bitcoin e Tecnologia' },
-    { property: 'og:description', content: 'Esplora le ultime notizie, approfondimenti e guide dal mondo Bitcoin e tecnologia.' },
+    { name: 'robots', content: 'index, follow' },
+    { name: 'language', content: 'Italian' },
+    { name: 'revisit-after', content: '7 days' },
+    { property: 'og:title', content: 'Bitcoin Beer Blog - Notizie e Guide su Bitcoin e Tecnologia' },
+    { property: 'og:description', content: 'Tieniti aggiornato con Bitcoin Beer Blog: notizie, guide e approfondimenti su Bitcoin, blockchain e tecnologia.' },
     { property: 'og:image', content: '/assets/blog.webp' },
     { property: 'og:url', content: 'https://bitcoinbeer.events/blogmain' },
     { property: 'og:type', content: 'website' },
+    { property: 'og:locale', content: 'it_IT' },
+    { property: 'og:site_name', content: 'Bitcoin Beer Blog' },
     { name: 'twitter:card', content: 'summary_large_image' },
-    { name: 'twitter:title', content: 'BitcoinBeerBlog - Notizie e Guide su Bitcoin e Tecnologia' },
-    { name: 'twitter:description', content: 'Tieniti aggiornato con BitcoinBeerBlog. Notizie e approfondimenti sul mondo Bitcoin.' },
+    { name: 'twitter:title', content: 'Bitcoin Beer Blog - Notizie e Guide su Bitcoin e Tecnologia' },
+    { name: 'twitter:description', content: 'Tieniti aggiornato con Bitcoin Beer Blog: notizie e approfondimenti su Bitcoin, blockchain e tecnologia.' },
     { name: 'twitter:image', content: '/assets/blog.webp' },
+    { name: 'twitter:site', content: '@bitcoinbeer' },
+    { name: 'twitter:creator', content: '@bitcoinbeer' },
+  ],
+  link: [
+    { rel: 'canonical', href: 'https://bitcoinbeer.events/blogmain' },
   ],
   script: [
     {
@@ -24,12 +34,12 @@ useHead({
       children: JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'Blog',
-        name: 'BitcoinBeerBlog',
-        description: 'Esplora le ultime notizie, approfondimenti e guide dal mondo Bitcoin e tecnologia.',
+        name: 'Bitcoin Beer Blog',
+        description: 'Tieniti aggiornato con Bitcoin Beer Blog: notizie, guide e approfondimenti su Bitcoin, blockchain e tecnologia.',
         url: 'https://bitcoinbeer.events/blogmain',
         publisher: {
           '@type': 'Organization',
-          name: 'BitcoinBeer',
+          name: 'Bitcoin Beer',
           logo: {
             '@type': 'ImageObject',
             url: '/assets/blog.webp',
@@ -45,9 +55,15 @@ useHead({
               name: 'BitcoinBeer',
             },
             datePublished: '{{ featuredArticle.created_at }}',
-            dateModified: '{{ featuredArticle.created_at }}',
+            dateModified: '{{ featuredArticle.updated_at }}',
             description: '{{ featuredArticle.subtitle }}',
             url: '/article/{{ featuredArticle.id }}',
+            keywords: 'Bitcoin, Tecnologia, Blockchain, Notizie Bitcoin, Guide Bitcoin, Meetup Bitcoin, Eventi Bitcoin Italia',
+            interactionStatistic: {
+              '@type': 'InteractionCounter',
+              interactionType: 'https://schema.org/CommentAction',
+              userInteractionCount: '{{ featuredArticle.comments_count }}',
+            },
           },
         ],
       }),
@@ -55,6 +71,7 @@ useHead({
   ],
 });
 </script>
+
 
 <template>
   <section class="bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white min-h-screen">

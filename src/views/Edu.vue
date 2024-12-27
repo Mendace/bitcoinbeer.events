@@ -1,3 +1,73 @@
+<script setup>
+import { useHead } from '@vueuse/head';
+
+useHead({
+  title: 'Bitcoin Beer EDU - Meetup Educativi su Bitcoin con Speaker di Alto Livello',
+  meta: [
+    { name: 'description', content: 'Partecipa ai meetup educativi di Bitcoin Beer EDU: eventi unici con speaker esperti da tutta Italia. Scopri il mondo Bitcoin con approfondimenti di alto livello.' },
+    { name: 'keywords', content: 'Bitcoin, Educazione Bitcoin, Meetup Bitcoin, Speaker Bitcoin, Eventi Educativi, Blockchain, Bitcoin Italia, Bitcoin Beer EDU' },
+    { name: 'author', content: 'BitcoinBeerEDU' },
+    { name: 'viewport', content: 'width=device-width, initial-scale=1.0' },
+    { name: 'robots', content: 'index, follow' },
+    { name: 'language', content: 'Italian' },
+    { name: 'revisit-after', content: '7 days' },
+    { property: 'og:title', content: 'Bitcoin Beer EDU - Meetup Educativi su Bitcoin con Speaker di Alto Livello' },
+    { property: 'og:description', content: 'Scopri Bitcoin Beer EDU: meetup educativi su Bitcoin con speaker esperti da tutta Italia. Approfondimenti esclusivi per appassionati e professionisti.' },
+    { property: 'og:image', content: '/assets/edu.webp' },
+    { property: 'og:url', content: 'https://bitcoinbeer.events/edu' },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:locale', content: 'it_IT' },
+    { property: 'og:site_name', content: 'Bitcoin Beer EDU' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: 'Bitcoin Beer EDU - Meetup Educativi su Bitcoin con Speaker di Alto Livello' },
+    { name: 'twitter:description', content: 'Partecipa ai meetup educativi su Bitcoin con speaker di alto livello da tutta Italia. Approfondisci il mondo Bitcoin con Bitcoin Beer EDU.' },
+    { name: 'twitter:image', content: '/assets/edu.webp' },
+    { name: 'twitter:site', content: '@BitcoinBeerIT' },
+    { name: 'twitter:creator', content: '@BitcoinBeerIT' },
+  ],
+  link: [
+    { rel: 'canonical', href: 'https://bitcoinbeer.events/edu' },
+  ],
+  script: [
+    {
+      type: 'application/ld+json',
+      children: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Event',
+        name: 'Bitcoin Beer EDU',
+        description: 'Partecipa ai meetup educativi di Bitcoin Beer EDU: eventi unici con speaker esperti da tutta Italia.',
+        startDate: '{{ event.start_date }}',
+        endDate: '{{ event.end_date }}',
+        location: {
+          '@type': 'Place',
+          name: '{{ event.location_name }}',
+          address: {
+            '@type': 'PostalAddress',
+            addressLocality: '{{ event.city }}',
+            addressCountry: 'IT'
+          }
+        },
+        image: '/assets/edu.webp',
+        organizer: {
+          '@type': 'Organization',
+          name: 'Bitcoin Beer',
+          url: 'https://bitcoinbeer.events'
+        },
+        eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+        eventStatus: 'https://schema.org/EventScheduled',
+        offers: {
+          '@type': 'Offer',
+          price: '{{ event.price }}',
+          priceCurrency: 'EUR',
+          availability: 'https://schema.org/InStock',
+          url: 'https://bitcoinbeer.events/edu/{{ event.id }}'
+        }
+      }),
+    },
+  ],
+});
+</script>
+
 <template>
     <transition name="fade">
     <router-view />

@@ -30,13 +30,6 @@ const routes = [
     path: '/dashboard',
     name: 'Dashboard',
     component: Dashboard,
-    meta: {
-      title: 'Bitcoin Beer - Dashboard',
-      description: 'Gestisci e monitora le tue attività con la Dashboard di Bitcoin Beer.',
-      ogTitle: 'Bitcoin Beer - Dashboard',
-      ogDescription: 'Gestisci e monitora le tue attività con la Dashboard di Bitcoin Beer.',
-      ogImage: '/src/assets/img/og-dashboard.png',
-    },
   },
   {
     path: '/contact',
@@ -54,13 +47,6 @@ const routes = [
     path: '/explore',
     name: 'Explore',
     component: Explore,
-    meta: {
-      title: 'Bitcoin Beer - Esplora',
-      description: 'Scopri i capitoli di Bitcoin Beer in tutta Italia.',
-      ogTitle: 'Bitcoin Beer - Esplora',
-      ogDescription: 'Scopri i capitoli di Bitcoin Beer in tutta Italia.',
-      ogImage: '/src/assets/img/og-explore.png',
-    },
   },
   {
     path: '/brands',
@@ -91,37 +77,16 @@ const routes = [
     path: '/start',
     name: 'Start',
     component: Chapters,
-    meta: {
-      title: 'Bitcoin Beer - Inizia',
-      description: 'Inizia il tuo viaggio con Bitcoin Beer.',
-      ogTitle: 'Bitcoin Beer - Inizia',
-      ogDescription: 'Inizia il tuo viaggio con Bitcoin Beer.',
-      ogImage: '/src/assets/img/og-start.png',
-    },
   },
   {
     path: '/edu',
     name: 'Edu',
     component: Edu,
-    meta: {
-      title: 'Bitcoin Beer - Educazione',
-      description: 'Scopri il lato educativo di Bitcoin Beer.',
-      ogTitle: 'Bitcoin Beer - Educazione',
-      ogDescription: 'Scopri il lato educativo di Bitcoin Beer.',
-      ogImage: '/src/assets/img/og-edu.png',
-    },
   },
   {
     path: '/pub',
     name: 'Pub',
     component: Pub,
-    meta: {
-      title: 'Bitcoin Beer - Meetup Pub',
-      description: 'Eventi sociali di Bitcoin Beer nei pub locali.',
-      ogTitle: 'Bitcoin Beer - Meetup Pub',
-      ogDescription: 'Eventi sociali di Bitcoin Beer nei pub locali.',
-      ogImage: '/src/assets/img/og-pub.png',
-    },
   },
   {
     path: '/logos',
