@@ -1,3 +1,103 @@
+<script setup>
+import { useHead } from '@vueuse/head';
+
+useHead({
+  title: 'Bitcoin Beer - Meetup e Incontri Bitcoin in Italia',
+  meta: [
+    { name: 'description', content: 'Partecipa ai meetup Bitcoin in Italia: eventi, incontri e networking in tutte le principali città italiane. Scopri di più con Bitcoin Beer.' },
+    { name: 'keywords', content: 'Bitcoin, Meetup Bitcoin, Incontri Bitcoin, Eventi Bitcoin, Bitcoin Italia, Milano, Roma, Napoli, Torino, Bologna, Firenze, Verona, Venezia, Bari, Palermo, Catania, Trieste, Meetup Blockchain, Tecnologia Bitcoin' },
+    { name: 'author', content: 'BitcoinBeer' },
+    { name: 'viewport', content: 'width=device-width, initial-scale=1.0' },
+    { property: 'og:title', content: 'Bitcoin Beer - Meetup e Incontri Bitcoin in Italia' },
+    { property: 'og:description', content: 'Scopri i migliori meetup Bitcoin in Italia, organizza incontri e connettiti con appassionati di Bitcoin in tutta Italia.' },
+    { property: 'og:image', content: '/assets/blog.webp' },
+    { property: 'og:url', content: 'https://bitcoinbeer.events' },
+    { property: 'og:type', content: 'website' },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: 'Bitcoin Beer - Meetup e Incontri Bitcoin in Italia' },
+    { name: 'twitter:description', content: 'Partecipa ai meetup Bitcoin in Italia: eventi e networking in tutte le principali città italiane.' },
+    { name: 'twitter:image', content: '/assets/blog.webp' },
+  ],
+  script: [
+    {
+      type: 'application/ld+json',
+      children: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'EventSeries',
+        name: 'Bitcoin Beer Meetup',
+        description: 'Partecipa ai meetup Bitcoin in Italia: eventi, incontri e networking in tutte le principali città italiane.',
+        url: 'https://bitcoinbeer.events',
+        location: [
+          {
+            '@type': 'Place',
+            name: 'Milano Meetup',
+            address: {
+              '@type': 'PostalAddress',
+              addressLocality: 'Milano',
+              addressCountry: 'IT',
+            },
+          },
+          {
+            '@type': 'Place',
+            name: 'Roma Meetup',
+            address: {
+              '@type': 'PostalAddress',
+              addressLocality: 'Roma',
+              addressCountry: 'IT',
+            },
+          },
+          {
+            '@type': 'Place',
+            name: 'Napoli Meetup',
+            address: {
+              '@type': 'PostalAddress',
+              addressLocality: 'Napoli',
+              addressCountry: 'IT',
+            },
+          },
+          {
+            '@type': 'Place',
+            name: 'Faenza Meetup',
+            address: {
+              '@type': 'PostalAddress',
+              addressLocality: 'Faenza',
+              addressCountry: 'IT',
+            },
+          },
+          {
+            '@type': 'Place',
+            name: 'Bologna Meetup',
+            address: {
+              '@type': 'PostalAddress',
+              addressLocality: 'Bologna',
+              addressCountry: 'IT',
+            },
+          },
+          {
+            '@type': 'Place',
+            name: 'Firenze Meetup',
+            address: {
+              '@type': 'PostalAddress',
+              addressLocality: 'Firenze',
+              addressCountry: 'IT',
+            },
+          },
+        ],
+        image: '/assets/blog.webp',
+        startDate: '2024-01-01',
+        endDate: '2024-12-31',
+        organizer: {
+          '@type': 'Organization',
+          name: 'Bitcoin Beer',
+          url: 'https://bitcoinbeer.events',
+        },
+      }),
+    },
+  ],
+});
+</script>
+
+
 <template>
   <div>
     <!-- Loader -->

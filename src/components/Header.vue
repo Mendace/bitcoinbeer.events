@@ -118,6 +118,9 @@
                 <router-link to="/dashboard" @click="toggleMobileMenu">{{ $t('navigation.dashboard') }}</router-link>
                 </li>
                 <li>
+                <router-link to="/blogmain" @click="toggleMobileMenu">{{ $t('navigation.blogmain') }}</router-link>
+                </li>
+                <li>
                 <router-link to="/contact" @click="toggleMobileMenu">{{ $t('navigation.contact') }}</router-link>
                 </li>
             </ul>

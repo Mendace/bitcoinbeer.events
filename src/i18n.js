@@ -608,8 +608,8 @@ const messages = {
 };
 
 const i18n = createI18n({
-  locale: "en", // Lingua di default
-  fallbackLocale: "it", // Lingua di fallback
+  locale: "it", // Lingua di default
+  fallbackLocale: "en", // Lingua di fallback
   messages,
 });
 

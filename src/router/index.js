@@ -25,13 +25,6 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home,
-    meta: {
-      title: 'Bitcoin Beer - Home',
-      description: 'Benvenuti in Bitcoin Beer, il punto di riferimento per i meetup Bitcoin in Italia.',
-      ogTitle: 'Bitcoin Beer - Home',
-      ogDescription: 'Benvenuti in Bitcoin Beer, il punto di riferimento per i meetup Bitcoin in Italia.',
-      ogImage: '/src/assets/img/og-home.png',
-    },
   },
   {
     path: '/dashboard',
