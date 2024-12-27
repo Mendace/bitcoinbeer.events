@@ -6,7 +6,7 @@
     </div>
 
     <!-- Contenuto della Home -->
-    <div v-else>
+    <div v-else class="main">
       <HeroSection />
       <BrandCarousel />
       <EventDetail />
@@ -98,6 +98,10 @@ console.log(
   justify-content: center;
   align-items: center;
   z-index: 9999;
+}
+
+.main {
+  background-color: black;
 }
 
 .spinner {

@@ -58,6 +58,15 @@
           </li>
           <li>
             <router-link
+              to="/blogmain"
+              class="hover:underline hover:text-orange-600 transition-all"
+              :class="{ 'text-orange-600 font-semibold': isActive('/home') }"
+            >
+              {{ $t('navigation.blogmain') }}
+            </router-link>
+          </li>
+          <li>
+            <router-link
               to="/contact"
               class="hover:underline hover:text-orange-600 transition-all"
               :class="{ 'text-orange-600 font-semibold': isActive('/contact') }"

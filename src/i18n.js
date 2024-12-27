@@ -1,4 +1,5 @@
 import { createI18n } from "vue-i18n";
+import BlogMain from "./views/BlogMain.vue";
 
 const messages = {
   en: {
@@ -6,6 +7,7 @@ const messages = {
       home: "Home",
       dashboard: "Dashboard",
       start: "Start",
+      blogmain: "Blog",
       contact: "Contact",
       explore: "Explore",
       getStarted: "Get Started",
@@ -308,7 +310,7 @@ const messages = {
       home: "Home",
       dashboard: "Dashboard",
       start: "Inizia",
-      portfolio: "Portfolio",
+      blogmain: "Blog",
       contact: "Contatti",
       explore: "Esplora",
       getStarted: "Inizia",

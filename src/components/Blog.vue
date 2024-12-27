@@ -1,5 +1,5 @@
 <template>
-	<section class="bg-black text-white py-12">
+	<section class="text-white py-12">
 		<div class="container p-6 mx-auto space-y-8">
 			<div class="space-y-2 text-center">
 				<h2 class="text-4xl font-extrabold text-white">Articoli Recenti</h2>

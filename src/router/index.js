@@ -18,6 +18,7 @@ import Faq from '../views/Faq.vue';
 import ComingSoon from '../views/ComingSoon.vue';
 import Articles from '../views/Articles.vue';
 import NotFound from '../views/NotFound.vue';
+import BlogMain from '../views/BlogMain.vue';
 
 const routes = [
   {
@@ -207,7 +208,7 @@ const routes = [
     component: ComingSoon,
     meta: {
       title: 'Bitcoin Beer - In Arrivo',
-      description: 'Funzionalità e aggiornamenti in arrivo su Bitcoin Beer.',
+      description: 'Funzionalità e aggiornamenti in-hero.jpgarrivo su Bitcoin Beer.',
       ogTitle: 'Bitcoin Beer - In Arrivo',
       ogDescription: 'Funzionalità e aggiornamenti in arrivo su Bitcoin Beer.',
       ogImage: '/src/assets/img/og-comingsoon.png',
@@ -218,6 +219,18 @@ const routes = [
     name: 'Articles',
     component: Articles,
     props: true,
+    meta: {
+      title: 'Bitcoin Beer - Articolo',
+      description: 'Leggi l\'articolo sul blog Bitcoin Beer.',
+      ogTitle: 'Bitcoin Beer - Articolo',
+      ogDescription: 'Leggi l\'articolo sul blog Bitcoin Beer.',
+      ogImage: '/src/assets/img/og-article.png',
+    }
+  },
+  {
+    path: '/blogmain',
+    name: 'BlogMain',
+    component: BlogMain,
     meta: {
       title: 'Bitcoin Beer - Articolo',
       description: 'Leggi l\'articolo sul blog Bitcoin Beer.',
