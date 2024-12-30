@@ -27,16 +27,16 @@
         <!-- Contenitore delle Card -->
         <div
           ref="carousel"
-          class="flex items-center
-                 transition-transform duration-500 ease-in-out
+          class="flex items-center transition-transform duration-300
                  overflow-hidden"
           :class="{
-            'justify-center': events.length <= visibleCards,
+            'justify-center': events.length <= visibleCards
           }"
           :style="{ transform: `translateX(-${currentIndex * 100}%)` }"
         >
+          <!-- Singola Card -->
           <div
-            v-for="(event, idx) in events"
+            v-for="event in events"
             :key="event.id"
             class="flex-shrink-0 px-4"
             :class="getCardWidthClass()"
@@ -160,66 +160,73 @@ export default {
     return {
       events: [],
       currentIndex: 0,
-      visibleCards: 3, // default, ricalcolato da updateVisibleCards()
+      visibleCards: 3, // di base desktop, riconfigurato al resize
       showModal: false,
       selectedEvent: null,
     };
   },
   computed: {
-    // Se ci sono più eventi di quelli che si possono mostrare simultaneamente, mostra le frecce
+    // Mostra le frecce solo se ci sono più eventi di quelli che si possono vedere contemporaneamente
     showArrows() {
       return this.events.length > this.visibleCards;
     },
   },
   methods: {
     formatDateTime(dateTime) {
+      // Semplice sostituzione spazio->T, se la data è in formato "YYYY-MM-DD HH:MM:SS"
       const date = new Date(dateTime.replace(" ", "T"));
       if (isNaN(date)) {
         return this.$t("events.invalidDate");
       }
       return date.toLocaleString();
     },
+    // Avanzamento carosello
     nextSlide() {
-      // Se abbiamo N eventi, calcoliamo il numero di "pagine"
       const maxIndex = Math.ceil(this.events.length / this.visibleCards) - 1;
       if (this.currentIndex < maxIndex) {
         this.currentIndex++;
       }
     },
+    // Retrocedi carosello
     prevSlide() {
       if (this.currentIndex > 0) {
         this.currentIndex--;
       }
     },
+    // Apertura modale condivisione
     openShareModal(event) {
       this.selectedEvent = event;
       this.showModal = true;
     },
+    // Chiusura modale condivisione
     closeShareModal() {
       this.showModal = false;
       this.selectedEvent = null;
     },
+    // Gestisce quante card mostrare
     updateVisibleCards() {
       const screenWidth = window.innerWidth;
+      // < 640px => 1 card
       if (screenWidth < 640) {
-        // Mobile: sempre 1 card
         this.visibleCards = 1;
-      } else if (screenWidth < 1024) {
-        // Tablet: 2 card
+      }
+      // >= 640px e < 1024px => 2 card
+      else if (screenWidth < 1024) {
         this.visibleCards = 2;
-      } else {
-        // Desktop: 3 card
+      }
+      // >= 1024px => 3 card
+      else {
         this.visibleCards = 3;
       }
-      // Reset dell'indice quando cambia la "griglia"
+      // reimposta l'indice quando cambia la "griglia"
       this.currentIndex = 0;
     },
-    // Classe di larghezza dinamica in base a visibleCards
     getCardWidthClass() {
       if (this.visibleCards === 1) return "w-full";
       if (this.visibleCards === 2) return "w-1/2";
       return "w-1/3";
     },
+    // Caricamento eventi
     async fetchEvents() {
       try {
         const response = await fetch("https://api.bitcoinbeer.events/get_events.php");
@@ -251,16 +258,16 @@ section {
   padding: 2rem 0;
 }
 
-/* Titolo della sezione */
+/* Titolo */
 h2 {
   color: rgba(255, 255, 255, 0.9);
   font-weight: bold;
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 }
 
-/* Card Container */
+/* Card Container & Card Style */
 .flex-shrink-0 {
-  padding: 0.5rem; /* Spaziatura extra orizzontale */
+  padding: 0.5rem;
 }
 
 .bg-gray-100,
@@ -272,10 +279,9 @@ h2 {
   border-radius: 12px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   max-width: 300px;
-  margin: auto; /* Centra la card nel suo spazio orizzontale */
+  margin: auto; /* Centra la card nel suo spazio */
 }
 
-/* Immagine card */
 .bg-gray-100 img,
 .dark\:bg-gray-800 img {
   height: 120px;
@@ -283,17 +289,17 @@ h2 {
   border-radius: 8px;
 }
 
-/* Testo card */
 h3 {
   color: white;
   font-size: 1rem;
 }
+
 p {
   font-size: 0.875rem;
   color: rgba(255, 255, 255, 0.7);
 }
 
-/* Pulsante glass */
+/* Pulsante Glass */
 .glass-button {
   display: inline-block;
   padding: 0.4rem 0.8rem;
@@ -308,13 +314,14 @@ p {
   backdrop-filter: blur(10px);
   transition: all 0.3s ease;
 }
+
 .glass-button:hover {
   background: rgba(255, 255, 255, 0.2);
   transform: scale(1.1);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
 }
 
-/* Pulsante condivisione */
+/* Pulsante Condivisione */
 .social-button {
   width: 32px;
   height: 32px;
@@ -328,12 +335,13 @@ p {
   backdrop-filter: blur(10px);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
 .social-button:hover {
   transform: scale(1.2);
   box-shadow: 0 4px 16px rgba(255, 255, 255, 0.3);
 }
 
-/* Frecce Navigazione (carousel-arrow) */
+/* Frecce Navigazione */
 .carousel-arrow {
   backdrop-filter: blur(8px);
   background: rgba(0, 0, 0, 0.4);
@@ -346,7 +354,7 @@ p {
   transform: scale(1.1);
 }
 
-/* Modal condivisione */
+/* Modal Condivisione */
 .modal-content {
   background: rgba(0, 0, 0, 0.8);
   border-radius: 16px;
@@ -364,6 +372,7 @@ p {
   font-size: 1.2rem;
   cursor: pointer;
 }
+
 .close-button:hover {
   color: #ccc;
 }
