@@ -10,7 +10,7 @@
       <div class="relative overflow-hidden">
         <!-- Freccia Sinistra -->
         <button
-          v-if="events.length > 1"
+          v-if="showArrows"
           @click="prevSlide"
           class="carousel-arrow
                  absolute left-2 top-1/2 transform -translate-y-1/2
@@ -27,11 +27,16 @@
         <!-- Contenitore delle Card -->
         <div
           ref="carousel"
-          class="flex transition-transform duration-500 ease-in-out"
+          class="flex items-center
+                 transition-transform duration-500 ease-in-out
+                 overflow-hidden"
+          :class="{
+            'justify-center': events.length <= visibleCards,
+          }"
           :style="{ transform: `translateX(-${currentIndex * 100}%)` }"
         >
           <div
-            v-for="event in events"
+            v-for="(event, idx) in events"
             :key="event.id"
             class="flex-shrink-0 px-4"
             :class="getCardWidthClass()"
@@ -80,7 +85,7 @@
 
         <!-- Freccia Destra -->
         <button
-          v-if="events.length > 1"
+          v-if="showArrows"
           @click="nextSlide"
           class="carousel-arrow
                  absolute right-2 top-1/2 transform -translate-y-1/2
@@ -155,68 +160,70 @@ export default {
     return {
       events: [],
       currentIndex: 0,
-      visibleCards: 3, // Default, verrà ricalcolato da updateVisibleCards()
+      visibleCards: 3, // default, ricalcolato da updateVisibleCards()
       showModal: false,
       selectedEvent: null,
     };
   },
+  computed: {
+    // Se ci sono più eventi di quelli che si possono mostrare simultaneamente, mostra le frecce
+    showArrows() {
+      return this.events.length > this.visibleCards;
+    },
+  },
   methods: {
     formatDateTime(dateTime) {
-      // Rimpiazziamo lo spazio con "T" (se serve) e tentiamo la conversione a data locale
       const date = new Date(dateTime.replace(" ", "T"));
       if (isNaN(date)) {
         return this.$t("events.invalidDate");
       }
       return date.toLocaleString();
     },
-    // Carosello: Avanza di uno slide
     nextSlide() {
+      // Se abbiamo N eventi, calcoliamo il numero di "pagine"
       const maxIndex = Math.ceil(this.events.length / this.visibleCards) - 1;
       if (this.currentIndex < maxIndex) {
         this.currentIndex++;
       }
     },
-    // Carosello: Torna allo slide precedente
     prevSlide() {
       if (this.currentIndex > 0) {
         this.currentIndex--;
       }
     },
-    // Mostra la modale di condivisione
     openShareModal(event) {
       this.selectedEvent = event;
       this.showModal = true;
     },
-    // Chiudi la modale di condivisione
     closeShareModal() {
       this.showModal = false;
       this.selectedEvent = null;
     },
-    // Gestisce quante card mostrare in base alla larghezza schermo
     updateVisibleCards() {
       const screenWidth = window.innerWidth;
       if (screenWidth < 640) {
-        this.visibleCards = 1; // Mobile
+        // Mobile: sempre 1 card
+        this.visibleCards = 1;
       } else if (screenWidth < 1024) {
-        this.visibleCards = 2; // Tablet
+        // Tablet: 2 card
+        this.visibleCards = 2;
       } else {
-        this.visibleCards = 3; // Desktop
+        // Desktop: 3 card
+        this.visibleCards = 3;
       }
-      // Se cambiamo il numero di card visibili, resettiamo l'indice
+      // Reset dell'indice quando cambia la "griglia"
       this.currentIndex = 0;
     },
-    // Classe di larghezza card in base a visibleCards
+    // Classe di larghezza dinamica in base a visibleCards
     getCardWidthClass() {
       if (this.visibleCards === 1) return "w-full";
       if (this.visibleCards === 2) return "w-1/2";
       return "w-1/3";
     },
-    // Esegue il fetch degli eventi dal server
     async fetchEvents() {
       try {
         const response = await fetch("https://api.bitcoinbeer.events/get_events.php");
         const data = await response.json();
-        // Filtra gli eventi per la categoria passata come prop
         this.events = data.events.filter((event) => event.category === this.category);
       } catch (error) {
         console.error("Errore nel caricamento degli eventi:", error);
@@ -251,9 +258,9 @@ h2 {
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 }
 
-/* Card e container */
+/* Card Container */
 .flex-shrink-0 {
-  padding: 0.5rem; /* Spaziatura extra */
+  padding: 0.5rem; /* Spaziatura extra orizzontale */
 }
 
 .bg-gray-100,
@@ -265,9 +272,10 @@ h2 {
   border-radius: 12px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   max-width: 300px;
-  margin: auto; /* Centra le card nel contenitore */
+  margin: auto; /* Centra la card nel suo spazio orizzontale */
 }
 
+/* Immagine card */
 .bg-gray-100 img,
 .dark\:bg-gray-800 img {
   height: 120px;
@@ -275,17 +283,17 @@ h2 {
   border-radius: 8px;
 }
 
+/* Testo card */
 h3 {
   color: white;
   font-size: 1rem;
 }
-
 p {
   font-size: 0.875rem;
   color: rgba(255, 255, 255, 0.7);
 }
 
-/* Pulsante Glass */
+/* Pulsante glass */
 .glass-button {
   display: inline-block;
   padding: 0.4rem 0.8rem;
@@ -300,14 +308,13 @@ p {
   backdrop-filter: blur(10px);
   transition: all 0.3s ease;
 }
-
 .glass-button:hover {
   background: rgba(255, 255, 255, 0.2);
   transform: scale(1.1);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
 }
 
-/* Pulsante Condivisione */
+/* Pulsante condivisione */
 .social-button {
   width: 32px;
   height: 32px;
@@ -321,13 +328,12 @@ p {
   backdrop-filter: blur(10px);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
 .social-button:hover {
   transform: scale(1.2);
   box-shadow: 0 4px 16px rgba(255, 255, 255, 0.3);
 }
 
-/* Frecce Navigazione */
+/* Frecce Navigazione (carousel-arrow) */
 .carousel-arrow {
   backdrop-filter: blur(8px);
   background: rgba(0, 0, 0, 0.4);
@@ -358,7 +364,6 @@ p {
   font-size: 1.2rem;
   cursor: pointer;
 }
-
 .close-button:hover {
   color: #ccc;
 }
