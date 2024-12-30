@@ -27,14 +27,12 @@
         <!-- Contenitore delle Card -->
         <div
           ref="carousel"
-          class="flex items-center transition-transform duration-300
-                 overflow-hidden"
+          class="flex transition-transform duration-500 ease-in-out"
+          :style="{ transform: `translateX(-${currentIndex * 100}%)` }"
           :class="{
             'justify-center': events.length <= visibleCards
           }"
-          :style="{ transform: `translateX(-${currentIndex * 100}%)` }"
         >
-          <!-- Singola Card -->
           <div
             v-for="event in events"
             :key="event.id"
@@ -160,34 +158,35 @@ export default {
     return {
       events: [],
       currentIndex: 0,
-      visibleCards: 3, // di base desktop, riconfigurato al resize
+      visibleCards: 3, // Default "desktop" config, verrà modificata da updateVisibleCards()
       showModal: false,
       selectedEvent: null,
     };
   },
   computed: {
-    // Mostra le frecce solo se ci sono più eventi di quelli che si possono vedere contemporaneamente
+    // Se ci sono più eventi di quelli che si possono mostrare simultaneamente,
+    // allora ha senso mostrare le frecce
     showArrows() {
       return this.events.length > this.visibleCards;
     },
   },
   methods: {
     formatDateTime(dateTime) {
-      // Semplice sostituzione spazio->T, se la data è in formato "YYYY-MM-DD HH:MM:SS"
+      // Trasformazione base se la data contiene uno spazio
       const date = new Date(dateTime.replace(" ", "T"));
       if (isNaN(date)) {
         return this.$t("events.invalidDate");
       }
       return date.toLocaleString();
     },
-    // Avanzamento carosello
+    // Avanzamento carosello di uno "step"
     nextSlide() {
       const maxIndex = Math.ceil(this.events.length / this.visibleCards) - 1;
       if (this.currentIndex < maxIndex) {
         this.currentIndex++;
       }
     },
-    // Retrocedi carosello
+    // Retrocedi di uno "step"
     prevSlide() {
       if (this.currentIndex > 0) {
         this.currentIndex--;
@@ -203,34 +202,35 @@ export default {
       this.showModal = false;
       this.selectedEvent = null;
     },
-    // Gestisce quante card mostrare
+    // Determina quante card mostrare in base alla larghezza dello schermo
     updateVisibleCards() {
       const screenWidth = window.innerWidth;
-      // < 640px => 1 card
       if (screenWidth < 640) {
+        // Mobile
         this.visibleCards = 1;
-      }
-      // >= 640px e < 1024px => 2 card
-      else if (screenWidth < 1024) {
+      } else if (screenWidth < 1024) {
+        // Tablet
         this.visibleCards = 2;
-      }
-      // >= 1024px => 3 card
-      else {
+      } else {
+        // Desktop
         this.visibleCards = 3;
       }
-      // reimposta l'indice quando cambia la "griglia"
+      // Reset dell'indice di scorrimento se cambia la visualizzazione
       this.currentIndex = 0;
     },
+    // Classe di larghezza card
     getCardWidthClass() {
       if (this.visibleCards === 1) return "w-full";
       if (this.visibleCards === 2) return "w-1/2";
       return "w-1/3";
     },
-    // Caricamento eventi
+    // Fetch degli eventi
     async fetchEvents() {
       try {
         const response = await fetch("https://api.bitcoinbeer.events/get_events.php");
         const data = await response.json();
+
+        // Filtra la categoria, se necessario
         this.events = data.events.filter((event) => event.category === this.category);
       } catch (error) {
         console.error("Errore nel caricamento degli eventi:", error);
@@ -241,7 +241,9 @@ export default {
     await this.fetchEvents();
   },
   mounted() {
+    // Imposta il numero di card giusto al mount
     this.updateVisibleCards();
+    // Ascolta il resize per variare visibleCards
     window.addEventListener("resize", this.updateVisibleCards);
   },
   beforeDestroy() {
@@ -258,14 +260,14 @@ section {
   padding: 2rem 0;
 }
 
-/* Titolo */
+/* Titolo della sezione */
 h2 {
   color: rgba(255, 255, 255, 0.9);
   font-weight: bold;
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 }
 
-/* Card Container & Card Style */
+/* Container card & styling base */
 .flex-shrink-0 {
   padding: 0.5rem;
 }
@@ -279,7 +281,7 @@ h2 {
   border-radius: 12px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   max-width: 300px;
-  margin: auto; /* Centra la card nel suo spazio */
+  margin: auto; /* Centra la card */
 }
 
 .bg-gray-100 img,
@@ -314,7 +316,6 @@ p {
   backdrop-filter: blur(10px);
   transition: all 0.3s ease;
 }
-
 .glass-button:hover {
   background: rgba(255, 255, 255, 0.2);
   transform: scale(1.1);
@@ -335,7 +336,6 @@ p {
   backdrop-filter: blur(10px);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
 .social-button:hover {
   transform: scale(1.2);
   box-shadow: 0 4px 16px rgba(255, 255, 255, 0.3);
@@ -354,7 +354,7 @@ p {
   transform: scale(1.1);
 }
 
-/* Modal Condivisione */
+/* Modal condivisione */
 .modal-content {
   background: rgba(0, 0, 0, 0.8);
   border-radius: 16px;
@@ -372,7 +372,6 @@ p {
   font-size: 1.2rem;
   cursor: pointer;
 }
-
 .close-button:hover {
   color: #ccc;
 }
