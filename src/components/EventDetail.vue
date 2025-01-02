@@ -375,4 +375,8 @@ p {
 .close-button:hover {
   color: #ccc;
 }
+<<<<<<< HEAD
 </style>
+=======
+</style>
+>>>>>>> 4dedaab (modifiche)
