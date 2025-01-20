@@ -1,111 +1,117 @@
 <template>
-  <section class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 py-8 w-full">
-    <div class="w-full relative">
-      <!-- Titolo della Sezione -->
+  <section class="bg-black text-white py-8 w-full">
+    <div class="container mx-auto px-4">
+      <!-- Titolo Sezione -->
       <h2 class="text-3xl font-bold mb-6 text-center">
         {{ $t("events.upcomingEvents") }}
       </h2>
 
-      <!-- Carosello -->
-      <div class="relative overflow-hidden">
-        <!-- Freccia Sinistra -->
-        <button
-          v-if="showArrows"
-          @click="prevSlide"
-          class="carousel-arrow
-                 absolute left-2 top-1/2 transform -translate-y-1/2
-                 z-10
-                 p-2 rounded-full
-                 text-sm md:text-base lg:text-lg
-                 w-8 h-8 md:w-10 md:h-10
-                 flex items-center justify-center"
-          aria-label="{{ $t('events.previous') }}"
-        >
-          <i class="fas fa-chevron-left"></i>
-        </button>
-
-        <!-- Contenitore delle Card -->
+      <!-- Lista Eventi -->
+      <div class="flex flex-col items-center gap-8">
+        
+        <!-- Ciclo su TUTTI gli eventi (o i primi 3 se vuoi con slice) -->
         <div
-          ref="carousel"
-          class="flex transition-transform duration-500 ease-in-out"
-          :style="{ transform: `translateX(-${currentIndex * 100}%)` }"
-          :class="{
-            'justify-center': events.length <= visibleCards
-          }"
-        >
-          <div
-            v-for="event in events"
-            :key="event.id"
-            class="flex-shrink-0 px-4"
-            :class="getCardWidthClass()"
+          v-for="(event, idx) in events"
+          :key="event.id"
+          class="relative w-full md:max-w-4xl bg-black border border-white rounded-lg overflow-hidden shadow-lg"
           >
-            <div
-              class="bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md p-4
-                     transition-transform duration-300 hover:scale-105"
-            >
-              <img
-                v-if="event.locandina"
-                :src="event.locandina"
-                alt="{{ $t('events.posterAlt') }}"
-                class="w-full h-40 object-cover rounded-md mb-4"
-              />
-              <h3 class="text-xl font-semibold mb-2">{{ event.title }}</h3>
-              <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">
-                <strong>{{ $t('events.venue') }}:</strong> {{ event.venue }}
-              </p>
-              <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">
-                <strong>{{ $t('events.address') }}:</strong> {{ event.address }}
-              </p>
-              <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">
-                <strong>{{ $t('Date') }}:</strong>
-                {{ formatDateTime(event.event_date) }}
-              </p>
-              <div class="flex justify-between items-center">
-                <a
-                  v-if="event.ticket_purchase_url"
-                  :href="event.ticket_purchase_url"
-                  target="_blank"
-                  class="glass-button text-sm"
-                >
-                  {{ $t("events.buyTickets") }}
-                </a>
-                <button
-                  @click="openShareModal(event)"
-                  class="social-button"
-                  aria-label="{{ $t('events.shareEvent') }}"
-                >
-                  <i class="fas fa-share-alt"></i>
-                </button>
+          <!-- Locandina in alto -->
+          <div class="w-full">
+            <img
+              v-if="event.locandina"
+              :src="event.locandina"
+              alt="Locandina Evento"
+              class="w-full h-148 object-cover"
+            />
+          </div>
+
+          <!-- Badge Tag (PUB, EDU, FREE_PUB, FREE_EDU, etc.) in alto a destra -->
+          <div
+            v-if="event.tag"
+            class="absolute top-2 right-2 bg-gray-800 text-white text-xs font-bold py-1 px-2 rounded"
+          >
+            {{ event.tag }}
+          </div>
+
+          <!-- Corpo Principale -->
+          <div class="p-4 bg-black">
+            <!-- Data + Titolo in un'unica riga -->
+            <div class="flex items-center mb-3">
+              <!-- Riquadro Data (24 GEN) -->
+              <div class="bg-gray-200 text-gray-800 w-14 h-14 flex flex-col items-center justify-center rounded mr-3">
+                <span class="text-md font-bold">{{ getDay(event.event_date) }}</span>
+                <span class="text-xs font-semibold">{{ getMonth(event.event_date) }}</span>
               </div>
+              <!-- Titolo -->
+              <h3 class="text-xl font-semibold leading-tight">
+                {{ event.title }}
+              </h3>
             </div>
+
+            <!-- Luogo, Indirizzo, Guest, ecc. -->
+            <p class="text-sm mb-1">
+              <strong>Luogo:</strong> {{ event.venue }}
+            </p>
+            <p class="text-sm mb-1">
+              <strong>Indirizzo:</strong> {{ event.address }}
+            </p>
+            <!-- Guest -->
+            <p v-if="event.guest" class="text-sm mb-1">
+              <strong>Guest:</strong> {{ event.guest }}
+            </p>
+            <p class="text-sm mb-2">
+              <strong>Data:</strong> {{ formatDateTime(event.event_date) }}
+            </p>
+
+            <!-- Se vuoi prezzo / location / etc. -->
+            <p v-if="event.location" class="text-sm mb-1">
+              <strong>Location (DB field):</strong> {{ event.location }}
+            </p>
+            <p v-if="event.price && event.price != '0.00'" class="text-sm mb-1">
+              <strong>Prezzo:</strong> {{ event.price }} €
+            </p>
+          </div>
+
+          <!-- Barra inferiore con 2 pulsanti (Condividi / Acquista) -->
+          <div class="flex">
+            <!-- Pulsante Condividi (azzurro) -->
+            <button
+              class="w-1/2 bg-blue-500 py-3 text-center text-white font-bold hover:bg-blue-600 transition-colors"
+              @click="openShareModal(event)"
+            >
+              {{ $t("events.share") }}
+            </button>
+
+            <!-- Pulsante Acquista (arancione) -->
+            <!-- Se è FREE_PUB o FREE_EDU => eventbrite_url -->
+            <button
+              v-if="isFreeEvent(event)"
+              class="w-1/2 bg-orange-500 py-3 text-center text-white font-bold hover:bg-orange-600 transition-colors"
+              @click="openLink(event.eventbrite_url)"
+            >
+              {{ $t("events.buyTickets") }}
+            </button>
+            <!-- Altrimenti, se c'è ticket_purchase_url -->
+            <button
+              v-else-if="event.ticket_purchase_url"
+              class="w-1/2 bg-orange-500 py-3 text-center text-white font-bold hover:bg-orange-600 transition-colors"
+              @click="openLink(event.ticket_purchase_url)"
+            >
+              {{ $t("events.buyTickets") }}
+            </button>
+            <!-- Se manca del tutto, niente pulsante -->
           </div>
         </div>
-
-        <!-- Freccia Destra -->
-        <button
-          v-if="showArrows"
-          @click="nextSlide"
-          class="carousel-arrow
-                 absolute right-2 top-1/2 transform -translate-y-1/2
-                 z-10
-                 p-2 rounded-full
-                 text-sm md:text-base lg:text-lg
-                 w-8 h-8 md:w-10 md:h-10
-                 flex items-center justify-center"
-          aria-label="{{ $t('events.next') }}"
-        >
-          <i class="fas fa-chevron-right"></i>
-        </button>
       </div>
     </div>
 
-    <!-- Modal per condivisione social -->
+    <!-- Modal di Condivisione (invariato) -->
     <div
       v-if="showModal"
       class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
     >
-      <div class="modal-content">
-        <button @click="closeShareModal" class="close-button">
+      <div class="modal-content relative">
+        <button @click="closeShareModal" class="close-button absolute top-2 right-2">
           <i class="fas fa-times"></i>
         </button>
         <h3 class="text-xl font-semibold mb-4">
@@ -157,204 +163,72 @@ export default {
   data() {
     return {
       events: [],
-      currentIndex: 0,
-      visibleCards: 3, // Default "desktop" config, verrà modificata da updateVisibleCards()
       showModal: false,
       selectedEvent: null,
     };
   },
-  computed: {
-    // Se ci sono più eventi di quelli che si possono mostrare simultaneamente,
-    // allora ha senso mostrare le frecce
-    showArrows() {
-      return this.events.length > this.visibleCards;
-    },
-  },
   methods: {
-    formatDateTime(dateTime) {
-      // Trasformazione base se la data contiene uno spazio
-      const date = new Date(dateTime.replace(" ", "T"));
-      if (isNaN(date)) {
-        return this.$t("events.invalidDate");
-      }
-      return date.toLocaleString();
-    },
-    // Avanzamento carosello di uno "step"
-    nextSlide() {
-      const maxIndex = Math.ceil(this.events.length / this.visibleCards) - 1;
-      if (this.currentIndex < maxIndex) {
-        this.currentIndex++;
-      }
-    },
-    // Retrocedi di uno "step"
-    prevSlide() {
-      if (this.currentIndex > 0) {
-        this.currentIndex--;
-      }
-    },
-    // Apertura modale condivisione
-    openShareModal(event) {
-      this.selectedEvent = event;
-      this.showModal = true;
-    },
-    // Chiusura modale condivisione
-    closeShareModal() {
-      this.showModal = false;
-      this.selectedEvent = null;
-    },
-    // Determina quante card mostrare in base alla larghezza dello schermo
-    updateVisibleCards() {
-      const screenWidth = window.innerWidth;
-      if (screenWidth < 640) {
-        // Mobile
-        this.visibleCards = 1;
-      } else if (screenWidth < 1024) {
-        // Tablet
-        this.visibleCards = 2;
-      } else {
-        // Desktop
-        this.visibleCards = 3;
-      }
-      // Reset dell'indice di scorrimento se cambia la visualizzazione
-      this.currentIndex = 0;
-    },
-    // Classe di larghezza card
-    getCardWidthClass() {
-      if (this.visibleCards === 1) return "w-full";
-      if (this.visibleCards === 2) return "w-1/2";
-      return "w-1/3";
-    },
-    // Fetch degli eventi
+    // Stesso fetch, non tocco la logica di come recuperi i dati
     async fetchEvents() {
       try {
         const response = await fetch("https://api.bitcoinbeer.events/get_events.php");
         const data = await response.json();
-
-        // Filtra la categoria, se necessario
-        this.events = data.events.filter((event) => event.category === this.category);
-      } catch (error) {
-        console.error("Errore nel caricamento degli eventi:", error);
+        this.events = data.events.filter(e => e.category === this.category);
+      } catch (err) {
+        console.error("Errore nel caricamento degli eventi:", err);
       }
+    },
+    formatDateTime(dateTime) {
+      const d = new Date(dateTime.replace(" ", "T"));
+      if (isNaN(d)) return this.$t("events.invalidDate");
+      return d.toLocaleString();
+    },
+    getDay(dateTime) {
+      const d = new Date(dateTime.replace(" ", "T"));
+      return isNaN(d) ? "--" : d.getDate();
+    },
+    getMonth(dateTime) {
+      const d = new Date(dateTime.replace(" ", "T"));
+      if (isNaN(d)) return "---";
+      const months = ["GEN","FEB","MAR","APR","MAG","GIU","LUG","AGO","SET","OTT","NOV","DIC"];
+      return months[d.getMonth()];
+    },
+    // Se tag = FREE_PUB o FREE_EDU e has_tickets=0 => eventbrite_url
+    isFreeEvent(e) {
+      return (
+        (e.tag === 'FREE_PUB' || e.tag === 'FREE_EDU') &&
+        e.has_tickets === 0 &&
+        e.eventbrite_url
+      );
+    },
+    openLink(url) {
+      if (url) window.open(url, "_blank");
+    },
+    openShareModal(event) {
+      this.selectedEvent = event;
+      this.showModal = true;
+    },
+    closeShareModal() {
+      this.showModal = false;
+      this.selectedEvent = null;
     },
   },
   async created() {
     await this.fetchEvents();
   },
-  mounted() {
-    // Imposta il numero di card giusto al mount
-    this.updateVisibleCards();
-    // Ascolta il resize per variare visibleCards
-    window.addEventListener("resize", this.updateVisibleCards);
-  },
-  beforeDestroy() {
-    window.removeEventListener("resize", this.updateVisibleCards);
-  },
 };
 </script>
 
 <style scoped>
-/* Sezione background scuro */
+/* Esempio per allargare la card in desktop: 
+   abbiamo usato "md:max-w-4xl" nel template, 
+   che su schermi >=768px consente max 1024px di larghezza card. */
+
 section {
-  background: linear-gradient(135deg, #000000, #121212);
-  color: white;
-  padding: 2rem 0;
+  min-height: 80vh;
 }
 
-/* Titolo della sezione */
-h2 {
-  color: rgba(255, 255, 255, 0.9);
-  font-weight: bold;
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-}
-
-/* Container card & styling base */
-.flex-shrink-0 {
-  padding: 0.5rem;
-}
-
-.bg-gray-100,
-.dark\:bg-gray-800 {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(15px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-  border-radius: 12px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  max-width: 300px;
-  margin: auto; /* Centra la card */
-}
-
-.bg-gray-100 img,
-.dark\:bg-gray-800 img {
-  height: 120px;
-  object-fit: cover;
-  border-radius: 8px;
-}
-
-h3 {
-  color: white;
-  font-size: 1rem;
-}
-
-p {
-  font-size: 0.875rem;
-  color: rgba(255, 255, 255, 0.7);
-}
-
-/* Pulsante Glass */
-.glass-button {
-  display: inline-block;
-  padding: 0.4rem 0.8rem;
-  font-size: 0.875rem;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 8px;
-  color: white;
-  font-weight: bold;
-  text-align: center;
-  text-decoration: none;
-  backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
-}
-.glass-button:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transform: scale(1.1);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
-}
-
-/* Pulsante Condivisione */
-.social-button {
-  width: 32px;
-  height: 32px;
-  font-size: 16px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.2));
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  backdrop-filter: blur(10px);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.social-button:hover {
-  transform: scale(1.2);
-  box-shadow: 0 4px 16px rgba(255, 255, 255, 0.3);
-}
-
-/* Frecce Navigazione */
-.carousel-arrow {
-  backdrop-filter: blur(8px);
-  background: rgba(0, 0, 0, 0.4);
-  color: #fff;
-  border: none;
-  transition: background 0.3s ease, transform 0.3s ease;
-}
-.carousel-arrow:hover {
-  background: rgba(0, 0, 0, 0.6);
-  transform: scale(1.1);
-}
-
-/* Modal condivisione */
+/* Modal invariata, ecc. Personalizza dimensioni e colori a piacere. */
 .modal-content {
   background: rgba(0, 0, 0, 0.8);
   border-radius: 16px;
@@ -362,21 +236,19 @@ p {
   color: white;
   text-align: center;
   backdrop-filter: blur(15px);
+  max-width: 400px;
 }
-
 .close-button {
   background: transparent;
   border: none;
   color: white;
-  float: right;
   font-size: 1.2rem;
   cursor: pointer;
 }
 .close-button:hover {
   color: #ccc;
 }
-<<<<<<< HEAD
+.social-link {
+  margin: 0 0.5rem;
+}
 </style>
-=======
-</style>
->>>>>>> 4dedaab (modifiche)
