@@ -19,6 +19,8 @@ import ComingSoon from '../views/ComingSoon.vue';
 import Articles from '../views/Articles.vue';
 import NotFound from '../views/NotFound.vue';
 import BlogMain from '../views/BlogMain.vue';
+import AllEvents from '../views/AllEvents.vue';
+import EventDetailPage from '../views/EventDetailPage.vue';
 
 const routes = [
   {
@@ -30,6 +32,17 @@ const routes = [
     path: '/dashboard',
     name: 'Dashboard',
     component: Dashboard,
+  },
+  {
+    path: '/all-events',
+    name: 'AllEvents',
+    component: AllEvents
+  },
+  {
+    path: '/event/:id',
+    name: 'EventDetailPage',
+    component: EventDetailPage,
+    props: true
   },
   {
     path: '/contact',

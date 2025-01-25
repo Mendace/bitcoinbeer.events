@@ -15,9 +15,10 @@
       </p>
       <button
         @click="scrollToSection"
-        class="px-6 py-3 bg-orange-500 text-black rounded-lg font-semibold shadow-lg hover:bg-orange-400 transition-transform transform hover:scale-105"
-      >
-        {{ $t("bitcoin.findChapter") }}
+        class="relative inline-block py-3 px-6 font-bold text-white border border-white rounded-full overflow-hidden group focus:outline-none focus:ring-4 focus:ring-orange-500"
+        >
+        <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-orange-500 to-red-500 transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
+          <span class="relative z-10">{{ $t("bitcoin.findChapter") }}</span>
       </button>
     </div>
   </section>

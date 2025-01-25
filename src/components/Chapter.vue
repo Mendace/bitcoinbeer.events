@@ -19,7 +19,10 @@
           <div class="content">
             <h3 class="block-title">{{ $t("bitcoinBeer.card1Title") }}</h3>
             <p class="block-description">{{ $t("bitcoinBeer.card1Desc") }}</p>
-            <router-link to="/start" class="cta-button">{{ $t("bitcoinBeer.card1Button") }}</router-link>
+            <router-link to="/start" class="relative inline-block py-3 px-6 font-bold text-white border border-white rounded-full overflow-hidden group focus:outline-none focus:ring-4 focus:ring-orange-500">
+              <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-orange-500 to-red-500 transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
+              <span class="relative z-10">{{ $t("bitcoinBeer.card1Button") }}</span>
+            </router-link>
           </div>
         </div>
         <!-- Card 2 -->
@@ -28,7 +31,10 @@
           <div class="content">
             <h3 class="block-title">{{ $t("bitcoinBeer.card2Title") }}</h3>
             <p class="block-description">{{ $t("bitcoinBeer.card2Desc") }}</p>
-            <router-link to="/explore" class="cta-button">{{ $t("bitcoinBeer.card2Button") }}</router-link>
+            <router-link to="/explore" class="relative inline-block py-3 px-6 font-bold text-white border border-white rounded-full overflow-hidden group focus:outline-none focus:ring-4 focus:ring-orange-500">
+              <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-orange-500 to-red-500 transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
+              <span class="relative z-10">{{ $t("bitcoinBeer.card2Button") }}</span>
+            </router-link>
           </div>
         </div>
       </div>

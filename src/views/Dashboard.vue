@@ -64,7 +64,7 @@ useHead({
 </script>
 
 <template>
-    <div class="dashboard-page">
+  <div class="dashboard-page">
     <!-- Hero Section -->
     <section class="hero relative bg-black text-white flex items-center h-screen overflow-hidden">
       <!-- Background -->
@@ -73,7 +73,7 @@ useHead({
       <div class="relative z-10 flex flex-col md:flex-row items-center w-full max-w-screen-xl mx-auto px-8">
         <!-- Testo -->
         <div class="text-content md:w-1/2 text-left text">
-          <h1 class="text-5xl font-bold leading-tight mb-6">
+          <h1 class="text-6xl font-extrabold leading-tight mb-6 bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-yellow-300">
             {{ $t('dashboardpage.heroTitle') }}
           </h1>
           <p class="text-lg mb-8 opacity-80">
@@ -83,25 +83,24 @@ useHead({
             href="https://t.me/+m7F8BCFwODc5ODhk"
             target="_blank"
             rel="noopener noreferrer"
-            class="px-6 py-3 bg-orange-500 text-black font-semibold text-lg rounded-lg shadow-lg hover:bg-orange-400 transition-transform transform hover:scale-105"
-          >
-            {{ $t('dashboardpage.tryNowButton') }}
+            class="relative inline-block py-3 px-6 font-bold text-white border border-white rounded-full overflow-hidden group focus:outline-none focus:ring-4 focus:ring-orange-500">
+            <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-orange-500 to-red-500 transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
+            <span class="relative z-10">{{ $t('dashboardpage.tryNowButton') }}</span>
           </a>
         </div>
 
-        <!-- Immagine -->
-        <div class="image-content md:w-1/2 relative">
+        <!-- Immagine dello Smartphone -->
+        <div class="image-content md:w-1/2 relative flex justify-center items-end">
           <img
-            src="/assets/dashboard.webp"
+            src="/assets/dashsmart.png"
             alt="{{ $t('dashboardpage.heroImageAlt') }}"
-            class="dashboard-image"
+            class="w-full max-w-sm h-auto object-cover rounded-t-2xl border border-white-700 shadow-lg" style="margin-top: 120px;"
           />
         </div>
       </div>
     </section>
-
-     <!-- Video Section -->
-     <section class="video-section py-20 bg-gradient-to-b from-black via-gray-900 to-black text-white">
+    <!-- Video Section -->
+    <section class="video-section py-20 bg-gradient-to-b from-black via-gray-900 to-black text-white">
       <div class="container mx-auto px-8 text-center">
         <div class="video-wrapper max-w-4xl mx-auto rounded-lg overflow-hidden shadow-lg">
           <!-- Video -->
@@ -166,7 +165,6 @@ useHead({
   </div>
 </template>
 
-
 <script>
 export default {
   name: "DashboardPage",
@@ -181,46 +179,54 @@ export default {
   align-items: center;
   justify-content: space-between;
   height: 100vh;
+  padding-top: 70px;
 }
 
-.text {
-  margin-top: 8rem;
-}
 .text-content {
   z-index: 10;
   text-align: left;
 }
 
-.dashboard-image {
-  width: 200%;
-  height: 100%;
+.image-content {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+img {
+  display: block;
+  width: 100%;
+  max-width: 350px;
+  height: auto;
   object-fit: cover;
-  position: relative;
-  right: -20%;
-  box-shadow: 0px 12px 30px rgba(0, 0, 0, 0.6);
-  border-radius: 20px;
-  transition: transform 0.3s ease-in-out;
+  border-radius: 20px 20px 0 0;
+  border: 2px solid #444;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
 }
 
-.dashboard-image:hover {
-  transform: scale(1.05);
-}
-
-/* Per il Mobile */
+/* Responsive Mobile */
 @media (max-width: 768px) {
   .hero {
     flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 100px;
   }
 
   .text-content {
     text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .image-content {
+    margin-top: 2rem;
     margin-bottom: 2rem;
   }
 
-  .dashboard-image {
-    width: 100%;
-    right: 0;
-    box-shadow: none;
+  img {
+    width: 95%;
+    max-width: 320px;
+    margin-top: -50%;
   }
 }
 </style>

@@ -28,7 +28,8 @@ const messages = {
       buyTickets: "Buy Tickets",
       shareEvent: "Share Event",
       posterAlt: "Event poster",
-      share: "Share"
+      share: "Share",
+      seeAllEvents: "See all events"
     },
     bitcoin: {
       title: "Bitcoin Beer: Join the Revolution",
@@ -297,6 +298,11 @@ const messages = {
       description: "This feature will be available soon. Stay tuned!",
       backToHome: "Back to Home",
     },
+    eventspage: {
+      title: "Our Events",
+      description: "Discover upcoming initiatives and get ready for a unique experience!",
+      explore: "Explore",
+    },
 
 
 
@@ -330,7 +336,8 @@ const messages = {
       buyTickets: "Acquista Ticket",
       shareEvent: "Condividi Evento",
       posterAlt: "Locandina dell'evento",
-      share: "Condividi"
+      share: "Condividi",
+      seeAllEvents: "Vedi tutti gli eventi"
     },
     bitcoin: {
       title: "Bitcoin Beer: Unisciti alla Rivoluzione",
@@ -598,6 +605,11 @@ const messages = {
       title: "In Arrivo",
       description: "Questa funzionalità sarà presto disponibile. Resta sintonizzato!",
       backToHome: "Torna alla Home",
+    },
+    eventspage: {
+      title: "I nostri Eventi",
+      description: "Scopri le prossime iniziative e preparati a un'esperienza unica!",
+      explore: "Esplora",
     },
 
 

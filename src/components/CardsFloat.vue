@@ -15,8 +15,9 @@
           <li>{{ $t("dashboard.feature4") }}</li>
         </ul>
         <router-link to="/dashboard"
-          class="inline-block mt-4 px-6 py-3 bg-orange-500 hover:bg-orange-400 rounded-lg text-lg font-semibold transition duration-300">
-          {{ $t("dashboard.cta") }}
+        class="relative inline-block py-3 px-6 font-bold text-white border border-white rounded-full overflow-hidden group focus:outline-none focus:ring-4 focus:ring-orange-500">
+        <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-orange-500 to-red-500 transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
+          <span class="relative z-10">{{ $t("dashboard.cta") }}</span>
         </router-link>
 
       </div>

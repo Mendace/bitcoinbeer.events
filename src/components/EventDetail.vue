@@ -6,15 +6,13 @@
         {{ $t("events.upcomingEvents") }}
       </h2>
 
-      <!-- Lista Eventi -->
+      <!-- Lista Eventi (solo i primi 3) -->
       <div class="flex flex-col items-center gap-8">
-        
-        <!-- Ciclo su TUTTI gli eventi (o i primi 3 se vuoi con slice) -->
         <div
-          v-for="(event, idx) in events"
+          v-for="(event, idx) in events.slice(0, 3)" 
           :key="event.id"
           class="relative w-full md:max-w-4xl bg-black border border-white rounded-lg overflow-hidden shadow-lg"
-          >
+        >
           <!-- Locandina in alto -->
           <div class="w-full">
             <img
@@ -25,7 +23,7 @@
             />
           </div>
 
-          <!-- Badge Tag (PUB, EDU, FREE_PUB, FREE_EDU, etc.) in alto a destra -->
+          <!-- Badge Tag -->
           <div
             v-if="event.tag"
             class="absolute top-2 right-2 bg-gray-800 text-white text-xs font-bold py-1 px-2 rounded"
@@ -35,12 +33,15 @@
 
           <!-- Corpo Principale -->
           <div class="p-4 bg-black">
-            <!-- Data + Titolo in un'unica riga -->
             <div class="flex items-center mb-3">
-              <!-- Riquadro Data (24 GEN) -->
+              <!-- Data -->
               <div class="bg-gray-200 text-gray-800 w-14 h-14 flex flex-col items-center justify-center rounded mr-3">
-                <span class="text-md font-bold">{{ getDay(event.event_date) }}</span>
-                <span class="text-xs font-semibold">{{ getMonth(event.event_date) }}</span>
+                <span class="text-md font-bold">
+                  {{ getDay(event.event_date) }}
+                </span>
+                <span class="text-xs font-semibold">
+                  {{ getMonth(event.event_date) }}
+                </span>
               </div>
               <!-- Titolo -->
               <h3 class="text-xl font-semibold leading-tight">
@@ -55,15 +56,12 @@
             <p class="text-sm mb-1">
               <strong>Indirizzo:</strong> {{ event.address }}
             </p>
-            <!-- Guest -->
             <p v-if="event.guest" class="text-sm mb-1">
               <strong>Guest:</strong> {{ event.guest }}
             </p>
             <p class="text-sm mb-2">
               <strong>Data:</strong> {{ formatDateTime(event.event_date) }}
             </p>
-
-            <!-- Se vuoi prezzo / location / etc. -->
             <p v-if="event.location" class="text-sm mb-1">
               <strong>Location (DB field):</strong> {{ event.location }}
             </p>
@@ -72,9 +70,9 @@
             </p>
           </div>
 
-          <!-- Barra inferiore con 2 pulsanti (Condividi / Acquista) -->
+          <!-- Pulsanti in basso -->
           <div class="flex">
-            <!-- Pulsante Condividi (azzurro) -->
+            <!-- Condividi -->
             <button
               class="w-1/2 bg-blue-500 py-3 text-center text-white font-bold hover:bg-blue-600 transition-colors"
               @click="openShareModal(event)"
@@ -82,8 +80,7 @@
               {{ $t("events.share") }}
             </button>
 
-            <!-- Pulsante Acquista (arancione) -->
-            <!-- Se è FREE_PUB o FREE_EDU => eventbrite_url -->
+            <!-- Acquista (FREE_PUB o FREE_EDU => eventbrite_url) -->
             <button
               v-if="isFreeEvent(event)"
               class="w-1/2 bg-orange-500 py-3 text-center text-white font-bold hover:bg-orange-600 transition-colors"
@@ -99,13 +96,23 @@
             >
               {{ $t("events.buyTickets") }}
             </button>
-            <!-- Se manca del tutto, niente pulsante -->
+            <!-- Se manca, non mostrare nulla -->
           </div>
         </div>
       </div>
+
+      <!-- Pulsante "Vedi tutti" -->
+      <div class="flex justify-center mt-6">
+        <router-link
+          to="/all-events"
+          class="relative inline-block py-3 px-6 font-bold text-white border border-white rounded-full overflow-hidden group focus:outline-none focus:ring-4 focus:ring-orange-500">
+          <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-orange-500 to-red-500 transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
+          <span class="relative z-10">{{ $t("events.seeAllEvents") }}</span>
+        </router-link>
+      </div>
     </div>
 
-    <!-- Modal di Condivisione (invariato) -->
+    <!-- Modal di Condivisione -->
     <div
       v-if="showModal"
       class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
@@ -168,7 +175,6 @@ export default {
     };
   },
   methods: {
-    // Stesso fetch, non tocco la logica di come recuperi i dati
     async fetchEvents() {
       try {
         const response = await fetch("https://api.bitcoinbeer.events/get_events.php");
@@ -193,7 +199,6 @@ export default {
       const months = ["GEN","FEB","MAR","APR","MAG","GIU","LUG","AGO","SET","OTT","NOV","DIC"];
       return months[d.getMonth()];
     },
-    // Se tag = FREE_PUB o FREE_EDU e has_tickets=0 => eventbrite_url
     isFreeEvent(e) {
       return (
         (e.tag === 'FREE_PUB' || e.tag === 'FREE_EDU') &&
@@ -220,15 +225,10 @@ export default {
 </script>
 
 <style scoped>
-/* Esempio per allargare la card in desktop: 
-   abbiamo usato "md:max-w-4xl" nel template, 
-   che su schermi >=768px consente max 1024px di larghezza card. */
-
 section {
   min-height: 80vh;
 }
 
-/* Modal invariata, ecc. Personalizza dimensioni e colori a piacere. */
 .modal-content {
   background: rgba(0, 0, 0, 0.8);
   border-radius: 16px;
