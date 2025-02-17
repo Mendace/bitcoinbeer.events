@@ -80,7 +80,11 @@ useHead({
          :style="{ backgroundImage: 'url(/assets/blog-hero.jpg)' }">
       <div class="absolute inset-0 bg-black opacity-60"></div>
       <div class="relative z-10 text-center px-6">
-        <h1 class="text-4xl md:text-5xl font-extrabold mb-4">BitcoinBeerBlog</h1>
+        <img
+          src="/assets/ilBlog.png"
+          alt="BitcoinBeer Blog"
+          class="mx-auto mb-4 w-48 sm:w-64 h-auto"
+        />
         <p class="text-lg md:text-xl text-gray-300">
           Esplora le ultime notizie, approfondimenti e guide dal mondo Bitcoin e tecnologia.
         </p>

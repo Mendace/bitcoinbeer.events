@@ -1,8 +1,27 @@
 <template>
-	<section class="bg-gradient-to-br from-gray-900 via-black to-gray-800 text-white min-h-screen">
+	<section class="bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white min-h-screen">
 	  <!-- Hero Section -->
+	  <div
+		class="relative w-full h-96 bg-cover bg-center flex items-center justify-center"
+		:style="{ backgroundImage: 'url(/assets/blog-hero.jpg)' }"
+	  >
+		<div class="absolute inset-0 bg-black opacity-60"></div>
+		<div class="relative z-10 text-center px-6">
+		  <!-- Logo del blog -->
+		  <img
+			src="/assets/ilBlog.png"
+			alt="BitcoinBeer Blog"
+			class="mx-auto mb-4 w-48 sm:w-64 h-auto"
+		  />
+		  <p class="text-lg md:text-xl text-gray-300">
+			Esplora le ultime notizie, approfondimenti e guide dal mondo Bitcoin e tecnologia.
+		  </p>
+		</div>
+	  </div>
+  
+	  <!-- Se l'articolo è caricato -->
 	  <div v-if="article" class="relative">
-		<!-- Cover Image -->
+		<!-- Cover Image dell'articolo -->
 		<div
 		  class="h-[500px] bg-cover bg-center shadow-md"
 		  :style="{ backgroundImage: `url(${article.cover_image})` }"
@@ -16,18 +35,11 @@
 		  <p class="text-xl md:text-2xl text-gray-400 italic">
 			{{ article.subtitle }}
 		  </p>
-		  <div v-if="article.original_url" class="mt-4">
-			<a
-			  :href="article.original_url"
-			  target="_blank"
-			  class="text-lg text-blue-500 hover:underline"
-			>
-			  Tradotto dall'articolo originale su BlockDyor 
-			</a>
-		  </div>
+		  <!-- Rimosso il blocco con "Tradotto dall'articolo originale" -->
 		</div>
 	  </div>
   
+	  <!-- Se l'articolo non è ancora caricato (loading) -->
 	  <div v-else class="flex items-center justify-center h-screen">
 		<p class="text-lg font-semibold text-gray-400">
 		  Caricamento articolo...
@@ -36,21 +48,19 @@
   
 	  <!-- Main Content -->
 	  <div v-if="article" class="container mx-auto px-6 md:px-12 lg:px-20 py-16">
-		<!-- Author and Date -->
+		<!-- Autore e data -->
 		<div class="flex items-center space-x-6 mb-12">
+		  <!-- Logo dell'autore: prelevato da article.author_logo -->
 		  <img
-			src="/public/logos/blockdyor.webp"
-			alt="BlockDyor"
+			:src="article.author_logo"
+			alt="Autore"
 			class="w-16 h-16 rounded-full shadow-md border border-yellow-400"
 		  />
 		  <div>
-			<a
-			  href="https://blockdyor.com"
-			  target="_blank"
-			  class="text-lg font-semibold text-yellow-400 hover:underline"
-			>
-			  BlockDyor
-			</a>
+			<!-- Nome autore: article.author -->
+			<p class="text-lg font-semibold text-yellow-400">
+			  {{ article.author }}
+			</p>
 			<p class="text-gray-400">
 			  Pubblicato il {{ formatDate(article.created_at) }}
 			</p>
@@ -73,9 +83,7 @@
   
 		<!-- Article Content -->
 		<article class="prose prose-xl prose-invert mx-auto leading-relaxed">
-		  <h2 class="text-3xl font-bold mb-8 text-yellow-400">
-			Introduzione
-		  </h2>
+		  <h2 class="text-3xl font-bold mb-8 text-yellow-400">Introduzione</h2>
 		  <p>{{ article.intro }}</p>
   
 		  <figure class="my-8 text-center">
@@ -100,59 +108,67 @@
 		  <p>{{ article.conclusion }}</p>
 		</article>
   
-<!-- Social Sharing -->
-<!-- Le classi “grid grid-cols-2 sm:grid-cols-4” creano una griglia 2x2 su mobile,
-     mentre su schermi >= sm (640px) diventa 4x1. gap-4 crea uno spazio uniforme. -->
-	 <div class="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-4 justify-center">
-  <!-- Twitter -->
-  <a
-    :href="generateShareUrl('twitter')"
-    target="_blank"
-    class="inline-flex items-center justify-center px-3 py-2 text-sm sm:text-base
-           bg-blue-500 hover:bg-blue-600 text-white rounded-md shadow-md
-           transition-colors duration-200"
-  >
-    <i class="fab fa-twitter mr-2 text-lg"></i>
-    <span class="hidden sm:inline">Twitter</span>
-    <!-- su schermi piccoli, mostra solo l’icona e su schermi >= sm anche il testo “Twitter” -->
-  </a>
-
-  <!-- Facebook -->
-  <a
-    :href="generateShareUrl('facebook')"
-    target="_blank"
-    class="inline-flex items-center justify-center px-3 py-2 text-sm sm:text-base
-           bg-blue-700 hover:bg-blue-800 text-white rounded-md shadow-md
-           transition-colors duration-200"
-  >
-    <i class="fab fa-facebook mr-2 text-lg"></i>
-    <span class="hidden sm:inline">Facebook</span>
-  </a>
-
-  <!-- LinkedIn -->
-  <a
-    :href="generateShareUrl('linkedin')"
-    target="_blank"
-    class="inline-flex items-center justify-center px-3 py-2 text-sm sm:text-base
-           bg-blue-600 hover:bg-blue-700 text-white rounded-md shadow-md
-           transition-colors duration-200"
-  >
-    <i class="fab fa-linkedin mr-2 text-lg"></i>
-    <span class="hidden sm:inline">LinkedIn</span>
-  </a>
-
-  <!-- Telegram -->
-  <a
-    :href="generateShareUrl('telegram')"
-    target="_blank"
-    class="inline-flex items-center justify-center px-3 py-2 text-sm sm:text-base
-           bg-sky-500 hover:bg-sky-600 text-white rounded-md shadow-md
-           transition-colors duration-200"
-  >
-    <i class="fab fa-telegram mr-2 text-lg"></i>
-    <span class="hidden sm:inline">Telegram</span>
-  </a>
-</div>
+		<!-- Categorie (Badge) -->
+		<div v-if="categoriesList.length" class="mt-6 flex flex-wrap gap-2">
+		  <span
+			v-for="cat in categoriesList"
+			:key="cat"
+			class="inline-block bg-yellow-500 text-black px-2 py-1 rounded-md text-sm font-medium"
+		  >
+			{{ cat }}
+		  </span>
+		</div>
+  
+		<!-- Social Sharing -->
+		<div class="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-4 justify-center">
+		  <!-- Twitter -->
+		  <a
+			:href="generateShareUrl('twitter')"
+			target="_blank"
+			class="inline-flex items-center justify-center px-3 py-2 text-sm sm:text-base
+				  bg-blue-500 hover:bg-blue-600 text-white rounded-md shadow-md
+				  transition-colors duration-200"
+		  >
+			<i class="fab fa-twitter mr-2 text-lg"></i>
+			<span class="hidden sm:inline">Twitter</span>
+		  </a>
+  
+		  <!-- Facebook -->
+		  <a
+			:href="generateShareUrl('facebook')"
+			target="_blank"
+			class="inline-flex items-center justify-center px-3 py-2 text-sm sm:text-base
+				  bg-blue-700 hover:bg-blue-800 text-white rounded-md shadow-md
+				  transition-colors duration-200"
+		  >
+			<i class="fab fa-facebook mr-2 text-lg"></i>
+			<span class="hidden sm:inline">Facebook</span>
+		  </a>
+  
+		  <!-- LinkedIn -->
+		  <a
+			:href="generateShareUrl('linkedin')"
+			target="_blank"
+			class="inline-flex items-center justify-center px-3 py-2 text-sm sm:text-base
+				  bg-blue-600 hover:bg-blue-700 text-white rounded-md shadow-md
+				  transition-colors duration-200"
+		  >
+			<i class="fab fa-linkedin mr-2 text-lg"></i>
+			<span class="hidden sm:inline">LinkedIn</span>
+		  </a>
+  
+		  <!-- Telegram -->
+		  <a
+			:href="generateShareUrl('telegram')"
+			target="_blank"
+			class="inline-flex items-center justify-center px-3 py-2 text-sm sm:text-base
+				  bg-sky-500 hover:bg-sky-600 text-white rounded-md shadow-md
+				  transition-colors duration-200"
+		  >
+			<i class="fab fa-telegram mr-2 text-lg"></i>
+			<span class="hidden sm:inline">Telegram</span>
+		  </a>
+		</div>
   
 		<!-- Footer Banner Ad -->
 		<div class="relative w-full mt-8 h-25 rounded-lg overflow-hidden shadow-lg">
@@ -175,7 +191,7 @@
   
   <script>
   import Blog from "../components/Blog.vue";
-  import { onMounted, ref, watch } from 'vue';
+  import { onMounted, ref, watch, computed } from 'vue';
   
   export default {
 	name: "Article",
@@ -196,7 +212,9 @@
 		loading.value = true;
 		error.value = null;
 		try {
-		  const response = await fetch(`https://api.bitcoinbeer.events/api/articles_api.php?id=${props.id}`);
+		  const response = await fetch(
+			`https://api.bitcoinbeer.events/api/articles_api.php?id=${props.id}`
+		  );
 		  if (!response.ok) {
 			const errorText = await response.text();
 			throw new Error(`Errore API: ${response.status} - ${errorText}`);
@@ -233,17 +251,38 @@
 	  const addMetaTags = () => {
 		if (!article.value) return;
   
-		updateMetaTag('meta[name="title"]', article.value.meta_title || article.value.title || 'Bitcoin Beer');
-		updateMetaTag('meta[name="description"]', article.value.meta_description || 'Bitcoin Beer');
-		updateMetaTag('meta[name="keywords"]', article.value.meta_keywords || 'Bitcoin, Blockchain');
+		updateMetaTag(
+		  'meta[name="title"]',
+		  article.value.meta_title || article.value.title || 'Bitcoin Beer'
+		);
+		updateMetaTag(
+		  'meta[name="description"]',
+		  article.value.meta_description || 'Bitcoin Beer'
+		);
+		updateMetaTag(
+		  'meta[name="keywords"]',
+		  article.value.meta_keywords || 'Bitcoin, Blockchain'
+		);
   
-		updateMetaTag('meta[property="og:title"]', article.value.meta_title || article.value.title || 'Bitcoin Beer');
-		updateMetaTag('meta[property="og:description"]', article.value.meta_description || 'Bitcoin Beer');
-		updateMetaTag('meta[property="og:image"]', article.value.og_image || article.value.cover_image);
+		updateMetaTag(
+		  'meta[property="og:title"]',
+		  article.value.meta_title || article.value.title || 'Bitcoin Beer'
+		);
+		updateMetaTag(
+		  'meta[property="og:description"]',
+		  article.value.meta_description || 'Bitcoin Beer'
+		);
+		updateMetaTag(
+		  'meta[property="og:image"]',
+		  article.value.og_image || article.value.cover_image
+		);
 		updateMetaTag('meta[property="og:url"]', window.location.href);
 		updateMetaTag('meta[property="og:type"]', 'article');
   
-		updateMetaTag('link[rel="canonical"]', article.value.original_url || window.location.href);
+		updateMetaTag(
+		  'link[rel="canonical"]',
+		  article.value.original_url || window.location.href
+		);
 	  };
   
 	  onMounted(() => {
@@ -252,6 +291,15 @@
   
 	  watch(article, () => {
 		addMetaTags();
+	  });
+  
+	  // Ritorna array di categorie (separando la stringa article.categories)
+	  const categoriesList = computed(() => {
+		if (!article.value || !article.value.categories) {
+		  return [];
+		}
+		// Splitta per virgole ed elimina eventuali spazi
+		return article.value.categories.split(',').map(c => c.trim());
 	  });
   
 	  const formatDate = (date) => {
@@ -282,7 +330,14 @@
 		}
 	  };
   
-	  return { article, error, loading, formatDate, generateShareUrl };
+	  return {
+		article,
+		error,
+		loading,
+		formatDate,
+		generateShareUrl,
+		categoriesList
+	  };
 	}
   };
   </script>
