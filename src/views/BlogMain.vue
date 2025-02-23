@@ -1,5 +1,6 @@
 <script setup>
 import { useHead } from '@vueuse/head';
+import { ref, watch, onMounted } from 'vue';
 
 useHead({
   title: 'Bitcoin Beer Blog - Notizie, Guide e Approfondimenti su Bitcoin e Tecnologia',
@@ -70,14 +71,142 @@ useHead({
     },
   ],
 });
-</script>
+// Stato e variabili
+const allArticles         = ref([]);
+const featuredArticle     = ref({});
+const recentArticles      = ref([]);
+const additionalArticles  = ref([]);
+const error               = ref(null);
 
+// Per la paginazione (se la vuoi)
+const currentPage   = ref(1);
+const hasMorePages  = ref(true);
+
+// Filtri
+const searchTerm        = ref('');
+const selectedCategory  = ref('');
+
+// Fai la fetch degli articoli una volta
+onMounted(() => {
+  fetchArticles();
+});
+
+// Funzione fetch
+function fetchArticles() {
+  const url = `https://api.bitcoinbeer.events/api/articles_api.php?page=${currentPage.value}`;
+  fetch(url)
+    .then((res) => {
+      if (!res.ok) throw new Error('Errore nel recupero degli articoli');
+      return res.json();
+    })
+    .then((data) => {
+      if (data.success) {
+        allArticles.value = data.data;
+        applyFilter(); // Applica subito i filtri iniziali
+        hasMorePages.value = data.hasMorePages ?? false;
+      } else {
+        error.value = data.error || 'Errore sconosciuto';
+      }
+    })
+    .catch((err) => {
+      error.value = err.message;
+    });
+}
+
+// Applica i filtri sul client
+function applyFilter() {
+  let filtered = [...allArticles.value];
+
+  // 1) Filtro testuale su title, subtitle, content
+  if (searchTerm.value.trim() !== '') {
+    const s = searchTerm.value.toLowerCase();
+    filtered = filtered.filter((art) => {
+      return (
+        (art.title || '').toLowerCase().includes(s) ||
+        (art.subtitle || '').toLowerCase().includes(s) ||
+        (art.content || '').toLowerCase().includes(s)
+      );
+    });
+  }
+
+  // 2) Filtro categorie
+  if (selectedCategory.value) {
+    filtered = filtered.filter((art) => {
+      if (!art.categories) return false;
+      const cats = art.categories.split(',').map(c => c.trim().toLowerCase());
+      return cats.includes(selectedCategory.value.toLowerCase());
+    });
+  }
+
+  // Suddividi
+  if (filtered.length > 0) {
+    featuredArticle.value    = filtered[0];
+    recentArticles.value     = filtered.slice(1, 3);
+    additionalArticles.value = filtered.slice(3);
+  } else {
+    featuredArticle.value    = {};
+    recentArticles.value     = [];
+    additionalArticles.value = [];
+  }
+}
+
+// Reset filtri
+function resetFilter() {
+  searchTerm.value       = '';
+  selectedCategory.value = '';
+  applyFilter();
+}
+
+// Gestione pagine (se la vuoi “server-side”)
+function loadPreviousPage() {
+  if (currentPage.value > 1) {
+    currentPage.value--;
+    fetchArticles();
+  }
+}
+function loadNextPage() {
+  if (hasMorePages.value) {
+    currentPage.value++;
+    fetchArticles();
+  }
+}
+
+// Utils
+function formatDate(date) {
+  if (!date) return '';
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  return new Date(date).toLocaleDateString('it-IT', options);
+}
+
+function parseCategories(str) {
+  if (!str) return [];
+  return str.split(',').map(c => c.trim());
+}
+
+function categoryColor(cat) {
+  const colorMap = {
+    notizie:     'bg-blue-500',
+    recensione:  'bg-green-500',
+    inchiesta:   'bg-red-500',
+    intervista:  'bg-indigo-500',
+    altro:       'bg-yellow-500',
+  };
+  return colorMap[cat.toLowerCase()] || 'bg-gray-500';
+}
+
+// Watch per filtrare in tempo reale
+watch([searchTerm, selectedCategory], () => {
+  applyFilter();
+});
+</script>
 
 <template>
   <section class="bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white min-h-screen">
     <!-- Hero Section -->
-    <div class="relative w-full h-96 bg-cover bg-center flex items-center justify-center"
-         :style="{ backgroundImage: 'url(/assets/blog-hero.jpg)' }">
+    <div
+      class="relative w-full h-96 bg-cover bg-center flex items-center justify-center"
+      :style="{ backgroundImage: 'url(/assets/blog-hero.jpg)' }"
+    >
       <div class="absolute inset-0 bg-black opacity-60"></div>
       <div class="relative z-10 text-center px-6">
         <img
@@ -86,18 +215,66 @@ useHead({
           class="mx-auto mb-4 w-48 sm:w-64 h-auto"
         />
         <p class="text-lg md:text-xl text-gray-300">
-          Esplora le ultime notizie, approfondimenti e guide dal mondo Bitcoin e tecnologia.
+          Bitcoin spiegato bene.
         </p>
       </div>
     </div>
 
-    <!-- Featured and Recent Articles -->
-    <div class="container mx-auto py-12 px-4 md:px-6 lg:px-8">
+    <!-- Filter Bar (centrata, glass effect) -->
+    <div class="container mx-auto py-8 flex flex-col items-center justify-center px-4">
+      <div class="w-full md:w-2/3 lg:w-1/2 bg-white/10 backdrop-blur-md 
+                  rounded-xl p-6 flex flex-col md:flex-row items-center gap-4">
+
+        <!-- Input di ricerca -->
+        <input
+          v-model="searchTerm"
+          type="text"
+          placeholder="Cerca un articolo..."
+          class="flex-1 px-4 py-2 bg-transparent text-white placeholder-gray-300
+                 focus:outline-none focus:ring-2 focus:ring-yellow-400 rounded 
+                 border border-white/20"
+        />
+
+        <!-- Select categoria -->
+        <select
+          v-model="selectedCategory"
+          class="px-4 py-2 bg-transparent text-white focus:outline-none
+                 focus:ring-2 focus:ring-yellow-400 rounded
+                 border border-white/20"
+        >
+          <option value="">Tutte</option>
+          <option value="notizie">Notizie</option>
+          <option value="recensione">Recensione</option>
+          <option value="inchiesta">Inchiesta</option>
+          <option value="intervista">Intervista</option>
+          <option value="altro">Altro</option>
+        </select>
+
+        <!-- Pulsante reset -->
+        <button
+          @click="resetFilter"
+          class="px-4 py-2 bg-yellow-500 text-black rounded hover:bg-yellow-400 transition-colors"
+        >
+          Resetta
+        </button>
+      </div>
+    </div>
+    <!-- End Filter Bar -->
+
+    <!-- Featured + Recent -->
+    <div class="container mx-auto py-6 px-4 md:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <!-- Featured Article -->
-        <div class="lg:col-span-2 relative bg-gray-800 shadow-lg featured-article">
+        <div
+          class="lg:col-span-2 relative bg-gray-800 shadow-lg featured-article"
+          v-if="featuredArticle.title"
+        >
           <a :href="`/article/${featuredArticle.id}`">
-            <img :src="featuredArticle.cover_image" alt="Immagine Articolo" class="w-full h-64 md:h-[60vh] object-cover" />
+            <img
+              :src="featuredArticle.cover_image"
+              alt="Immagine Articolo"
+              class="w-full h-64 md:h-[60vh] object-cover"
+            />
           </a>
           <div class="p-6">
             <p class="text-sm text-gray-400 uppercase">In Evidenza</p>
@@ -109,21 +286,55 @@ useHead({
             <p class="text-base md:text-lg text-gray-300 mt-2 line-clamp-3">
               {{ featuredArticle.subtitle }}
             </p>
+            <!-- Badge categorie -->
+            <div v-if="featuredArticle.categories" class="flex flex-wrap gap-2 mt-4">
+              <span
+                v-for="cat in parseCategories(featuredArticle.categories)"
+                :key="cat"
+                :class="[ categoryColor(cat), 'inline-block text-black px-2 py-1 rounded-md text-sm' ]"
+              >
+                {{ cat }}
+              </span>
+            </div>
           </div>
         </div>
 
         <!-- Recent Articles -->
         <div class="space-y-6">
-          <h3 class="text-2xl font-bold text-gray-200">Ultimi Articoli</h3>
-          <div v-for="article in recentArticles" :key="article.id" class="bg-gray-800 shadow-md">
+          <h3 class="text-2xl font-bold text-gray-200" v-if="recentArticles.length">
+            Ultimi Articoli
+          </h3>
+          <div
+            v-for="article in recentArticles"
+            :key="article.id"
+            class="bg-gray-800 shadow-md"
+          >
             <a :href="`/article/${article.id}`">
-              <img :src="article.cover_image" alt="Immagine di {{ article.title }}" class="w-full h-40 object-cover" />
+              <img
+                :src="article.cover_image"
+                alt="Immagine di {{ article.title }}"
+                class="w-full h-40 object-cover"
+              />
             </a>
             <div class="p-4">
               <h4 class="text-lg font-bold text-yellow-400 hover:text-yellow-300">
-                <a :href="`/article/${article.id}`">{{ article.title }}</a>
+                <a :href="`/article/${article.id}`">
+                  {{ article.title }}
+                </a>
               </h4>
-              <p class="text-sm text-gray-400 mt-2">{{ formatDate(article.created_at) }}</p>
+              <p class="text-sm text-gray-400 mt-2">
+                {{ formatDate(article.created_at) }}
+              </p>
+              <!-- Badge categorie -->
+              <div v-if="article.categories" class="flex flex-wrap gap-2 mt-2">
+                <span
+                  v-for="cat in parseCategories(article.categories)"
+                  :key="cat"
+                  :class="[ categoryColor(cat), 'inline-block text-black px-2 py-1 rounded-md text-sm' ]"
+                >
+                  {{ cat }}
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -131,107 +342,71 @@ useHead({
     </div>
 
     <!-- Additional Articles -->
-    <div class="container mx-auto py-12 px-4 md:px-6 lg:px-8">
+    <div class="container mx-auto py-6 px-4 md:px-6 lg:px-8">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div v-for="article in additionalArticles" :key="article.id" class="bg-gray-800 shadow-lg">
+        <div
+          v-for="article in additionalArticles"
+          :key="article.id"
+          class="bg-gray-800 shadow-lg"
+        >
           <a :href="`/article/${article.id}`">
-            <div class="relative h-48 bg-cover bg-center"
-                 :style="{ backgroundImage: `url(${article.cover_image})` }">
+            <div
+              class="relative h-48 bg-cover bg-center"
+              :style="{ backgroundImage: `url(${article.cover_image})` }"
+            >
               <div class="absolute inset-0 bg-black opacity-20"></div>
             </div>
             <div class="p-6">
               <h2 class="text-2xl font-bold mb-2 hover:text-orange-500 transition-colors">
                 {{ article.title }}
               </h2>
-              <p class="text-sm text-gray-400 mb-4">{{ formatDate(article.created_at) }}</p>
+              <p class="text-sm text-gray-400 mb-4">
+                {{ formatDate(article.created_at) }}
+              </p>
+              <!-- Badge categorie -->
+              <div v-if="article.categories" class="flex flex-wrap gap-2">
+                <span
+                  v-for="cat in parseCategories(article.categories)"
+                  :key="cat"
+                  :class="[ categoryColor(cat), 'inline-block text-black px-2 py-1 rounded-md text-sm' ]"
+                >
+                  {{ cat }}
+                </span>
+              </div>
             </div>
           </a>
         </div>
       </div>
     </div>
 
-    <!-- Blog Provided By -->
-    <div class="bg-yellow-500 py-4">
-      <div class="container mx-auto text-center">
-        <p class="text-lg font-semibold text-black">Questo blog è fornito da <a href="https://blockdyor.com" target="_blank" class="underline hover:text-gray-700">BlockDyor</a></p>
-      </div>
-    </div>
+    <!-- RIMOSSA la sezione "Blog Provided By" -->
 
-    <!-- Pagination -->
-    <div class="flex justify-center mt-12" v-if="hasPagination">
-      <button @click="loadPreviousPage" :disabled="currentPage === 1"
-              class="px-4 py-2 bg-gray-700 text-white rounded-l hover:bg-gray-600 disabled:opacity-50">
+    <!-- Pagination Buttons (più belli) -->
+    <div class="flex justify-center items-center mt-12" v-if="true">
+      <button
+        @click="loadPreviousPage"
+        :disabled="currentPage === 1"
+        class="px-5 py-2 rounded-l-full bg-white/10
+               text-white hover:bg-white/20 transition-colors
+               disabled:opacity-50 disabled:cursor-not-allowed"
+      >
         Precedente
       </button>
-      <span class="px-4 py-2 bg-gray-800 text-white">Pagina {{ currentPage }}</span>
-      <button @click="loadNextPage" :disabled="!hasMorePages"
-              class="px-4 py-2 bg-gray-700 text-white rounded-r hover:bg-gray-600 disabled:opacity-50">
+      <span class="px-4 py-2 bg-white/10 text-white">
+        Pagina {{ currentPage }}
+      </span>
+      <button
+        @click="loadNextPage"
+        :disabled="!hasMorePages"
+        class="px-5 py-2 rounded-r-full bg-white/10
+               text-white hover:bg-white/20 transition-colors
+               disabled:opacity-50 disabled:cursor-not-allowed"
+      >
         Successivo
       </button>
     </div>
   </section>
 </template>
-
-<script>
-export default {
-  name: "BlogMainPage",
-  data() {
-    return {
-      featuredArticle: {},
-      recentArticles: [],
-      additionalArticles: [],
-      error: null,
-      currentPage: 1,
-      hasMorePages: true,
-    };
-  },
-  mounted() {
-    this.fetchArticles();
-  },
-  methods: {
-    fetchArticles() {
-      const url = `https://api.bitcoinbeer.events/api/articles_api.php?page=${this.currentPage}`;
-
-      fetch(url)
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Errore nel recupero degli articoli");
-          }
-          return response.json();
-        })
-        .then((data) => {
-          if (data.success) {
-            this.featuredArticle = data.data[0];
-            this.recentArticles = data.data.slice(1, 3);
-            this.additionalArticles = data.data.slice(3);
-            this.hasMorePages = data.hasMorePages;
-          } else {
-            this.error = data.error || "Errore sconosciuto";
-          }
-        })
-        .catch((error) => {
-          this.error = error.message;
-        });
-    },
-    loadPreviousPage() {
-      if (this.currentPage > 1) {
-        this.currentPage--;
-        this.fetchArticles();
-      }
-    },
-    loadNextPage() {
-      if (this.hasMorePages) {
-        this.currentPage++;
-        this.fetchArticles();
-      }
-    },
-    formatDate(date) {
-      const options = { year: "numeric", month: "long", day: "numeric" };
-      return new Date(date).toLocaleDateString("it-IT", options);
-    },
-  },
-};
-</script>
 
 <style scoped>
 body {
@@ -254,6 +429,7 @@ img {
   height: auto;
 }
 
+/* Imposta altezza max e trim del testo */
 .line-clamp-3 {
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -297,4 +473,3 @@ img {
   }
 }
 </style>
-

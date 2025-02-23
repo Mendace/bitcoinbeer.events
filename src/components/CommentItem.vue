@@ -1,0 +1,211 @@
+<template>
+    <div class="p-4 bg-gray-800 rounded mb-2" :class="{ 'opacity-50': comment.status==='pending' }">
+      <div v-if="comment.status==='pending'" class="text-sm text-blue-300 italic">
+        [In attesa di moderazione]
+      </div>
+      <div class="flex justify-between items-center">
+        <span class="text-yellow-400 font-semibold">{{ comment.author }}</span>
+        <span class="text-gray-400 text-sm">{{ formatDate(comment.created_at) }}</span>
+      </div>
+      <div v-if="isEditing" class="mt-2">
+        <textarea v-model="editContent" rows="3" class="w-full px-2 py-1 rounded bg-gray-700 text-white border-none"></textarea>
+        <div class="mt-2 flex space-x-2">
+          <button class="bg-blue-500 text-white px-2 py-1 rounded" @click="saveEdit">Salva</button>
+          <button class="bg-gray-600 text-white px-2 py-1 rounded" @click="isEditing=false">Annulla</button>
+        </div>
+      </div>
+      <div v-else class="mt-2 text-gray-200 whitespace-pre-line">
+        {{ comment.content }}
+      </div>
+      <div class="flex flex-wrap items-center space-x-3 mt-3">
+        <button class="flex items-center space-x-1" @click="react('heart')">
+          <span class="text-red-500">♥</span>
+          <span class="text-sm text-gray-300">{{ comment.heart_count || 0 }}</span>
+        </button>
+        <button class="flex items-center space-x-1" @click="react('star')">
+          <span class="text-yellow-400">★</span>
+          <span class="text-sm text-gray-300">{{ comment.star_count || 0 }}</span>
+        </button>
+        <button class="flex items-center space-x-1" @click="react('thumbsup')">
+          <span class="text-green-400">👍</span>
+          <span class="text-sm text-gray-300">{{ comment.thumbsup_count || 0 }}</span>
+        </button>
+        <button class="flex items-center space-x-1" @click="react('thumbsdown')">
+          <span class="text-red-400">👎</span>
+          <span class="text-sm text-gray-300">{{ comment.thumbsdown_count || 0 }}</span>
+        </button>
+        <button class="text-sm text-blue-400 underline" @click="showReply = !showReply">
+          Rispondi
+        </button>
+        <template v-if="isOwner">
+          <button class="text-sm text-green-400 underline" @click="startEdit">Modifica</button>
+          <button class="text-sm text-red-400 underline" @click="deleteComment">Elimina</button>
+        </template>
+      </div>
+      <div v-if="showReply" class="mt-2">
+        <input type="text" v-model="replyAuthor" placeholder="Tuo nome (opz.)" class="w-full mb-1 px-2 py-1 rounded bg-gray-700 text-white border-none" />
+        <textarea v-model="replyContent" rows="2" placeholder="La tua risposta..." class="w-full mb-1 px-2 py-1 rounded bg-gray-700 text-white border-none"></textarea>
+        <button class="bg-yellow-500 text-black px-2 py-1 rounded" @click="sendReply">Invia risposta</button>
+      </div>
+      <div v-if="comment.replies && comment.replies.length" class="mt-3">
+        <button class="text-xs text-gray-500 underline" @click="collapsed = !collapsed">
+          <span v-if="collapsed">▶ Mostra ({{ comment.replies.length }}) risposte</span>
+          <span v-else>▼ Nascondi risposte</span>
+        </button>
+        <div v-if="!collapsed" class="ml-5 border-l border-gray-600 pl-3 mt-1">
+          <CommentItem
+            v-for="r in comment.replies"
+            :key="r.id"
+            :comment="r"
+            :formatDate="formatDate"
+            :refresh="refresh"
+          />
+        </div>
+      </div>
+    </div>
+  </template>
+  
+  <script>
+  const SelfRef = () => import('./CommentItem.vue');
+  import { ref, computed } from 'vue';
+  
+  export default {
+    name: 'CommentItem',
+    components: {
+      CommentItem: SelfRef
+    },
+    props: {
+      comment: { type: Object, required: true },
+      formatDate: { type: Function, required: true },
+      refresh: { type: Function, required: true }
+    },
+    setup(props) {
+      const isEditing = ref(false);
+      const editContent = ref(props.comment.content);
+      const collapsed = ref(true);
+      const showReply = ref(false);
+      const replyAuthor = ref('');
+      const replyContent = ref('');
+  
+      const isOwner = computed(() => {
+        return !!localStorage.getItem(`commentKey_${props.comment.id}`);
+      });
+  
+      const startEdit = () => {
+        isEditing.value = true;
+        editContent.value = props.comment.content;
+      };
+  
+      async function saveEdit() {
+        isEditing.value = false;
+        const editKey = localStorage.getItem(`commentKey_${props.comment.id}`);
+        if (!editKey) {
+          alert("Non hai i permessi per modificare questo commento!");
+          return;
+        }
+        try {
+          const resp = await fetch(`https://api.bitcoinbeer.events/api/comments_api.php?action=edit&id=${props.comment.id}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ edit_key: editKey, content: editContent.value })
+          });
+          const data = await resp.json();
+          if (data.success) {
+            props.refresh();
+          } else {
+            console.error(data.error);
+          }
+        } catch (e) {
+          console.error(e);
+        }
+      }
+  
+      async function deleteComment() {
+        if (!confirm("Sicuro di voler eliminare questo commento?")) return;
+        const editKey = localStorage.getItem(`commentKey_${props.comment.id}`);
+        if (!editKey) {
+          alert("Non hai i permessi per eliminare questo commento!");
+          return;
+        }
+        try {
+          const resp = await fetch(`https://api.bitcoinbeer.events/api/comments_api.php?action=delete&id=${props.comment.id}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ edit_key: editKey })
+          });
+          const data = await resp.json();
+          if (data.success) {
+            props.refresh();
+          } else {
+            console.error(data.error);
+          }
+        } catch (e) {
+          console.error(e);
+        }
+      }
+  
+      async function react(actionType) {
+        try {
+          const url = `https://api.bitcoinbeer.events/api/comments_api.php?action=${actionType}&id=${props.comment.id}`;
+          const resp = await fetch(url, { method: 'POST' });
+          const data = await resp.json();
+          if (data.success) {
+            props.refresh();
+          } else {
+            console.error(data.error);
+          }
+        } catch (e) {
+          console.error(e);
+        }
+      }
+  
+      async function sendReply() {
+        if (!replyContent.value.trim()) {
+          alert("Testo della risposta vuoto");
+          return;
+        }
+        try {
+          const bodyObj = {
+            article_id: props.comment.article_id,
+            parent_id: props.comment.id,
+            author: replyAuthor.value,
+            content: replyContent.value
+          };
+          const resp = await fetch(`https://api.bitcoinbeer.events/api/comments_api.php`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(bodyObj)
+          });
+          const data = await resp.json();
+          if (data.success) {
+            localStorage.setItem(`commentKey_${data.data.id}`, data.data.edit_key);
+            props.refresh();
+          } else {
+            console.error(data.error);
+          }
+        } catch (e) {
+          console.error(e);
+        }
+        showReply.value = false;
+        replyAuthor.value = '';
+        replyContent.value = '';
+      }
+  
+      return {
+        isEditing,
+        editContent,
+        collapsed,
+        showReply,
+        replyAuthor,
+        replyContent,
+        isOwner,
+        startEdit,
+        saveEdit,
+        deleteComment,
+        react,
+        sendReply
+      };
+    }
+  };
+  </script>
+  
