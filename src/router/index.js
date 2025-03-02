@@ -21,12 +21,18 @@ import NotFound from '../views/NotFound.vue';
 import BlogMain from '../views/BlogMain.vue';
 import AllEvents from '../views/AllEvents.vue';
 import EventDetailPage from '../views/EventDetailPage.vue';
+import CompleteProfile from '../views/CompleteProfile.vue';
 
 const routes = [
   {
     path: '/',
     name: 'Home',
     component: Home,
+  },
+  {
+    path: '/CompleteProfile',
+    name: 'Profile',
+    component: CompleteProfile,
   },
   {
     path: '/dashboard',
