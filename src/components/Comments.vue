@@ -5,14 +5,20 @@
     <div v-if="!loggedIn" class="p-4 bg-gray-900 rounded mb-4">
       <h2 class="text-xl font-bold text-yellow-400">Login / Registrazione</h2>
       <div class="mt-2">
-        <label for="privateKey" class="block text-gray-300">
-          Ottieni la tua private key registrandoti oppure inseriscila se ne possiedi una:
-        </label>
+        <label for="username" class="block text-gray-300">Username:</label>
         <input
-          id="privateKey"
-          v-model="privateKey"
+          id="username"
+          v-model="username"
           type="text"
-          placeholder="Private key"
+          placeholder="Username"
+          class="w-full p-2 my-2 rounded bg-gray-700 text-white border"
+        />
+        <label for="password" class="block text-gray-300">Password:</label>
+        <input
+          id="password"
+          v-model="password"
+          type="password"
+          placeholder="Password"
           class="w-full p-2 my-2 rounded bg-gray-700 text-white border"
         />
         <div class="flex space-x-2">
@@ -120,26 +126,35 @@
             </ul>
             <div class="mt-4">
               <router-link to="/CompleteProfile" class="text-blue-400 underline flex items-center">
-  <i class="bi bi-person-lines-fill mr-1"></i>
-  Profilo Completo
-</router-link>                
+                <i class="bi bi-person-lines-fill mr-1"></i>
+                Profilo Completo
+              </router-link>
             </div>
           </div>
         </div>
       </div>
     </div>
   
-    <!-- Modal Registrazione: inserimento nome -->
+    <!-- Modal Registrazione: username e password -->
     <div v-if="showRegistrationModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
       <div class="bg-gray-900 rounded p-6 w-11/12 md:w-1/3">
         <h3 class="text-xl font-bold text-yellow-400 mb-4">Registrazione</h3>
         <label class="block text-gray-300 mb-2" for="registrationUsername">
-          Inserisci il nome da registrare:
+          Inserisci il tuo username:
         </label>
         <input id="registrationUsername"
           v-model="registrationUsername"
           type="text"
-          placeholder="Nome utente"
+          placeholder="Username"
+          class="w-full p-2 rounded bg-gray-700 text-white border"
+        />
+        <label class="block text-gray-300 mb-2 mt-4" for="registrationPassword">
+          Inserisci la tua password:
+        </label>
+        <input id="registrationPassword"
+          v-model="registrationPassword"
+          type="password"
+          placeholder="Password"
           class="w-full p-2 rounded bg-gray-700 text-white border"
         />
         <p v-if="registrationMessage" class="mt-2 text-red-400">{{ registrationMessage }}</p>
@@ -186,7 +201,8 @@ const props = defineProps({
 
 // Stato di login
 const loggedIn = ref(false);
-const privateKey = ref('');
+const username = ref('');
+const password = ref('');
 const authMessage = ref('');
 
 // Dati per i commenti
@@ -204,6 +220,7 @@ const profileMessage = ref('');
 const showProfileModal = ref(false);
 const showRegistrationModal = ref(false);
 const registrationUsername = ref('');
+const registrationPassword = ref('');
 const registrationMessage = ref('');
 const showPrivateKeyModal = ref(false);
 const registrationPrivateKey = ref('');
@@ -216,9 +233,34 @@ const userAvatar = computed(() => {
     : defaultAvatar;
 });
 
-// Computed: Totale like ricevuti da tutti i commenti dell'utente
-const totalLikes = computed(() =>
-  myComments.value.reduce((sum, comment) => sum + (comment.like_count || 0), 0)
+// Computed: Totale like ricevuti da tutti i commenti dell'utente (e altre reazioni)
+const commentsCount = computed(() => comments.value.length);
+const totalLike = computed(() =>
+  comments.value.reduce((sum, c) => sum + (c.like_count || 0), 0)
+);
+const totalHeart = computed(() =>
+  comments.value.reduce((sum, c) => sum + (c.heart_count || 0), 0)
+);
+const totalStar = computed(() =>
+  comments.value.reduce((sum, c) => sum + (c.star_count || 0), 0)
+);
+const totalThumbsUp = computed(() =>
+  comments.value.reduce((sum, c) => sum + (c.thumbsup_count || 0), 0)
+);
+const totalThumbsDown = computed(() =>
+  comments.value.reduce((sum, c) => sum + (c.thumbsdown_count || 0), 0)
+);
+// Totale delle reazioni positive (escludendo thumbs down)
+const totalLikesComputed = computed(() =>
+  totalLike.value + totalHeart.value + totalStar.value + totalThumbsUp.value
+);
+// Totale delle reazioni (somma di tutte le reazioni)
+const totalReactions = computed(() =>
+  totalLike.value +
+  totalHeart.value +
+  totalStar.value +
+  totalThumbsUp.value +
+  totalThumbsDown.value
 );
 
 // Controlla login
@@ -301,7 +343,6 @@ async function addComment() {
     const data = await resp.json();
     if (data.success) {
       localStorage.setItem(`commentKey_${data.data.id}`, data.data.edit_key);
-  
       rawComments.value.push({
         id: data.data.id,
         parent_id: null,
@@ -318,7 +359,6 @@ async function addComment() {
         thumbsdown_count: 0,
         created_at: new Date().toISOString()
       });
-  
       buildThread();
       content.value = '';
     } else {
@@ -337,25 +377,27 @@ function formatDate(dt) {
 }
 
 /**
- * Login con private key
+ * Login con username e password
  */
 async function login() {
-  if (!privateKey.value.trim()) {
-    authMessage.value = 'Inserisci la private key.';
+  if (!username.value.trim() || !password.value.trim()) {
+    authMessage.value = 'Inserisci username e password.';
     return;
   }
   try {
     const response = await fetch('https://api.bitcoinbeer.events/api/login.php', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ private_key: privateKey.value.trim() })
+      body: JSON.stringify({ username: username.value.trim(), password: password.value.trim() })
     });
     const data = await response.json();
     if (data.success) {
       localStorage.setItem('user_token', data.data.token);
       authMessage.value = 'Login effettuato con successo!';
       loggedIn.value = true;
-      privateKey.value = '';
+      // Resetta i campi di login
+      username.value = '';
+      password.value = '';
       loadComments();
       loadProfile();
     } else {
@@ -368,7 +410,7 @@ async function login() {
 }
 
 /**
- * Registrazione (apre il modal per l'inserimento del nome)
+ * Registrazione (apre il modal per username e password)
  */
 function registerUser() {
   showRegistrationModal.value = true;
@@ -380,29 +422,32 @@ function registerUser() {
 function cancelRegistration() {
   showRegistrationModal.value = false;
   registrationUsername.value = '';
+  registrationPassword.value = '';
   registrationMessage.value = '';
 }
 
 /**
- * Invia la richiesta di registrazione con il nome scelto
+ * Invia la richiesta di registrazione con username e password
  */
 async function submitRegistration() {
   if (!registrationUsername.value.trim()) {
     registrationMessage.value = 'Inserisci un nome utente.';
     return;
   }
+  if (!registrationPassword.value.trim()) {
+    registrationMessage.value = 'Inserisci una password.';
+    return;
+  }
   try {
     const response = await fetch('https://api.bitcoinbeer.events/api/register.php', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username: registrationUsername.value.trim() })
+      body: JSON.stringify({ username: registrationUsername.value.trim(), password: registrationPassword.value.trim() })
     });
     const data = await response.json();
     if (data.success) {
-      registrationPrivateKey.value = data.data.private_key;
       showRegistrationModal.value = false;
-      showPrivateKeyModal.value = true;
-      authMessage.value = "Ora puoi usare la tua private key per il login.";
+      authMessage.value = "Registrazione completata! Ora puoi accedere con le tue credenziali.";
     } else {
       registrationMessage.value = data.error || 'Errore durante la registrazione.';
     }
@@ -413,7 +458,7 @@ async function submitRegistration() {
 }
 
 /**
- * Chiude il modal della private key
+ * Chiude il modal della private key (non usato nel nuovo modello, ma lasciato per compatibilità)
  */
 function closePrivateKeyModal() {
   showPrivateKeyModal.value = false;
