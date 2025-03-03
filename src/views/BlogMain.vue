@@ -220,46 +220,63 @@ watch([searchTerm, selectedCategory], () => {
       </div>
     </div>
 
-    <!-- Filter Bar (centrata, glass effect) -->
-    <div class="container mx-auto py-8 flex flex-col items-center justify-center px-4">
-      <div class="w-full md:w-2/3 lg:w-1/2 bg-white/10 backdrop-blur-md 
-                  rounded-xl p-6 flex flex-col md:flex-row items-center gap-4">
+<!-- Filter Bar (centrata, glass effect) -->
+<div class="container mx-auto py-8 flex flex-col items-center justify-center px-4">
+  <div class="w-full md:w-2/3 lg:w-1/2 bg-white/10 backdrop-blur-md 
+              rounded-xl p-6 flex flex-col md:flex-row items-center gap-4">
 
-        <!-- Input di ricerca -->
-        <input
-          v-model="searchTerm"
-          type="text"
-          placeholder="Cerca un articolo..."
-          class="flex-1 px-4 py-2 bg-transparent text-white placeholder-gray-300
-                 focus:outline-none focus:ring-2 focus:ring-yellow-400 rounded 
-                 border border-white/20"
-        />
-
-        <!-- Select categoria -->
-        <select
-          v-model="selectedCategory"
-          class="px-4 py-2 bg-transparent text-white focus:outline-none
-                 focus:ring-2 focus:ring-yellow-400 rounded
-                 border border-white/20"
+    <!-- Input di ricerca con icona -->
+    <div class="relative flex-1">
+      <input
+        v-model="searchTerm"
+        type="text"
+        placeholder="Cerca..."
+        class="search-input w-full px-4 py-2 rounded-full
+               placeholder-gray-300 bg-gray-800 text-white
+               focus:outline-none"
+      />
+      <!-- Icona di ricerca assoluta a destra -->
+      <span
+        class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"
+      >
+        <!-- Usando un'icona inline SVG, oppure un <i> di FontAwesome ecc. -->
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
         >
-          <option value="">Tutte</option>
-          <option value="notizie">Notizie</option>
-          <option value="recensione">Recensione</option>
-          <option value="inchiesta">Inchiesta</option>
-          <option value="intervista">Intervista</option>
-          <option value="altro">Altro</option>
-        </select>
-
-        <!-- Pulsante reset -->
-        <button
-          @click="resetFilter"
-          class="px-4 py-2 bg-yellow-500 text-black rounded hover:bg-yellow-400 transition-colors"
-        >
-          Resetta
-        </button>
-      </div>
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M8 16l-4.293 4.293a1 1 0 001.414 
+               1.414L9.414 17.414A8 8 0 1116 8a7.964 7.964 0 01-1.414 
+               4.586l4.293 4.293a1 1 0 001.414-1.414L18 11.586l.293-.293 
+               C19.635 10.22 20 9.134 20 8a8 8 0 10-8 8z"
+          />
+        </svg>
+      </span>
     </div>
-    <!-- End Filter Bar -->
+
+    <!-- Select categoria -->
+    <select
+      v-model="selectedCategory"
+      class="px-4 py-2 bg-transparent text-white 
+             focus:outline-none rounded-full
+             border border-white/20"
+    >
+      <option value="">Tutte</option>
+      <option value="notizie">Notizie</option>
+      <option value="recensione">Recensione</option>
+      <option value="inchiesta">Inchiesta</option>
+      <option value="intervista">Intervista</option>
+      <option value="altro">Altro</option>
+    </select>
+  </div>
+</div>
+<!-- Fine Filter Bar -->
 
     <!-- Featured + Recent -->
     <div class="container mx-auto py-6 px-4 md:px-6 lg:px-8">
@@ -444,6 +461,30 @@ img {
 .hover\:shadow-lg:hover {
   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
 }
+
+.search-input {
+  /* stato normale */
+  background-color: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.2); /* bordo grigio chiaro */
+  border-radius: 9999px; /* effetto “pill” */
+  color: #ffffff;
+  transition: all 0.3s ease;
+  padding: 0.5rem 1rem;
+}
+
+.search-input::placeholder {
+  color: #9ca3af; /* per placeholder grigio chiaro */
+}
+
+.search-input:focus {
+  outline: none;
+  border: 5px solid transparent; /* toglie il bordo standard */
+  /* Glow dal giallo (#facc15) all'arancio (#ea580c) */
+  box-shadow: 
+    0 0 10px 2px #facc15,    /* alone giallo più vicino */
+    0 0 20px 5px #ea580c;    /* alone arancione più esterno */
+}
+
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {

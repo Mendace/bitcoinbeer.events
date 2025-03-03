@@ -189,8 +189,8 @@
   left: 0;
   width: 100%;
   height: 100vh; /* Copre tutto lo schermo */
-  background-color: black;
-  color: white;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);  color: white;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -226,7 +226,7 @@
 }
 
 .menu-mobile ul li a:hover {
-  color: #0072ff;
+  color: #152335;
 }
 
 .menu-mobile button.close {
