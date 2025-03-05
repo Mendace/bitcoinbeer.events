@@ -3,6 +3,17 @@ import BlogMain from "./views/BlogMain.vue";
 
 const messages = {
   en: {
+    cookies: {
+      message: "We use cookies to improve your experience. Accept them?",
+      accept: "Accept",
+      decline: "Decline",
+      preferences: "Preferences",
+      preferences_title: "Cookie Preferences",
+      analytics: "Allow analytics cookies",
+      marketing: "Allow marketing cookies",
+      save: "Save Preferences",
+      close: "Close"
+    },
     navigation: {
       home: "Home",
       dashboard: "Dashboard",
@@ -303,15 +314,56 @@ const messages = {
       description: "Discover upcoming initiatives and get ready for a unique experience!",
       explore: "Explore",
     },
-
-
-
-
-
-
+    privacy: {
+      title: "Privacy Policy",
+      last_updated: "Last updated: 4/3/2025",
+      who_we_are: {
+        title: "Who We Are",
+        content: "<p>Bitcoin Beer is a community project dedicated to Bitcoin enthusiasts.</p>\n<p>We organize events, manage a blog, and provide educational content.</p>\n<p>Our website uses self-hosted technologies to ensure better privacy control.</p>"
+      },
+      data_collected: {
+        title: "Data Collected",
+        content: "<p>We do not collect sensitive personal data. However, we use tools to improve user experience, including:</p>\n<ul>\n<li>Umami Analytics (self-hosted) for anonymous site visit statistics.</li>\n<li>Listmonk (self-hosted) for newsletter management.</li>\n<li>Self-hosted dashboard for event and blog management.</li>\n</ul>\n<p>The collected data is anonymous and not shared with third parties.</p>"
+      },
+      cookies: {
+        title: "Cookies and Tracking Technologies",
+        content: "<p>Our site uses a cookie management system that allows users to:</p>\n<ul>\n<li>Accept or reject cookies.</li>\n<li>Customize preferences between necessary, analytics, and marketing cookies.</li>\n<li>Block analytics scripts until consent is given.</li>\n</ul>"
+      },
+      data_storage: {
+        title: "Where Data is Stored",
+        content: "<p>All data is stored on our self-hosted servers, including:</p>\n<ul>\n<li>Analytics (Umami).</li>\n<li>Newsletter management (Listmonk).</li>\n<li>Event information (dashboard).</li>\n</ul>\n<p>We do not use third-party cloud services for user data management.</p>"
+      },
+      security: {
+        title: "Data Security",
+        content: "<p>We adopt measures to protect collected data, including:</p>\n<ul>\n<li>HTTPS encryption.</li>\n<li>Self-hosted servers to minimize privacy risks.</li>\n<li>Access limited to authorized administrators.</li>\n</ul>"
+      },
+      user_rights: {
+        title: "User Rights",
+        content: "<p>You have the right to:</p>\n<ul>\n<li>Access the data collected about you.</li>\n<li>Correct inaccurate information.</li>\n<li>Request the deletion of your data (e.g., by unsubscribing from the newsletter).</li>\n<li>Modify cookie preferences at any time.</li>\n</ul>"
+      },
+      changes: {
+        title: "Changes to this Privacy Policy",
+        content: "<p>We may update this policy to reflect changes in our services.</p>\n<p>We encourage you to check this page periodically.</p>"
+      },
+      contact: {
+        title: "Contact Us",
+        content: "<p>For any questions about our privacy policy, contact us through the site's Contact section.</p>"
+      }
+    }
   },
 
   it: {
+    cookies: {
+      message: "Utilizziamo i cookie per migliorare la tua esperienza. Accetti?",
+      accept: "Accetta",
+      decline: "Rifiuta",
+      preferences: "Preferenze",
+      preferences_title: "Preferenze Cookie",
+      analytics: "Consenti cookie analitici",
+      marketing: "Consenti cookie di marketing",
+      save: "Salva Preferenze",
+      close: "Chiudi"
+    },
     navigation: {
       home: "Home",
       dashboard: "Dashboard",
@@ -611,12 +663,43 @@ const messages = {
       description: "Scopri le prossime iniziative e preparati a un'esperienza unica!",
       explore: "Esplora",
     },
-
-
-
-
-
-  },
+    privacy: {
+      title: "Informativa sulla Privacy",
+      last_updated: "Ultimo aggiornamento: 4/3/2025",
+      who_we_are: {
+        title: "Chi siamo",
+        content: "<p>Bitcoin Beer è un progetto dedicato agli appassionati di Bitcoin.</p>\n<p>Organizziamo eventi, gestiamo un blog e forniamo contenuti educativi.</p>\n<p>Il nostro sito utilizza tecnologie self-hosted per garantire un maggiore controllo sulla privacy.</p>"
+      },
+      data_collected: {
+        title: "Dati Raccolti",
+        content: "<p>Non raccogliamo dati personali sensibili, tuttavia utilizziamo strumenti per migliorare l’esperienza dell’utente, tra cui:</p>\n<ul>\n<li>Umami Analytics (self-hosted) per statistiche anonime sulle visite al sito.</li>\n<li>Listmonk (self-hosted) per la gestione della newsletter.</li>\n<li>Dashboard self-hosted per la gestione degli eventi e del blog.</li>\n</ul>\n<p>I dati raccolti sono anonimi e non vengono condivisi con terze parti.</p>"
+      },
+      cookies: {
+        title: "Cookies e Tecnologie di Tracciamento",
+        content: "<p>Il nostro sito utilizza un sistema di gestione dei cookie che consente di:</p>\n<ul>\n<li>Accettare o rifiutare i cookie.</li>\n<li>Personalizzare le preferenze scegliendo tra cookie necessari, analitici e di marketing.</li>\n<li>Bloccare gli script di analisi fino al consenso.</li>\n</ul>"
+      },
+      data_storage: {
+        title: "Dove vengono conservati i dati",
+        content: "<p>Tutti i dati vengono archiviati sui nostri server self-hosted, inclusi:</p>\n<ul>\n<li>Analytics (Umami).</li>\n<li>Gestione newsletter (Listmonk).</li>\n<li>Informazioni sugli eventi (dashboard).</li>\n</ul>\n<p>Non utilizziamo servizi cloud di terze parti per la gestione dei dati degli utenti.</p>"
+      },
+      security: {
+        title: "Sicurezza dei Dati",
+        content: "<p>Adottiamo misure per proteggere i dati raccolti, tra cui:</p>\n<ul>\n<li>Crittografia HTTPS.</li>\n<li>Server self-hosted per minimizzare i rischi legati alla privacy.</li>\n<li>Accesso limitato ai soli amministratori autorizzati.</li>\n</ul>"
+      },
+      user_rights: {
+        title: "Diritti degli Utenti",
+        content: "<p>Hai il diritto di:</p>\n<ul>\n<li>Accedere ai dati raccolti su di te.</li>\n<li>Rettificare eventuali informazioni inesatte.</li>\n<li>Chiedere la cancellazione dei tuoi dati (ad esempio, disiscrivendoti dalla newsletter).</li>\n<li>Modificare le preferenze sui cookie in qualsiasi momento.</li>\n</ul>"
+      },
+      changes: {
+        title: "Modifiche alla Privacy Policy",
+        content: "<p>Potremmo aggiornare questa informativa per riflettere eventuali cambiamenti nei nostri servizi.</p>\n<p>Ti consigliamo di controllare periodicamente questa pagina per rimanere informato.</p>"
+      },
+      contact: {
+        title: "Contattaci",
+        content: "<p>Per qualsiasi domanda sulla nostra privacy policy, puoi contattarci tramite la sezione Contatti del sito.</p>"
+      }
+    }
+  }
 };
 
 const i18n = createI18n({

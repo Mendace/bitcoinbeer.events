@@ -22,6 +22,7 @@ import BlogMain from '../views/BlogMain.vue';
 import AllEvents from '../views/AllEvents.vue';
 import EventDetailPage from '../views/EventDetailPage.vue';
 import CompleteProfile from '../views/CompleteProfile.vue';
+import Privacy from '../views/Privacy.vue';
 
 const routes = [
   {
@@ -33,6 +34,11 @@ const routes = [
     path: '/CompleteProfile',
     name: 'Profile',
     component: CompleteProfile,
+  },
+  {
+    path: '/Privacy',
+    name: 'Privacy',
+    component: Privacy,
   },
   {
     path: '/dashboard',
