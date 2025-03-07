@@ -23,6 +23,8 @@ import AllEvents from '../views/AllEvents.vue';
 import EventDetailPage from '../views/EventDetailPage.vue';
 import CompleteProfile from '../views/CompleteProfile.vue';
 import Privacy from '../views/Privacy.vue';
+import SearchPage from '../views/SearchPage.vue';
+import ResultsPage from '../views/ResultsPage.vue';
 
 const routes = [
   {
@@ -170,7 +172,7 @@ const routes = [
       description: 'Scopri di più sull’organizzazione Bitcoin Beer e la sua missione.',
       ogTitle: 'Bitcoin Beer - About',
       ogDescription: 'Scopri di più sull’organizzazione Bitcoin Beer e la sua missione.',
-      ogImage: '/src/assets/img/og-about.png',
+      ogImage: '/src/assets/imSearchPageg/og-about.png',
     },
   },
   {
@@ -221,6 +223,16 @@ const routes = [
       ogDescription: 'Leggi l\'articolo sul blog Bitcoin Beer.',
       ogImage: '/src/assets/img/og-article.png',
     }
+  },
+  {
+    path: '/searchpage',
+    name: 'searchpage',
+    component: SearchPage,
+  },
+  {
+    path: '/resultspage',
+    name: 'Results',
+    component: ResultsPage,
   },
   {
     path: '/:pathMatch(.*)*',
