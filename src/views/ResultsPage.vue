@@ -1,117 +1,221 @@
 <template>
   <div class="results-page">
-    <!-- Search header fisso -->
+    <!-- Barra di ricerca -->
     <div class="search-header">
       <div class="search-box">
         <input
           type="text"
           v-model="searchQuery"
-          placeholder="Inserisci ricerca (es. ristorante firenze, dentista prato, …)"
+          placeholder="Cerca (es. Ristorante Bitcoin Milano / 25 marzo)"
+          @input="fetchData"
           @keyup.enter="doSearch"
         />
         <button @click="doSearch">Cerca</button>
       </div>
     </div>
 
-    <!-- Contenitore dei risultati (uno sotto l'altro) -->
-    <div class="results-container">
-      <h1 class="results-title">Risultati per: "{{ searchQuery }}"</h1>
-      <div v-if="loading" class="status">Caricamento dati...</div>
-      <div v-else>
-        <p v-if="filteredPlaces.length === 0" class="status">Nessun risultato trovato.</p>
-        <div
-          v-for="place in filteredPlaces"
-          :key="place.id"
-          class="result-item"
-        >
-          <div class="result-content">
+    <!-- Contenitore risultati centrato -->
+    <div class="results-wrapper">
+      <div class="results-container">
+        <h1 class="results-title">Risultati per: "{{ searchQuery }}"</h1>
+
+        <!-- Se la query è una data ed esiste un evento, lo mostriamo come primo risultato -->
+        <EventBox 
+          v-if="dateEvent" 
+          :event_date="dateEvent.event_date" 
+          :title="dateEvent.title" 
+          :description="dateEvent.description" 
+        />
+
+        <!-- Se loading, mostra lo skeleton loader -->
+        <div v-if="loading">
+          <SkeletonCard v-for="n in 6" :key="n" />
+        </div>
+
+        <!-- Altrimenti mostra i risultati normali -->
+        <div v-else>
+          <p v-if="places.length === 0" class="status">Nessun risultato trovato.</p>
+          <div
+            v-for="place in places"
+            :key="place.id"
+            class="result-item"
+            @click="openModal(place)"
+          >
+            <!-- Nome -->
             <h2 class="result-name">{{ place.name || 'Senza nome' }}</h2>
+
+            <!-- Indirizzo -->
             <p class="result-address">
-              <strong>Indirizzo:</strong>
-              {{ place.address_street || 'N/A' }}
-              {{ place.address_housenumber || '' }}, 
+              {{ place.address_street || '' }}
+              {{ place.address_housenumber || '' }},
               {{ place.address_city || 'N/A' }}
             </p>
-            <p class="result-cap">
-              <strong>CAP:</strong> {{ place.address_postcode || 'N/A' }}
+
+            <!-- Metodi di pagamento -->
+            <p
+              class="payment-line"
+              v-if="place.payment_onchain === 1 || place.payment_lightning === 1 || place.payment_lightning_contactless === 1"
+            >
+              Payment:
+              <span v-if="place.payment_onchain === 1" class="icon-with-text">
+                <img :src="bitcoinIcon" alt="Bitcoin Onchain" class="icon-crypto" />
+                On-chain
+              </span>
+              <span
+                v-if="place.payment_lightning === 1 || place.payment_lightning_contactless === 1"
+                class="icon-with-text"
+              >
+                <img :src="lightningIcon" alt="Lightning Payment" class="icon-crypto" />
+                Lightning
+              </span>
             </p>
-            <div class="payment-info">
-              <span
-                v-if="place.currency_XBT == 1"
-                class="icon bitcoin-icon"
-                title="Pagamento Bitcoin"
-              >₿</span>
-              <span
-                v-if="place.payment_lightning == 1"
-                class="icon lightning-icon"
-                title="Lightning Network"
-              >⚡</span>
-            </div>
-          </div>
-          <div class="action-buttons">
-            <button class="share-btn" @click="sharePlace(place)">Condividi</button>
-            <button class="maps-btn" @click="openMaps(place)">Mappe</button>
+
+            <!-- Descrizione -->
+            <p v-if="place.description" class="result-description">
+              {{ place.description }}
+            </p>
+
+            <!-- Sito web -->
+            <p v-if="place.website" class="result-website">
+              <a :href="place.website" target="_blank">
+                <img
+                  src="https://cdn-icons-png.flaticon.com/512/841/841364.png"
+                  alt="Sito web"
+                  class="web-icon"
+                />
+              </a>
+            </p>
           </div>
         </div>
       </div>
     </div>
+
+    <!-- Modal con dettagli -->
+    <transition name="fade">
+      <div v-if="selectedPlace" class="modal-overlay" @click="selectedPlace = null">
+        <div class="modal-content" @click.stop>
+          <span class="close-btn" @click="selectedPlace = null">&times;</span>
+          <div class="modal-body">
+            <div class="modal-text">
+              <h2>{{ selectedPlace.name }}</h2>
+              <p>
+                <strong>Indirizzo:</strong>
+                {{ selectedPlace.address_street || '' }}
+                {{ selectedPlace.address_housenumber || '' }},
+                {{ selectedPlace.address_city || 'N/A' }}
+              </p>
+              <!-- Metodi di pagamento nel modal -->
+              <p
+                class="payment-line"
+                v-if="selectedPlace.payment_onchain === 1 || selectedPlace.payment_lightning === 1 || selectedPlace.payment_lightning_contactless === 1"
+              >
+                Payment:
+                <span v-if="selectedPlace.payment_onchain === 1" class="icon-with-text">
+                  <img :src="bitcoinIcon" alt="Bitcoin Onchain" class="icon-crypto" />
+                  On-chain
+                </span>
+                <span
+                  v-if="selectedPlace.payment_lightning === 1 || selectedPlace.payment_lightning_contactless === 1"
+                  class="icon-with-text"
+                >
+                  <img :src="lightningIcon" alt="Lightning Payment" class="icon-crypto" />
+                  Lightning
+                </span>
+              </p>
+              <p v-if="selectedPlace.website" class="modal-website">
+                <strong>Sito web:</strong>
+                <a :href="selectedPlace.website" target="_blank">
+                  <img
+                    src="https://cdn-icons-png.flaticon.com/512/841/841364.png"
+                    alt="Sito web"
+                    class="web-icon"
+                  />
+                </a>
+              </p>
+              <p class="modal-description">{{ selectedPlace.description }}</p>
+            </div>
+            <!-- Mappa Leaflet -->
+            <div class="modal-map" ref="map"></div>
+          </div>
+        </div>
+      </div>
+    </transition>
   </div>
 </template>
 
 <script>
+import L from "leaflet";
+import SkeletonCard from "../components/SkeletonCard.vue";
+import EventBox from "../components/EventBox.vue";
+import bitcoinIconPath from "/logos/icons8-bitcoin-48.png";
+import lightningIconPath from "/logos/icons8-fulmine-48.png";
+
 export default {
   name: "ResultsPage",
+  components: {
+    SkeletonCard,
+    EventBox,
+  },
   data() {
     return {
       places: [],
       loading: false,
-      searchQuery: this.$route.query.q || ""
+      searchQuery: this.$route.query.q || "",
+      selectedPlace: null,
+      bitcoinIcon: bitcoinIconPath,
+      lightningIcon: lightningIconPath,
+      dateEvent: null // Variabile per l'evento della data cercata
     };
   },
   computed: {
-    tokens() {
-      return this.searchQuery
-        .toLowerCase()
-        .split(" ")
-        .map(token => token.trim())
-        .filter(token => token.length > 0);
+    formattedDay() {
+      return this.event_date ? new Date(this.event_date).getDate() : "--";
     },
-    filteredPlaces() {
-      if (this.tokens.length === 0) {
-        return this.places;
-      }
-      return this.places.filter(place => {
-        const searchableText = [
-          place.name,
-          place.address_city,
-          place.address_street,
-          place.address_housenumber,
-          place.address_postcode,
-          place.description,
-          place.category,
-          place.shop_type
-        ]
-          .filter(Boolean)
-          .join(" ")
-          .toLowerCase();
-        return this.tokens.every(token => searchableText.includes(token));
-      });
+    formattedMonth() {
+      const months = ["Gen", "Feb", "Mar", "Apr", "Mag", "Giu", "Lug", "Ago", "Set", "Ott", "Nov", "Dic"];
+      return this.event_date ? months[new Date(this.event_date).getMonth()] : "--";
     }
   },
+
   methods: {
     async fetchData() {
       this.loading = true;
       try {
-        const response = await fetch(
-          "https://api.bitcoinbeer.events/api/places.php?limit=1000&offset=0"
-        );
+        // Se la query è una data, esegui la fetch dell'evento per data
+        if (this.isDateQuery && this.formattedSearchDate) {
+          await this.fetchEventByDate(this.formattedSearchDate);
+        } else {
+          this.dateEvent = null;
+        }
+        // Carica i normali risultati di ricerca
+        const params = new URLSearchParams({ limit: 1000, offset: 0 });
+        if (this.searchQuery.trim()) {
+          params.append("search", this.searchQuery.trim());
+        }
+        const response = await fetch(`https://api.bitcoinbeer.events/api/places.php?${params.toString()}`);
         const result = await response.json();
         this.places = result.data || [];
       } catch (error) {
-        console.error("Errore durante il recupero dei dati:", error);
+        console.error("Errore nel fetch dei dati:", error);
         this.places = [];
+      } finally {
+        this.loading = false;
       }
-      this.loading = false;
+    },
+    async fetchEventByDate(formattedDate) {
+      try {
+        const url = "https://api.bitcoinbeer.events/api/events_box.php?q=" + encodeURIComponent(formattedDate);
+        const response = await fetch(url);
+        const data = await response.json();
+        if (data && data.event_date) {
+          this.dateEvent = data;
+        } else {
+          this.dateEvent = null;
+        }
+      } catch (error) {
+        console.error("Errore nella ricerca per data:", error);
+        this.dateEvent = null;
+      }
     },
     doSearch() {
       if (this.searchQuery.trim() !== "") {
@@ -119,32 +223,54 @@ export default {
         this.fetchData();
       }
     },
-    sharePlace(place) {
-      // Costruisci il contenuto da condividere
-      const shareData = {
-        title: place.name || "Senza nome",
-        text: `Scopri ${place.name} situato in ${place.address_street}, ${place.address_city}.`,
-        url: window.location.href
-      };
-      if (navigator.share) {
-        navigator.share(shareData)
-          .then(() => console.log('Condiviso con successo'))
-          .catch(error => console.error('Errore nella condivisione:', error));
-      } else if (navigator.clipboard) {
-        navigator.clipboard.writeText(shareData.url)
-          .then(() => alert("Link copiato negli appunti"))
-          .catch(error => console.error('Errore nel copiare il link:', error));
-      }
+    openModal(place) {
+      this.selectedPlace = place;
+      this.$nextTick(() => {
+        this.loadMap(place);
+      });
     },
-    openMaps(place) {
-      let url = "";
-      if (place.latitude && place.longitude) {
-        url = `https://www.google.com/maps/search/?api=1&query=${place.latitude},${place.longitude}`;
-      } else {
-        const query = encodeURIComponent(`${place.address_street} ${place.address_housenumber} ${place.address_city}`);
-        url = `https://www.google.com/maps/search/?api=1&query=${query}`;
+    loadMap(place) {
+      if (this.map) this.map.remove();
+      this.map = L.map(this.$refs.map).setView(
+        [place.latitude, place.longitude],
+        15
+      );
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: "© OpenStreetMap",
+      }).addTo(this.map);
+      L.marker([place.latitude, place.longitude]).addTo(this.map);
+    },
+    onFocus() {
+      this.focused = true;
+      this.fetchSuggestions();
+    },
+    onBlur() {
+      setTimeout(() => {
+        this.focused = false;
+      }, 200);
+    },
+    onInput() {
+      if (this.searchQuery.trim().length < 1) {
+        this.suggestions = [];
+        return;
       }
-      window.open(url, "_blank");
+      const url = "https://api.bitcoinbeer.events/api/api_suggestions.php?q=" + encodeURIComponent(this.searchQuery);
+      fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          this.suggestions = data.suggestions || [];
+        })
+        .catch(error => {
+          console.error("Errore API suggerimenti:", error);
+          this.suggestions = [];
+        });
+    },
+    selectSuggestion(item) {
+      this.searchQuery = item;
+      this.doSearch();
+    },
+    fetchSuggestions() {
+      this.onInput();
     }
   },
   mounted() {
@@ -154,179 +280,153 @@ export default {
 </script>
 
 <style scoped>
-/* Pagina dei risultati con sfondo scuro */
+/* Sfondo e layout della pagina */
 .results-page {
-  background-color: #1a1a1a;
+  background: linear-gradient(180deg, #1a1d23, #0d0f14);
   min-height: 100vh;
-  padding-top: 10rem; /* spazio per il search header fisso */
+  padding-top: 8rem;
   color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* Search header fisso in alto */
 .search-header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.search-box {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.results-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.results-container {
+  width: 50%;
+  max-width: 800px;
+}
+
+.results-title {
+  margin-bottom: 1rem;
+}
+
+/* Stili dei risultati */
+.result-item {
+  padding: 12px;
+  margin-bottom: 10px;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+}
+
+.result-item:hover {
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.result-name {
+  font-size: 22px;
+  color: #5faaff;
+  font-weight: bold;
+}
+
+.result-address {
+  font-size: 14px;
+  margin: 4px 0;
+  color: #ccc;
+}
+
+.result-description {
+  font-size: 15px;
+  color: #bbb;
+  margin-top: 5px;
+}
+
+.payment-line {
+  margin-top: 4px;
+  color: #bbb;
+  font-size: 15px;
+}
+
+.icon-with-text {
+  margin-left: 8px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.icon-crypto {
+  width: 20px;
+  height: 20px;
+  margin-right: 4px;
+}
+
+/* Modal */
+.modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  background-color: #111;
-  padding: 1rem 2rem;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-  z-index: 10;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
   display: flex;
+  align-items: center;
   justify-content: center;
 }
 
-.search-box {
+.modal-content {
+  background: rgba(25, 25, 25, 0.4);
+  backdrop-filter: blur(25px);
+  padding: 20px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 900px;
+  color: #fff;
+  display: flex;
+  gap: 20px;
+}
+
+.modal-body {
+  display: flex;
+  gap: 20px;
   width: 100%;
-  max-width: 500px;
-  display: flex;
 }
 
-.search-box input[type="text"] {
+.modal-text {
   flex: 1;
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #333;
-  border-right: none;
-  border-radius: 4px 0 0 4px;
-  background-color: #222;
-  color: #fff;
 }
 
-.search-box button {
-  padding: 10px 20px;
-  font-size: 16px;
-  border: 1px solid #333;
-  border-left: none;
-  background-color: #f4a261;
-  color: #fff;
-  cursor: pointer;
-  border-radius: 0 4px 4px 0;
-  transition: background-color 0.2s ease;
+.modal-map {
+  width: 40%;
+  height: 300px;
+  border-left: 2px solid rgba(255, 255, 255, 0.2);
+  padding-left: 15px;
 }
 
-.search-box button:hover {
-  background-color: #e0884a;
-}
-
-/* Container dei risultati */
-.results-container {
-  padding: 2rem;
-}
-
-.results-title {
-  margin-bottom: 1.5rem;
-  text-align: center;
-  font-size: 2rem;
-}
-
-.status {
-  font-size: 18px;
-  margin: 20px 0;
-  text-align: center;
-}
-
-/* Box polyglass per ogni risultato */
-.result-item {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 8px;
-  padding: 1rem;
-  margin-bottom: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  transition: box-shadow 0.3s ease;
-}
-
-.result-item:hover {
-  box-shadow: 0 0 15px rgba(0, 153, 255, 0.8);
-}
-
-.result-content {
-  margin-bottom: 1rem;
-}
-
-.result-name {
-  font-size: 1.5rem;
-  margin: 0 0 0.5rem;
-}
-
-.result-address,
-.result-cap {
-  font-size: 1rem;
-  margin: 0.2rem 0;
-  color: #ccc;
-}
-
-.payment-info {
-  margin-top: 0.5rem;
-  font-size: 1.5rem;
-}
-
-.icon {
-  margin-right: 0.5rem;
-}
-
-.bitcoin-icon {
-  color: #f2a900; /* Logo Bitcoin arancione classico */
-}
-
-.lightning-icon {
-  color: #00baff;
-}
-
-/* Azioni: pulsanti Condividi e Mappe */
-.action-buttons {
-  display: flex;
-  gap: 1rem;
-  justify-content: flex-end;
-  margin-top: 0.5rem;
-}
-
-.share-btn,
-.maps-btn {
-  background-color: #333;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  color: #fff;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.share-btn:hover,
-.maps-btn:hover {
-  background-color: #555;
-}
-
-/* Mobile responsiveness */
 @media (max-width: 768px) {
-  .search-box {
-    max-width: 90%;
-  }
-  .search-box input[type="text"] {
-    font-size: 14px;
-    padding: 8px;
-  }
-  .search-box button {
-    font-size: 14px;
-    padding: 8px 16px;
-  }
-  .results-title {
-    font-size: 1.8rem;
-  }
-  .result-item {
-    width: 100%;
-  }
-  .action-buttons {
+  .modal-content {
     flex-direction: column;
-    align-items: stretch;
   }
-  .share-btn,
-  .maps-btn {
+  .modal-map {
     width: 100%;
-    text-align: center;
+    height: 250px;
+    border-left: none;
+    border-top: 2px solid rgba(255, 255, 255, 0.2);
+    padding-top: 15px;
   }
+}
+
+.web-icon {
+  width: 24px;
+  height: 24px;
+  filter: invert(1);
 }
 </style>
